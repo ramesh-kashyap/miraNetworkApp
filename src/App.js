@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Home from "./pages/Home";
 import { Loader } from "lucide-react";
 import Rewards from "./pages/Rewards";
+import MiningTeam from "./pages/MiningTeam";
 const App = () => {
   const [loading, setLoading] = useState(false);
 
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/reward" element={<Rewards />} />
+          <Route path="/miningTeam" element={<MiningTeam />} />
         </Routes>
       )}
     </Router>
