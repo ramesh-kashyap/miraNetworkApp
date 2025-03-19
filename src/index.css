@@ -5,3 +5,15 @@
     --tw-bg-opacity: 1;
     background-color: rgb(19 26 16 / var(--tw-bg-opacity, 1));
 }
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 0.6rem;
+}
+.bg-\[\#1a1129\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(10 15 7);
+}
+.bg-purple-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
+}

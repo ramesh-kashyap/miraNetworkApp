@@ -23,7 +23,7 @@ const MiningTeam = () => {
         
         </div>
         <p className="text-gray-400 text-sm mt-4">
-          Invite your friend to MeshChain! Earn <span className="text-green-400">20%</span> of their rewards and <span className="text-green-400">5%</span> from their friends' rewards.
+          Invite your friend to XyZCoin! Earn <span className="text-green-400">20%</span> of their rewards and <span className="text-green-400">5%</span> from their friends' rewards.
         </p>
       </div>
       
