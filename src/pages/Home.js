@@ -1,6 +1,53 @@
 import { Bell, User, Users, Gift, Trophy, Gamepad, Settings, Pickaxe } from "lucide-react";
+import Footer from "../components/Footer";
+import React, { useState,useEffect } from 'react';
+import CountdownTimer from '../components/CountdownTimer';
+import Api from '../services/Api';
+
 
 export default function Home() {
+
+  const [telegram_id] = useState(localStorage.getItem("telegram_id"));
+  const [activeButton, setActiveButton] = useState('reward');
+  const [value1, setValue1] = useState('0.00');  
+  const [value2, setValue2] = useState('0.00');  
+  const [text1, setText1] = useState('Todays Mining');  
+  const [text2, setText2] = useState('Total Rewards');  
+
+  const handleButtonClick = (button) => {
+    setActiveButton(button);
+
+    if (button === 'reward') {
+      fetchMiningBonus();
+     
+    } else {
+      setValue1('100');   
+      setValue2('0.25 TH/s');   
+      setText1('Network Difficulty');   
+      setText2('Hash Rate');   
+    }
+  };
+
+    useEffect(() => {
+      fetchMiningBonus();
+    }, []);
+    const fetchMiningBonus = async () => {
+      try {
+        const response = await Api.get("auth/get-mining-bonus");
+        if (response.data.success) {
+          setText1('Todays Mining');   
+          setText2('Total Rewards');  
+          setValue1(response.data.todayBonus?response.data.todayBonus:0.0);
+          setValue2(response.data.totalBonus);
+        }
+      } catch (error) {
+        console.error("❌ Error fetching lastTrade:", error);
+      }
+    };
+
+
+
+
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24">
       {/* Header */}
@@ -27,11 +74,17 @@ export default function Home() {
 
       {/* Actions */}
       <div className="flex space-x-4 mb-12">
-        <button className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]">
+        <button 
+
+onClick={() => handleButtonClick('reward')}
+        className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]">
           <Bell size={16} />
           <span>Ping inactive people</span>
         </button>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]">
+        <button 
+                          onClick={() => handleButtonClick('status')}
+
+        className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]">
           <Users size={16} />
           <span>Invite new members</span>
         </button>
@@ -57,16 +110,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-4 w-full max-w-md bg-[#131a10] rounded-full p-2 flex justify-around items-center border border-gray-700 shadow-md">
-        <Gift className="text-gray-400" size={24} />
-        <Trophy className="text-gray-400" size={24} />
-        <button className="bg-green-400 p-4 rounded-full shadow-xl">
-          <Pickaxe className="text-black" size={24} />
-        </button>
-        <Gamepad className="text-gray-400" size={24} />
-        <Settings className="text-gray-400" size={24} />
-      </div>
+    
+
+      <Footer/>
     </div>
   );
 }
