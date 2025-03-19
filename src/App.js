@@ -6,6 +6,7 @@ import Rewards from "./pages/Rewards";
 import MiningTeam from "./pages/MiningTeam";
 import Airdrop from "./pages/AirDrop";
 import Leaderboard from "./pages/Leaderboard";
+import DailyCheckIn from "./pages/DailyCheckIn";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,8 @@ const App = () => {
           <Route path="/miningTeam" element={<MiningTeam />} />
           <Route path="/Airdrop" element={<Airdrop />} />
           <Route path="/leaderBoard" element={<Leaderboard />} />
+          <Route path="/dailyCheckIn" element={<DailyCheckIn />} />
+
 
         </Routes>
       )}
