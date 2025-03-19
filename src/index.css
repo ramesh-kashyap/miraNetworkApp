@@ -5,3 +5,6 @@
     --tw-bg-opacity: 1;
     background-color: rgb(19 26 16 / var(--tw-bg-opacity, 1));
 }
+.bottom-4 {
+    bottom: 0rem;
+}
