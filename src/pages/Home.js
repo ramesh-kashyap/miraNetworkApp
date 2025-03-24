@@ -1,14 +1,14 @@
 import { Bell, User, Users, Gift, Trophy, Gamepad, Settings, Pickaxe } from "lucide-react";
 import Footer from "../components/Footer";
+import {useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState,useEffect } from 'react';
-import CountdownTimer from '../components/CountdownTimer';
 import Api from '../services/Api';
 
 
 export default function Home() {
   const [alldata, setAlldata] = useState(null);  // State to store user data
   const [tabdata, setTabdata] = useState(null);  // State to store user data
-
   const [error, setError] = useState(null);      
   const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
   const [activeButton, setActiveButton] = useState('reward');
