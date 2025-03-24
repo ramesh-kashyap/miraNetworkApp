@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowLeft, FaUserPlus, FaUsers, FaGift, FaTrophy, FaGamepad, FaWrench, FaHammer } from "react-icons/fa6";
 import { Bell, User, Users, Gift, Trophy, Gamepad, Settings, Pickaxe } from "lucide-react";
+import Footer from "../components/Footer";
 
 const activeMiners = ["jerbla"];
 const inactiveMiners = [];
@@ -49,15 +50,8 @@ const MiningTeam = () => {
       </div>
       
       {/* Bottom Navigation */}
-      <div className="fixed bottom-4 w-full max-w-md bg-[#131a10] rounded-full p-2 flex justify-around items-center border border-gray-700 shadow-md">
-        <Gift className="text-gray-400" size={24} />
-        <Trophy className="text-gray-400" size={24} />
-        <button className="bg-green-400 p-4 rounded-full shadow-xl">
-          <Pickaxe className="text-black" size={24} />
-        </button>
-        <Gamepad className="text-gray-400" size={24} />
-        <Settings className="text-gray-400" size={24} />
-      </div>
+      <Footer/>
+
     </div>
   );
 };

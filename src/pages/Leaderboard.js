@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState,useEffect } from 'react';
 import { FaArrowLeft, FaUserPlus, FaUsers, FaGift, FaTrophy, FaGamepad, FaWrench, FaHammer } from "react-icons/fa6";
 import { Bell, User, Users, Gift, Trophy, Gamepad, Settings, Pickaxe } from "lucide-react";
-
+import Api from '../services/Api';
+import Footer from "../components/Footer";
 
 const leaderboardData = [
     { id: 1, name: "gunalp123", points: "120,689,860", avatar: "assets/klink4.svg" },
@@ -11,6 +12,29 @@ const leaderboardData = [
   ];
 
 const Leaderboard = () => {
+
+ const [alldata, setAlldata] = useState(null);  // State to store user data
+      const [error, setError] = useState(null); 
+
+      const fetchAlldata = async () => {
+        try {
+            const response = await Api.get('auth/total-balance');
+            setAlldata(response.data);  // Store API response in state
+        } catch (err) {
+            setError(err.response?.data?.error || "Error fetching data");
+        }
+    };
+  
+    useEffect(() => {
+      // console.log('hello');
+      fetchAlldata();
+    }, []);
+
+
+
+
+
+
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       {/* Header */}
@@ -27,7 +51,7 @@ const Leaderboard = () => {
       <h3 className="text-gray-400 text-sm mt-4">Total Pool I Airdrop Points</h3>
       <div className="flex items-center mt-2">
         <img src="/assets/klink30.svg" alt="Token" className="w-8 h-8 mr-2" />
-        <h1 className="text-4xl font-bold">4,187,435</h1>
+        <h1 className="text-4xl font-bold">{alldata?.allBalance ?? 0}</h1>
       </div>
 
       {/* Community Leaderboard */}
@@ -51,15 +75,8 @@ const Leaderboard = () => {
     
  
       {/* Bottom Navigation */}
-      <div className="fixed bottom-4 w-full max-w-md bg-[#131a10] rounded-full p-2 flex justify-around items-center border border-gray-700 shadow-md">
-        <Gift className="text-gray-400" size={24} />
-        <Trophy className="text-gray-400" size={24} />
-        <button className="bg-green-400 p-4 rounded-full shadow-xl">
-          <Pickaxe className="text-black" size={24} />
-        </button>
-        <Gamepad className="text-gray-400" size={24} />
-        <Settings className="text-gray-400" size={24} />
-      </div>
+      <Footer/>
+
     </div>
   );
 };

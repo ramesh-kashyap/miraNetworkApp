@@ -6,19 +6,24 @@ import Api from '../services/Api';
 
 
 export default function Home() {
+  const [alldata, setAlldata] = useState(null);  // State to store user data
+  const [tabdata, setTabdata] = useState(null);  // State to store user data
 
-  const [telegram_id] = useState(localStorage.getItem("telegram_id"));
+  const [error, setError] = useState(null);      
+  const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
   const [activeButton, setActiveButton] = useState('reward');
   const [value1, setValue1] = useState('0.00');  
   const [value2, setValue2] = useState('0.00');  
   const [text1, setText1] = useState('Todays Mining');  
   const [text2, setText2] = useState('Total Rewards');  
+  
+
 
   const handleButtonClick = (button) => {
     setActiveButton(button);
 
     if (button === 'reward') {
-      fetchMiningBonus();
+      fetchMiningBonus(); 
      
     } else {
       setValue1('100');   
@@ -28,12 +33,12 @@ export default function Home() {
     }
   };
 
-    useEffect(() => {
-      fetchMiningBonus();
-    }, []);
+  
     const fetchMiningBonus = async () => {
       try {
         const response = await Api.get("auth/get-mining-bonus");
+
+        console.log('respone',response);
         if (response.data.success) {
           setText1('Todays Mining');   
           setText2('Total Rewards');  
@@ -45,9 +50,40 @@ export default function Home() {
       }
     };
 
+    const fetchTabdata = async () => {
+      try {
+          const response = await Api.get('auth/total-balance');
+          setTabdata(response.data);  // Store API response in state
+      } catch (err) {
+          setError(err.response?.data?.error || "Error fetching data");
+      }
+  };
 
 
 
+
+  
+    const fetchAlldata = async () => {
+      try {
+          const response = await Api.post('auth/telegram-user-detail',{ telegram_id });
+          // const response = await Api.post("auth/getTasks", { telegram_id });
+
+          
+          console.log('ee',response);
+          setAlldata(response.data);  // Store API response in state
+      } catch (err) {
+          setError(err.response?.data?.error || "Error fetching data");
+      }
+  };
+
+  
+
+  useEffect(() => {
+    // console.log('hello');
+    fetchAlldata();
+    fetchTabdata();
+        fetchMiningBonus();
+  }, []);
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24">
       {/* Header */}
@@ -56,7 +92,7 @@ export default function Home() {
           <div className="w-10 h-10 bg-gray-800 flex items-center justify-center rounded-full">
             <User className="text-white" size={20} />
           </div>
-          <p className="text-lg font-semibold">Hello, <span className="font-bold">Ramesh kashyap</span> 👋</p>
+          <p className="text-lg font-semibold">Hello, <span className="font-bold">{alldata?.user?.tusername || "User"}</span> 👋</p>
         </div>
         <button className="p-2 bg-gray-800 rounded-full">
           <Bell className="text-green-400" size={20} />
@@ -69,7 +105,7 @@ export default function Home() {
       </div>
 
       {/* Earned Amount */}
-      <p className="text-3xl font-bold">1.00012 <span className="text-green-400">LUM</span></p>
+      <p className="text-3xl font-bold">{tabdata?.tabBalance ?? 0} <span className="text-green-400">LUM</span></p>
       <p className="text-gray-400 mb-6">Earned Lumira</p>
 
       {/* Actions */}

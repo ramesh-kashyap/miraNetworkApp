@@ -18,10 +18,13 @@ const Rewards = () => {
   const [loadingTasks, setLoadingTasks] = useState({});
   const [claimableTasks, setClaimableTasks] = useState({});
   const telegram_id = localStorage.getItem("telegram_id");
+   const [alldata, setAlldata] = useState(null);  // State to store user data
+    const [error, setError] = useState(null); 
 
   useEffect(() => {
     getTaskRecord();
     getUserBalance();
+    fetchAlldata();
   }, []);
 
   const getTaskRecord = async () => {
@@ -32,6 +35,25 @@ const Rewards = () => {
       console.error("Error fetching tasks:", error);
     }
   };
+
+
+
+  const fetchAlldata = async () => {
+    try {
+        const response = await Api.get('auth/total-balance');
+        setAlldata(response.data);  // Store API response in state
+    } catch (err) {
+        setError(err.response?.data?.error || "Error fetching data");
+    }
+};
+
+
+
+
+
+
+
+
 
   const getUserBalance = async () => {
     try {
@@ -143,16 +165,16 @@ const Rewards = () => {
 
       {/* Rewards Summary */}
       <div className="bg-gray-800 p-6 rounded-xl shadow-lg text-center mb-6">
-        <h3 className="text-3xl font-bold">201.60 Points</h3>
+        <h3 className="text-3xl font-bold">{alldata?.totalBalance?? 0}. Points</h3>
         <p className="text-gray-400 text-sm">Total Rewards</p>
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div className="bg-gray-700 p-4 rounded-lg text-center">
             <p className="text-gray-400 text-sm">Mining</p>
-            <p className="text-lg font-bold">201.6 pt</p>
+            <p className="text-lg font-bold">{alldata?.totalBalance?? 0} .pt</p>
           </div>
           <div className="bg-gray-700 p-4 rounded-lg text-center">
             <p className="text-gray-400 text-sm">Tasks</p>
-            <p className="text-lg font-bold">0 pt</p>
+            <p className="text-lg font-bold">{alldata?.bonus ?? 0}.pt</p>
           </div>
           <div className="bg-gray-700 p-4 rounded-lg text-center">
             <p className="text-gray-400 text-sm">Referral</p>
