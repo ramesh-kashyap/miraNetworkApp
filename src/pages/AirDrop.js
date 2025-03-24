@@ -1,6 +1,10 @@
-import React, { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 import {  FaTimesCircle } from "react-icons/fa";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+import React, { useState,useEffect } from 'react';
+import CountdownTimer from '../components/CountdownTimer';
+import Api from '../services/Api';
 
 const transactions = [
   { id: 1, type: "received", name: "From Albert Flores", date: "10 Feb 2022 at 01:00 pm", amount: "+$12,600.00", color: "text-green-400" },
@@ -11,6 +15,31 @@ const transactions = [
 const Airdrop = () => {
     const [activeTab, setActiveTab] = useState("mining");
     const [faqOpen, setFaqOpen] = useState(null);
+  const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
+
+     const [alldata, setAlldata] = useState(null);  // State to store user data
+      const [error, setError] = useState(null); 
+
+      const fetchAlldata = async () => {
+        try {
+            const response = await Api.get('auth/total-balance');
+            setAlldata(response.data);  // Store API response in state
+        } catch (err) {
+            setError(err.response?.data?.error || "Error fetching data");
+        }
+    };
+  
+    useEffect(() => {
+      console.log('hello');
+      fetchAlldata();
+    }, []);
+
+
+
+
+
+
+
 
     const toggleFaq = (index) => {
         setFaqOpen(faqOpen === index ? null : index);
@@ -55,6 +84,10 @@ const Airdrop = () => {
         }
       ];
       
+
+
+
+
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
             <h2 className="text-2xl font-bold mb-4">Assets</h2>
@@ -70,8 +103,8 @@ const Airdrop = () => {
           className={`flex-1 py-3 rounded-lg text-sm font-semibold ${activeTab === "boost" ? "bg-purple-500 text-white" : "bg-\[\#131a10\]"}`} 
           onClick={() => setActiveTab("boost")}
         >
-          Daily Boost
-        </button>
+  <Link to="/dailyCheckIn" className="w-full h-full block text-center">Daily Boost </Link>
+  </button>
       </div>
       
      <br/>
@@ -80,7 +113,7 @@ const Airdrop = () => {
 
        {/* Total Airdrop Points */}
        <h3 className="text-gray-400 text-sm mt-6">Total $AiroCoin Airdrop Points</h3>
-      <h1 className="text-5xl font-bold" style={{marginTop:'10px'}}>  <img src="/assets/klink30.svg" style={{float:'inline-start'}} alt="Invite" className="w-12 h-12 mr-2" />  875,305</h1>
+      <h1 className="text-5xl font-bold" style={{marginTop:'10px'}}>  <img src="/assets/klink30.svg" style={{float:'inline-start'}} alt="Invite" className="w-12 h-12 mr-2" />{alldata?.totalBalance ?? 0}</h1>
 
 
 
@@ -114,6 +147,7 @@ const Airdrop = () => {
           </div>
         ))}
       </div>
+      <Footer/>
 
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 import {  FaTimesCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const transactions = [
   { id: 1, type: "received", name: "From Albert Flores", date: "10 Feb 2022 at 01:00 pm", amount: "+$12,600.00", color: "text-green-400" },
@@ -40,6 +41,17 @@ const DailyCheckIn = () => {
    
       ];
     
+
+
+
+
+
+
+
+
+
+
+      
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
             <h2 className="text-2xl font-bold mb-4">Daily Boost</h2>
@@ -49,7 +61,9 @@ const DailyCheckIn = () => {
           className={`flex-1 py-3 rounded-lg text-sm font-semibold ${activeTab === "mining" ? "bg-purple-500 text-white" : "bg-\[\#131a10\]"}`} 
           onClick={() => setActiveTab("mining")}
         >
-          Mining
+            <Link to="/Airdrop" className="w-full h-full block text-center"> Mining </Link>
+          
+         
         </button>
         <button 
           className={`flex-1 py-3 rounded-lg text-sm font-semibold ${activeTab === "boost" ? "bg-purple-500 text-white" : "bg-\[\#131a10\]"}`} 

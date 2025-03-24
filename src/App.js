@@ -156,6 +156,14 @@ function App() {
                             <Route path="/" element={ <ProtectedRoute><Home /></ProtectedRoute> } />
                             <Route path="/reward" element={ <ProtectedRoute><Rewards /></ProtectedRoute> } />
                             <Route path="/profile" element={<ProtectedRoute> <Profile /></ProtectedRoute>} />
+                            <Route path="/miningTeam" element={<ProtectedRoute> <MiningTeam /></ProtectedRoute>} />
+
+                            <Route path="/Airdrop" element={<ProtectedRoute> <Airdrop/></ProtectedRoute>} />
+
+                            <Route path="/leaderBoard" element={<ProtectedRoute> <Leaderboard /></ProtectedRoute>} />
+                            <Route path="/dailyCheckIn" element={<ProtectedRoute> <DailyCheckIn /></ProtectedRoute>} />
+
+
 
 
         </Routes>
