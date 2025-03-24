@@ -5,6 +5,11 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Home from "./pages/Home";
 // import { Loader } from "lucide-react";
 import Rewards from "./pages/Rewards";
+import MiningTeam from "./pages/MiningTeam";
+import Airdrop from "./pages/AirDrop";
+import Leaderboard from "./pages/Leaderboard";
+import DailyCheckIn from "./pages/DailyCheckIn";
+
 import Api from "./services/Api";
 import Profile from './components/Profile';
 

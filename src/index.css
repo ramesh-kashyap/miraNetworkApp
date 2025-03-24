@@ -8,3 +8,11 @@
 .bottom-4 {
     bottom: 0rem;
 }
+.bg-\[\#1a1129\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(10 15 7);
+}
+.bg-purple-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
+}
