@@ -8,7 +8,6 @@ import Api from '../services/Api';
 export default function Home() {
   const [alldata, setAlldata] = useState(null);  // State to store user data
   const [tabdata, setTabdata] = useState(null);  // State to store user data
-
   const [error, setError] = useState(null);      
   const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
   const [activeButton, setActiveButton] = useState('reward');
