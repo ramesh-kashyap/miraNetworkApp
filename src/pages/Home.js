@@ -1,111 +1,171 @@
 import { Bell, User, Users, Gift, Trophy, Gamepad, Settings, Pickaxe } from "lucide-react";
 import Footer from "../components/Footer";
+import {useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState,useEffect } from 'react';
-import CountdownTimer from '../components/CountdownTimer';
 import Api from '../services/Api';
-
+import { Toaster, toast } from 'react-hot-toast';
 
 export default function Home() {
-  const [alldata, setAlldata] = useState(null);  // State to store user data
-  const [tabdata, setTabdata] = useState(null);  // State to store user data
-
-  const [error, setError] = useState(null);      
-  const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
-  const [activeButton, setActiveButton] = useState('reward');
-  const [value1, setValue1] = useState('0.00');  
-  const [value2, setValue2] = useState('0.00');  
-  const [text1, setText1] = useState('Todays Mining');  
-  const [text2, setText2] = useState('Total Rewards');  
+  const [coins, setCoins] = useState([]); // Array for floating coins
+  const [balance, setBalance] = useState(0); // User balance
+  const navigate = useNavigate();
+  const [gemCount, setGemCount] = useState(38);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dots, setDots] = useState([]);
+  const [isBlinking, setIsBlinking] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const handleTap = () => {
+    setGemCount(gemCount + 1);
+  };  
   
 
 
-  const handleButtonClick = (button) => {
-    setActiveButton(button);
+  const addCoin = (event) => {
+    setIsBlinking(true);
+    setTimeout(() => {
+      setIsBlinking(false);
+    }, 50);
+    
+    const parent = event.currentTarget.getBoundingClientRect();
+    const { clientX, clientY } = event;
+    const newCoin = { id: Date.now(), x: clientX - parent.left,y: clientY - parent.top,}; // Unique ID & random position
+    setCoins((prev) => [...prev, newCoin]);
 
-    if (button === 'reward') {
-      fetchMiningBonus(); 
-     
-    } else {
-      setValue1('100');   
-      setValue2('0.25 TH/s');   
-      setText1('Network Difficulty');   
-      setText2('Hash Rate');   
+    setTimeout(() => {
+      setCoins((prev) => prev.filter((coin) => coin.id !== newCoin.id)); // Remove after 1s
+    }, 1000);
+
+    // Update balance
+    const newBalance = balance + 1;
+    // setProBalance(newBalance);
+    setBalance(newBalance);
+    updateBalance(newBalance);   
+    
+
+    setIsClicking(true); // Decrease but not below 0
+  };
+
+  const updateBalance = async (newBalance) => {
+    // console.log(newBalance);
+    try {
+      const response = await Api.post("auth/updateBalance", { balance: newBalance });
+      // console.log(response.data);
+      if(response.data.balance){
+        setBalance(response.data.balance);
+      }      
+    } catch (err) {
+      console.error("Error updating balance:", err,{ duration: 1000 });
     }
   };
 
-  
-    const fetchMiningBonus = async () => {
-      try {
-        const response = await Api.get("auth/get-mining-bonus");
+   const fatchBalance = async () =>{
+    try{
+      const response = await Api.post("auth/fatchBalance");
+      // console.log(response.data);
+      if(response.data.balance){
+        setBalance(response.data.balance);
+      }
+    }
+    catch (err) {
+     console.error("Error updating balance:", err,{ duration: 1000 });
+    }
+   }
 
-        console.log('respone',response);
-        if (response.data.success) {
-          setText1('Todays Mining');   
-          setText2('Total Rewards');  
-          setValue1(response.data.todayBonus?response.data.todayBonus:0.0);
-          setValue2(response.data.totalBonus);
+   const [activeTab, setActiveTab] = useState("tap");
+
+const tap = () => setActiveTab("tap");
+const node = () => setActiveTab("node");
+
+const [isClicking, setIsClicking] = useState(false);
+
+// Calculate progress percentage
+ // Run when isClicking changes
+
+// Detect when user stops clicking
+useEffect(() => {
+  let timeout;
+  if (isClicking) {
+      timeout = setTimeout(() => setIsClicking(false), 1000); // 1 sec delay after last click
+  }
+  return () => clearTimeout(timeout); // Cleanup timeout
+}, [isClicking]);
+useEffect(() => {
+  const otpSuccess = sessionStorage.getItem("otpSuccess");
+  const message = sessionStorage.getItem("popupMessage");
+        if (otpSuccess && message) {
+          setIsModalOpen(true);
+          sessionStorage.removeItem("otpSuccess");
+          sessionStorage.removeItem("popupMessage") // Remove after showing
         }
-      } catch (error) {
-        console.error("❌ Error fetching lastTrade:", error);
+    }, []);
+
+    const fatchpoints = async () =>{
+      try{
+         const response = await Api.post('auth/fatchPoint');
+        //  console.log("Api response", response);
+         if(response.data){
+          // settotalBalance(response.data.coin_balance);
+          // setcoinBalance(response.data.coin);
+          // settotalAllCoins(response.data.totalallCoin);
+          if(!response.data.telegram_id){
+           toast.error("❌ AiCoinX account is not connected",{ duration: 1000 });
+            // setIsModalOpen(true);
+          }
+          else{
+           toast.success("AiCoinX Connected",{ duration: 1000 });
+            // setIsModalOpen(true);
+          }
+         }
       }
-    };
-
-    const fetchTabdata = async () => {
-      try {
-          const response = await Api.get('auth/total-balance');
-          setTabdata(response.data);  // Store API response in state
-      } catch (err) {
-          setError(err.response?.data?.error || "Error fetching data");
+      catch(error){
+           toast.success("Somthing is wrong", error,{ duration: 1000 });
       }
-  };
+    }
 
-
-
-
-  
-    const fetchAlldata = async () => {
-      try {
-          const response = await Api.post('auth/telegram-user-detail',{ telegram_id });
-          // const response = await Api.post("auth/getTasks", { telegram_id });
-
-          
-          console.log('ee',response);
-          setAlldata(response.data);  // Store API response in state
-      } catch (err) {
-          setError(err.response?.data?.error || "Error fetching data");
-      }
-  };
-
-  
-
-  useEffect(() => {
-    // console.log('hello');
-    fetchAlldata();
-    fetchTabdata();
-        fetchMiningBonus();
-  }, []);
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24">
       {/* Header */}
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="flex justify-between items-center w-full max-w-md px-2 mb-6">
         <div className="flex items-center space-x-2">
           <div className="w-10 h-10 bg-gray-800 flex items-center justify-center rounded-full">
             <User className="text-white" size={20} />
           </div>
-          <p className="text-lg font-semibold">Hello, <span className="font-bold">{alldata?.user?.tusername || "User"}</span> 👋</p>
+          <p className="text-lg font-semibold">Hello, <span className="font-bold">Sachin</span> 👋</p>
         </div>
         <button className="p-2 bg-gray-800 rounded-full">
-          <Bell className="text-green-400" size={20} />
+          <Bell className="text-green-400" size={20}   onClick={()=>fatchpoints()}/>
         </button>
       </div>
 
       {/* Mining Bubble */}
-      <div className="relative flex items-center justify-center w-72 h-72 bg-[#1a1f14] rounded-full shadow-2xl border border-gray-700 mb-4">
+      <div className={`relative flex items-center justify-center w-72 h-72 bg-[#1a1f14] rounded-full shadow-2xl border border-gray-700 mb-4 ${isBlinking ? "animate-ping" : ""}`} onClick={addCoin}>
+      <AnimatePresence>
+        {coins.map((coin) => (
+          <motion.div
+            key={coin.id}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: -100 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute text-yellow-400 text-xl font-bold"
+            style={{
+              left: `${coin.x}px`, // Exact X position
+              top: `${coin.y}px`,  // Exact Y position
+              transform: "translate(-50%, -50%)", // Center it properly
+              position: "absolute"
+            }}
+          >
+            +1🪙
+          </motion.div>
+        ))}
+      </AnimatePresence>
         <p className="text-gray-400 text-lg font-semibold">Start Mining</p>
       </div>
 
       {/* Earned Amount */}
-      <p className="text-3xl font-bold">{tabdata?.tabBalance ?? 0} <span className="text-green-400">LUM</span></p>
+      <p className="text-3xl font-bold">{balance} <span className="text-green-400">LUM</span></p>
       <p className="text-gray-400 mb-6">Earned Lumira</p>
 
       {/* Actions */}
