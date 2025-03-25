@@ -96,7 +96,7 @@ function App() {
                       localStorage.setItem("telegram_id", response.data.telegram_id);
 
                       // ✅ Fetch username after login
-                      fetchUserInfo(response.data.telegram_id);
+                    //   fetchUserInfo(response.data.telegram_id);
                   } else {
                       console.error("❌ Login Error:", response.data.message);
                   }
