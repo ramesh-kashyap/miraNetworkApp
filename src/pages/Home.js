@@ -3,11 +3,19 @@ import Footer from "../components/Footer";
 import React, { useState,useEffect } from 'react';
 import CountdownTimer from '../components/CountdownTimer';
 import Api from '../services/Api';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const [alldata, setAlldata] = useState(null);  // State to store user data
   const [tabdata, setTabdata] = useState(null);  // State to store user data
+ const [allteam, setTeam] = useState(null); 
+ const [allmember, setMember] = useState(null); 
+ const [allbalance, setBalance] = useState(null); 
+
 
   const [error, setError] = useState(null);      
   const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
@@ -60,7 +68,14 @@ export default function Home() {
   };
 
 
-
+  const fetchMember = async () => {
+    try {
+        const response = await Api.get('auth/TotalMember');
+        setMember(response.data);  // Store API response in state
+    } catch (err) {
+        setError(err.response?.data?.error || "Error fetching data");
+    }
+  };
 
   
     const fetchAlldata = async () => {
@@ -77,11 +92,36 @@ export default function Home() {
   };
 
   
+  const fetchBalance = async () => {
+    try {
+        const response = await Api.get('auth/total-balance');
+        setBalance(response.data);  // Store API response in state
+    } catch (err) {
+        setError(err.response?.data?.error || "Error fetching data");
+    }
+};
+
+  const fetchTeam = async () => {
+    try {
+        const response = await Api.get('auth/TotalTeam');
+        setTeam(response.data);  // Store API response in state
+    } catch (err) {
+        setError(err.response?.data?.error || "Error fetching data");
+    }
+};
+
+
+
+
 
   useEffect(() => {
     // console.log('hello');
     fetchAlldata();
     fetchTabdata();
+    fetchTeam ();
+    fetchMember();
+    fetchBalance();
+
         fetchMiningBonus();
   }, []);
   return (
@@ -117,32 +157,32 @@ onClick={() => handleButtonClick('reward')}
           <Bell size={16} />
           <span>Ping inactive people</span>
         </button>
-        <button 
-                          onClick={() => handleButtonClick('status')}
-
-        className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]">
-          <Users size={16} />
-          <span>Invite new members</span>
-        </button>
+        <button
+      onClick={() => navigate('/miningTeam')}
+      className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]"
+    >
+      <Users size={16} />
+      <span>Invite new members</span>
+    </button>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-4 w-full max-w-md mb-12">
         <div className="p-4 bg-[#131a10] rounded-lg text-center border border-gray-700">
-          <p className="text-gray-400">Active members</p>
-          <p className="text-xl font-bold">0</p>
+          <p className="text-gray-400">Active Member</p>
+          <p className="text-xl font-bold">{allmember ?.totalMember ?? 0}</p>
         </div>
         <div className="p-4 bg-[#131a10] rounded-lg text-center border border-gray-700">
-          <p className="text-gray-400">Bonus from mining</p>
-          <p className="text-xl font-bold">0.0 LUM/h</p>
+          <p className="text-gray-400">Total Balance</p>
+          <p className="text-xl font-bold">{allbalance?.allBalance ?? 0}</p>
         </div>
         <div className="p-4 bg-[#131a10] rounded-lg text-center border border-gray-700">
-          <p className="text-gray-400">Mining time left</p>
-          <p className="text-xl font-bold">23:58:24</p>
+          <p className="text-gray-400"> Mining Rewards</p>
+          <p className="text-xl font-bold"> {allmember ?.getInviteBonus.invite_bonus ?? 0}</p>
         </div>
         <div className="p-4 bg-[#131a10] rounded-lg text-center border border-gray-700">
           <p className="text-gray-400">Current mining rate</p>
-          <p className="text-xl font-bold">0.005 LUM/h</p>
+          <p className="text-xl font-bold">{allbalance?.bonus ?? 0}</p>
         </div>
       </div>
 
