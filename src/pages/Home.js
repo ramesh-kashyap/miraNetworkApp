@@ -4,11 +4,11 @@ import {useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState,useEffect } from 'react';
 import Api from '../services/Api';
-import { Toaster, toast } from "react-hot-toast";
-
-
+import { Toaster, toast } from 'react-hot-toast';
 
 export default function Home() {
+  const [coins, setCoins] = useState([]); // Array for floating coins
+  const [balance, setBalance] = useState(0); // User balance
   const navigate = useNavigate();
   const [gemCount, setGemCount] = useState(38);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,14 +20,25 @@ export default function Home() {
  const [allteam, setTeam] = useState(null); 
  const [allmember, setMember] = useState(null); 
  const [allbalance, setAllBalance] = useState(null); 
-
-  const [error, setError] = useState(null);      
-  const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
-  const [activeButton, setActiveButton] = useState('reward');
-  const [value1, setValue1] = useState('0.00');  
-  const [value2, setValue2] = useState('0.00');  
-  const [text1, setText1] = useState('Todays Mining');  
-  const [text2, setText2] = useState('Total Rewards');  
+ const [error, setError] = useState(null);      
+ 
+ 
+ useEffect(() => {
+  // console.log('hello');
+  fetchAlldata();
+  fetchTabdata();
+  fetchTeam ();
+  fetchMember();
+  fetchAllBalance();
+}, []);
+ const fetchMember = async () => {
+  try {
+      const response = await Api.get('auth/TotalMember');
+      setMember(response.data);  // Store API response in state
+  } catch (err) {
+      setError(err.response?.data?.error || "Error fetching data");
+  }
+};
   
 const fetchTabdata = async () => {
   try {
@@ -96,38 +107,11 @@ const fetchTeam = async () => {
     updateBalance(newBalance);   
     
 
-    if (button === 'reward') {
-      fetchMiningBonus(); 
-     
-    } else {
-      setValue1('100');   
-      setValue2('0.25 TH/s');   
-      setText1('Network Difficulty');   
-      setText2('Hash Rate');   
-    }
+    setIsClicking(true); // Decrease but not below 0
   };
 
-  
-    const fetchMiningBonus = async () => {
-      try {
-        const response = await Api.get("auth/get-mining-bonus");
-
-        console.log('respone',response);
-        if (response.data.success) {
-          setText1('Todays Mining');   
-          setText2('Total Rewards');  
-          setValue1(response.data.todayBonus?response.data.todayBonus:0.0);
-          setValue2(response.data.totalBonus);
-        }
-      } catch (error) {
-        console.error("❌ Error fetching lastTrade:", error);
-      }
-    };
-
-
-
-
-  const fetchMember = async () => {
+  const updateBalance = async (newBalance) => {
+    // console.log(newBalance);
     try {
       const response = await Api.post("auth/updateBalance", { balance: newBalance });
       // console.log(response.data);
@@ -135,12 +119,24 @@ const fetchTeam = async () => {
         setBalance(response.data.tabbalance);
       }      
     } catch (err) {
-        setError(err.response?.data?.error || "Error fetching data");
+      console.error("Error updating balance:", err,{ duration: 1000 });
     }
   };
 
+   const fatchBalance = async () =>{
+    try{
+      const response = await Api.post("auth/fatchBalance");
+      console.log(response.data);
+      if(response.data.balance){
+        setBalance(response.data.balance);
+      }
+    }
+    catch (err) {
+     console.error("Error updating balance:", err,{ duration: 1000 });
+    }
+   }
 
-const [activeTab, setActiveTab] = useState("tap");
+   const [activeTab, setActiveTab] = useState("tap");
 
 const tap = () => setActiveTab("tap");
 const node = () => setActiveTab("node");
@@ -191,21 +187,7 @@ useEffect(() => {
            toast.success("Somthing is wrong", error,{ duration: 1000 });
       }
     }
-};
 
-
-
-
-
-  useEffect(() => {
-    // console.log('hello');
-    fetchAlldata();
-    fetchTabdata();
-    fetchTeam ();
-    fetchMember();
-    fetchAllBalance();
-        fetchMiningBonus();
-  }, []);
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24">
       {/* Header */}
@@ -264,13 +246,13 @@ onClick={() => handleButtonClick('reward')}
           <Bell size={16} />
           <span>Ping inactive people</span>
         </button>
-        <button
-      onClick={() => navigate('/miningTeam')}
-      className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]"
-    >
-      <Users size={16} />
-      <span>Invite new members</span>
-    </button>
+        <button 
+                          onClick={() => handleButtonClick('status')}
+
+        className="flex items-center space-x-2 px-4 py-2 border border-green-400 text-green-400 rounded-full bg-[#131a10]">
+          <Users size={16} />
+          <span>Invite new members</span>
+        </button>
       </div>
 
       {/* Stats */}
