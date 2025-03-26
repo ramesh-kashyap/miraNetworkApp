@@ -163,7 +163,7 @@ const Rewards = () => {
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       <h2 className="text-2xl font-bold mb-4">Rewards</h2>
 
-      {/* Rewards Summary */}
+      
       <div className="bg-gray-800 p-6 rounded-xl shadow-lg text-center mb-6">
         <h3 className="text-3xl font-bold">{alldata?.totalBalance?? 0}. Points</h3>
         <p className="text-gray-400 text-sm">Total Rewards</p>
@@ -183,7 +183,7 @@ const Rewards = () => {
         </div>
       </div>
 
-      {/* Available Tasks */}
+      
 
       <h3 className="text-xl font-bold mb-4">Available Tasks</h3>
       <div className="space-y-4">
@@ -232,7 +232,7 @@ const Rewards = () => {
             </div>
           )}
 
-      {/* Invite Friends Section */}
+      
       <h3 className="text-xl font-bold mt-8 mb-4">Invite Friends</h3>
       <div className="space-y-4 w-full">
         {invites.map((invite) => (
@@ -246,7 +246,7 @@ const Rewards = () => {
           </div>
         ))}
       </div>
-      {/* Bottom Navigation */}
+     
 
       <Footer />
     </div>
