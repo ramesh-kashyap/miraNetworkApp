@@ -127,8 +127,8 @@ const fetchTeam = async () => {
     try{
       const response = await Api.post("auth/fatchBalance");
       console.log(response.data);
-      if(response.data.balance){
-        setBalance(response.data.balance);
+      if(response.data.tabbalance){
+        setBalance(response.data.tabbalance);
       }
     }
     catch (err) {
@@ -197,7 +197,7 @@ useEffect(() => {
           <div className="w-10 h-10 bg-gray-800 flex items-center justify-center rounded-full">
             <User className="text-white" size={20} />
           </div>
-          <p className="text-lg font-semibold">Hello, <span className="font-bold">Sachin</span> 👋</p>
+          <p className="text-lg font-semibold">Hello, <span className="font-bold"></span> 👋</p>
         </div>
         <button className="p-2 bg-gray-800 rounded-full">
           <Bell className="text-green-400" size={20}   onClick={()=>fatchpoints()}/>
@@ -230,7 +230,7 @@ useEffect(() => {
           </motion.div>
         ))}
       </AnimatePresence>
-        <img src="/assets/img/bitcoin-mining.png" alt="image" style={{height:80, width: 80}}/>
+        <img src="/assets/img/bitcoin-mining.png" alt="image" style={{height:180, width: 180}}/>
       </div>
 
       {/* Earned Amount */}
