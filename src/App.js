@@ -1,6 +1,7 @@
 import  React,{ useEffect, useState, useRef } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 import Home from "./pages/Home";
 // import { Loader } from "lucide-react";
@@ -28,89 +29,89 @@ function App() {
 
   // ✅ Fetch user login data when the app loads
   useEffect(() => {
-    // const telegramUser = {
-    //     telegram_id: "1197473382",
-    //     tusername: "rameshkashyapdev",
-    //     tname: "Ramesh",
-    //     tlastname: "",
-    // };
+    const telegramUser = {
+        telegram_id: "1197473382",
+        tusername: "rameshkashyapdev",
+        tname: "Ramesh",
+        tlastname: "",
+    };
 
-    // const loginUser = async () => {
+    const loginUser = async () => {
       
-    //     if (requestSent.current) return; // ✅ Prevent duplicate API calls
-    //        requestSent.current = true;
+        if (requestSent.current) return; // ✅ Prevent duplicate API calls
+           requestSent.current = true;
         
-    //     try {
-    //         const response = await Api.post('auth/telegram-login',telegramUser);
-    //         if (response.data.token) {
-    //             console.log(response.data);
-    //             setToken(response.data.token);
-    //             setTelegramId(response.data.telegram_id);
-    //             localStorage.setItem("token", response.data.token);
-    //             localStorage.setItem("telegram_id", response.data.telegram_id);
+        try {
+            const response = await Api.post('auth/telegram-login',telegramUser);
+            if (response.data.token) {
+                console.log(response.data);
+                setToken(response.data.token);
+                setTelegramId(response.data.telegram_id);
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("telegram_id", response.data.telegram_id);
 
-    //             // ✅ Fetch username after login
-    //             // fetchUserInfo(response.data.telegram_id);
-    //         } else {
-    //             console.error("❌ Login Error:", response.data.message);
-    //         }
-    //     } catch (error) {
-    //         console.error("❌ API Error:", error.message, error.stack);
-    //         alert(error.message);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
+                // ✅ Fetch username after login
+                // fetchUserInfo(response.data.telegram_id);
+            } else {
+                console.error("❌ Login Error:", response.data.message);
+            }
+        } catch (error) {
+            console.error("❌ API Error:", error.message, error.stack);
+            alert(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
 
-    // loginUser();
-      if (!window.Telegram || !window.Telegram.WebApp) {
-          console.error("❌ Telegram WebApp SDK is missing.");
-          setLoading(false);
-          return;
-      }
-      const tg = window.Telegram.WebApp;
-      tg.expand();
-      const initDataUnsafe = tg.initDataUnsafe;
+    loginUser();
+      // if (!window.Telegram || !window.Telegram.WebApp) {
+      //     console.error("❌ Telegram WebApp SDK is missing.");
+      //     setLoading(false);
+      //     return;
+      // }
+      // const tg = window.Telegram.WebApp;
+      // tg.expand();
+      // const initDataUnsafe = tg.initDataUnsafe;
 
-      if (initDataUnsafe && initDataUnsafe.user) {
-          setUser(initDataUnsafe.user);
-          const telegramUser = {
-              telegram_id: initDataUnsafe.user.id,
-              tusername: initDataUnsafe.user.username || "",
-              tname: initDataUnsafe.user.first_name || "",
-              tlastname: initDataUnsafe.user.last_name || "",
-          };
+      // if (initDataUnsafe && initDataUnsafe.user) {
+      //     setUser(initDataUnsafe.user);
+      //     const telegramUser = {
+      //         telegram_id: initDataUnsafe.user.id,
+      //         tusername: initDataUnsafe.user.username || "",
+      //         tname: initDataUnsafe.user.first_name || "",
+      //         tlastname: initDataUnsafe.user.last_name || "",
+      //     };
 
-          const loginUser = async () => {
+      //     const loginUser = async () => {
             
-              if (requestSent.current) return; // ✅ Prevent duplicate API calls
-                 requestSent.current = true;
+      //         if (requestSent.current) return; // ✅ Prevent duplicate API calls
+      //            requestSent.current = true;
               
-              try {
-                  const response = await Api.post('auth/telegram-login',telegramUser);
-                  if (response.data.token) {
-                      setToken(response.data.token);
-                      setTelegramId(response.data.telegram_id);
-                      localStorage.setItem("token", response.data.token);
-                      localStorage.setItem("telegram_id", response.data.telegram_id);
+      //         try {
+      //             const response = await Api.post('auth/telegram-login',telegramUser);
+      //             if (response.data.token) {
+      //                 setToken(response.data.token);
+      //                 setTelegramId(response.data.telegram_id);
+      //                 localStorage.setItem("token", response.data.token);
+      //                 localStorage.setItem("telegram_id", response.data.telegram_id);
 
-                      // ✅ Fetch username after login
-                    //   fetchUserInfo(response.data.telegram_id);
-                  } else {
-                      console.error("❌ Login Error:", response.data.message);
-                  }
-              } catch (error) {
-                  console.error("❌ API Error:", error.message, error.stack);
-                  alert(error.message);
-              } finally {
-                  setLoading(false);
-              }
-          };
+      //                 // ✅ Fetch username after login
+      //               //   fetchUserInfo(response.data.telegram_id);
+      //             } else {
+      //                 console.error("❌ Login Error:", response.data.message);
+      //             }
+      //         } catch (error) {
+      //             console.error("❌ API Error:", error.message, error.stack);
+      //             alert(error.message);
+      //         } finally {
+      //             setLoading(false);
+      //         }
+      //     };
 
 
-          loginUser();
-      }
+      //     loginUser();
+      // }
   }, []);
 
 

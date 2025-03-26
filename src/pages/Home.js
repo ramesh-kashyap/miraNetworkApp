@@ -4,7 +4,7 @@ import {useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState,useEffect } from 'react';
 import Api from '../services/Api';
-import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from "react-hot-toast";
 
 
 
@@ -15,8 +15,8 @@ export default function Home() {
   const [tabdata, setTabdata] = useState(null);  // State to store user data
  const [allteam, setTeam] = useState(null); 
  const [allmember, setMember] = useState(null); 
- const [allbalance, setBalance] = useState(null); 
-
+ const [allbalance, setAllBalance] = useState(null); 
+  const [isBlinking, setIsBlinking] = useState(null);
 
   const [error, setError] = useState(null);      
   const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id") || "");
@@ -93,10 +93,10 @@ export default function Home() {
   };
 
   
-  const fetchBalance = async () => {
+  const fetchAllBalance = async () => {
     try {
         const response = await Api.get('auth/total-balance');
-        setBalance(response.data);  // Store API response in state
+        setAllBalance(response.data);  // Store API response in state
     } catch (err) {
         setError(err.response?.data?.error || "Error fetching data");
     }
@@ -121,8 +121,7 @@ export default function Home() {
     fetchTabdata();
     fetchTeam ();
     fetchMember();
-    fetchBalance();
-
+    fetchAllBalance();
         fetchMiningBonus();
   }, []);
   return (
