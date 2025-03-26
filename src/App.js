@@ -152,7 +152,7 @@ function App() {
                             <Route path="/profile" element={<ProtectedRoute element={<Profile />}/>} />
                             <Route path="/miningTeam" element={<ProtectedRoute element={<MiningTeam />}/>} />
 
-                            <Route path="/Airdrop" element={<ProtectedRoute element={<Airdrop/>}/>} />
+                            <Route path="/Airdrop" element={<Airdrop/>} />
 
                             <Route path="/leaderBoard" element={<ProtectedRoute element={<Leaderboard />}/>} />
                             <Route path="/dailyCheckIn" element={<ProtectedRoute element={<DailyCheckIn />}/>} />
