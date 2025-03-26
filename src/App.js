@@ -15,7 +15,7 @@ import Profile from './components/Profile';
 
 import ProtectedRoute from "./components/ProtectedRoute";
 // import { Toaster, toast } from "react-hot-toast";
-import Loader from "./components/Loader"; // ✅ Import Loader for better UX
+import Loader from "./components/Loader";
 
 function App() {
 //   const location = useLocation();
@@ -28,41 +28,42 @@ function App() {
 
   // ✅ Fetch user login data when the app loads
   useEffect(() => {
-    const telegramUser = {
-        telegram_id: "1197473382",
-        tusername: "rameshkashyapdev",
-        tname: "Ramesh",
-        tlastname: "",
-    };
+    // const telegramUser = {
+    //     telegram_id: "1197473382",
+    //     tusername: "rameshkashyapdev",
+    //     tname: "Ramesh",
+    //     tlastname: "",
+    // };
 
-    const loginUser = async () => {
+    // const loginUser = async () => {
       
-        if (requestSent.current) return; // ✅ Prevent duplicate API calls
-           requestSent.current = true;
+    //     if (requestSent.current) return; // ✅ Prevent duplicate API calls
+    //        requestSent.current = true;
         
-        try {
-            const response = await Api.post('auth/telegram-login',telegramUser);
-            if (response.data.token) {
-                setToken(response.data.token);
-                setTelegramId(response.data.telegram_id);
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("telegram_id", response.data.telegram_id);
+    //     try {
+    //         const response = await Api.post('auth/telegram-login',telegramUser);
+    //         if (response.data.token) {
+    //             console.log(response.data);
+    //             setToken(response.data.token);
+    //             setTelegramId(response.data.telegram_id);
+    //             localStorage.setItem("token", response.data.token);
+    //             localStorage.setItem("telegram_id", response.data.telegram_id);
 
-                // ✅ Fetch username after login
-                fetchUserInfo(response.data.telegram_id);
-            } else {
-                console.error("❌ Login Error:", response.data.message);
-            }
-        } catch (error) {
-            console.error("❌ API Error:", error.message, error.stack);
-            alert(error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+    //             // ✅ Fetch username after login
+    //             // fetchUserInfo(response.data.telegram_id);
+    //         } else {
+    //             console.error("❌ Login Error:", response.data.message);
+    //         }
+    //     } catch (error) {
+    //         console.error("❌ API Error:", error.message, error.stack);
+    //         alert(error.message);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
 
-    loginUser();
+    // loginUser();
       if (!window.Telegram || !window.Telegram.WebApp) {
           console.error("❌ Telegram WebApp SDK is missing.");
           setLoading(false);
@@ -80,12 +81,6 @@ function App() {
               tname: initDataUnsafe.user.first_name || "",
               tlastname: initDataUnsafe.user.last_name || "",
           };
-          const telegramUser2 = {
-              telegram_id: "1197473382",
-              tusername: "rameshkashyapdev",
-              tname: "Ramesh",
-              tlastname: "",
-          };
 
           const loginUser = async () => {
             
@@ -101,7 +96,7 @@ function App() {
                       localStorage.setItem("telegram_id", response.data.telegram_id);
 
                       // ✅ Fetch username after login
-                      fetchUserInfo(response.data.telegram_id);
+                    //   fetchUserInfo(response.data.telegram_id);
                   } else {
                       console.error("❌ Login Error:", response.data.message);
                   }
@@ -121,47 +116,51 @@ function App() {
 
   
   // ✅ Fetch user info only when telegram_id is available
-  useEffect(() => {
-      if (telegram_id) {
-          fetchUserInfo(telegram_id);
-      }
-  }, [telegram_id]);
+//   useEffect(() => {
+//       if (telegram_id) {
+//           fetchUserInfo(telegram_id);
+//       }
+//   }, [telegram_id]);
 
-  const fetchUserInfo = async (telegram_id) => {
-      try {
-          const response = await Api.post('auth/telegram-user-detail', { telegram_id });
-          if (response.data.status) {
-              setUsername(response.data.user.user_id
-                  ? response.data.user.name
-                  : `${response.data.user.tname} ${response.data.user.tlastname}`.trim()
-              );
-          }
-      } catch (err) {
-          console.error("❌ Error fetching user info:", err);
-      } finally {
-          setLoading(false);
-      }
-  };
+//   const fetchUserInfo = async (telegram_id) => {
+//       try {
+//           const response = await Api.post('auth/telegram-user-detail', { telegram_id });
+//           if (response.data.status) {
+//               setUsername(response.data.user.user_id
+//                   ? response.data.user.name
+//                   : `${response.data.user.tname} ${response.data.user.tlastname}`.trim()
+//               );
+//           }
+//       } catch (err) {
+//           console.error("❌ Error fetching user info:", err);
+//       } finally {
+//           setLoading(false);
+//       }
+//   };
+
+  const ProtectedRoute = ({ element }) => {
   if (loading) {
     return <Loader />;
-}
+   }
+   return token ? element : <Navigate to="/" />;
+};
   return (
     
     <Router>
       {loading ? (
-        <Loader /> // Show loader while the app is initializing
+        <Loader /> 
       ) : (
 
         <Routes>
-                            <Route path="/" element={ <ProtectedRoute><Home /></ProtectedRoute> } />
-                            <Route path="/reward" element={ <ProtectedRoute><Rewards /></ProtectedRoute> } />
-                            <Route path="/profile" element={<ProtectedRoute> <Profile /></ProtectedRoute>} />
-                            <Route path="/miningTeam" element={<ProtectedRoute> <MiningTeam /></ProtectedRoute>} />
+                            <Route path="/" element={<Home/> } />
+                            <Route path="/reward" element={ <ProtectedRoute element={<Rewards />}/> } />
+                            <Route path="/profile" element={<ProtectedRoute element={<Profile />}/>} />
+                            <Route path="/miningTeam" element={<ProtectedRoute element={<MiningTeam />}/>} />
 
-                            <Route path="/Airdrop" element={<ProtectedRoute> <Airdrop/></ProtectedRoute>} />
+                            <Route path="/Airdrop" element={<ProtectedRoute element={<Airdrop/>}/>} />
 
-                            <Route path="/leaderBoard" element={<ProtectedRoute> <Leaderboard /></ProtectedRoute>} />
-                            <Route path="/dailyCheckIn" element={<ProtectedRoute> <DailyCheckIn /></ProtectedRoute>} />
+                            <Route path="/leaderBoard" element={<ProtectedRoute element={<Leaderboard />}/>} />
+                            <Route path="/dailyCheckIn" element={<ProtectedRoute element={<DailyCheckIn />}/>} />
 
 
 
