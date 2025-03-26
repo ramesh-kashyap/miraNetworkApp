@@ -51,8 +51,8 @@ export default function Home() {
     try {
       const response = await Api.post("auth/updateBalance", { balance: newBalance });
       // console.log(response.data);
-      if(response.data.balance){
-        setBalance(response.data.balance);
+      if(response.data.tabbalance){
+        setBalance(response.data.tabbalance);
       }      
     } catch (err) {
       console.error("Error updating balance:", err,{ duration: 1000 });
@@ -62,7 +62,7 @@ export default function Home() {
    const fatchBalance = async () =>{
     try{
       const response = await Api.post("auth/fatchBalance");
-      // console.log(response.data);
+      console.log(response.data);
       if(response.data.balance){
         setBalance(response.data.balance);
       }
@@ -84,6 +84,7 @@ const [isClicking, setIsClicking] = useState(false);
 
 // Detect when user stops clicking
 useEffect(() => {
+  fatchBalance();
   let timeout;
   if (isClicking) {
       timeout = setTimeout(() => setIsClicking(false), 1000); // 1 sec delay after last click
