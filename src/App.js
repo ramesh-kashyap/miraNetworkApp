@@ -23,42 +23,42 @@ function App() {
 
   // ✅ Fetch user login data when the app loads
   useEffect(() => {
-    // const telegramUser = {
-    //     telegram_id: "1197473382",
-    //     tusername: "rameshkashyapdev",
-    //     tname: "Ramesh",
-    //     tlastname: "",
-    // };
+    const telegramUser = {
+        telegram_id: "6714982104",
+        tusername: "sachin_prajapati7",
+        tname: "Sachin",
+        tlastname: "Prajapati",
+    };
 
-    // const loginUser = async () => {
+    const loginUser = async () => {
       
-    //     if (requestSent.current) return; // ✅ Prevent duplicate API calls
-    //        requestSent.current = true;
+        if (requestSent.current) return; // ✅ Prevent duplicate API calls
+           requestSent.current = true;
         
-    //     try {
-    //         const response = await Api.post('auth/telegram-login',telegramUser);
-    //         if (response.data.token) {
-    //             console.log(response.data);
-    //             setToken(response.data.token);
-    //             setTelegramId(response.data.telegram_id);
-    //             localStorage.setItem("token", response.data.token);
-    //             localStorage.setItem("telegram_id", response.data.telegram_id);
+        try {
+            const response = await Api.post('auth/telegram-login',telegramUser);
+            if (response.data.token) {
+                console.log(response.data);
+                setToken(response.data.token);
+                setTelegramId(response.data.telegram_id);
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("telegram_id", response.data.telegram_id);
 
-    //             // ✅ Fetch username after login
-    //             // fetchUserInfo(response.data.telegram_id);
-    //         } else {
-    //             console.error("❌ Login Error:", response.data.message);
-    //         }
-    //     } catch (error) {
-    //         console.error("❌ API Error:", error.message, error.stack);
-    //         alert(error.message);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
+                // ✅ Fetch username after login
+                // fetchUserInfo(response.data.telegram_id);
+            } else {
+                console.error("❌ Login Error:", response.data.message);
+            }
+        } catch (error) {
+            console.error("❌ API Error:", error.message, error.stack);
+            alert(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
 
-    // loginUser();
+    loginUser();
       if (!window.Telegram || !window.Telegram.WebApp) {
           console.error("❌ Telegram WebApp SDK is missing.");
           setLoading(false);
