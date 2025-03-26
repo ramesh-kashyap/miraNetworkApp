@@ -17,9 +17,7 @@ export default function Home() {
   const [popupMessage, setPopupMessage] = useState("");
   const handleTap = () => {
     setGemCount(gemCount + 1);
-  };  
-  
-
+  };
 
   const addCoin = (event) => {
     setIsBlinking(true);
@@ -141,7 +139,11 @@ useEffect(() => {
       </div>
 
       {/* Mining Bubble */}
-      <div className={`relative flex items-center justify-center w-72 h-72 bg-[#1a1f14] rounded-full shadow-2xl border border-gray-700 mb-4 ${isBlinking ? "animate-ping" : ""}`} onClick={addCoin}>
+      <div className={`relative flex items-center justify-center w-72 h-72 bg-[#1a1f14] rounded-full shadow-2xl border border-gray-700 mb-4 ${isBlinking ? "animate-ping" : ""}`} style={{background: "radial-gradient(circle, rgba(10, 15, 7) 40%, rgba(61, 252, 100, 0.9) 80%)",
+    filter: "blur(0px)",
+    animation: "rotate 5s linear infinite,  infinite ease-in-out",
+    // boxShadow: "0 0 40px 20px #3dfc64",
+    }} onClick={addCoin}>
       <AnimatePresence>
         {coins.map((coin) => (
           <motion.div
@@ -162,7 +164,7 @@ useEffect(() => {
           </motion.div>
         ))}
       </AnimatePresence>
-        <p className="text-gray-400 text-lg font-semibold">Start Mining</p>
+        <img src="/assets/img/bitcoin-mining.png" alt="image" style={{height:80, width: 80}}/>
       </div>
 
       {/* Earned Amount */}
