@@ -1,0 +1,196 @@
+import React, { useState, useEffect} from "react";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
+import {  FaTimesCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import Api from '../services/Api';
+import { Toaster, toast } from 'react-hot-toast';
+const transactions = [
+  { id: 1, type: "received", name: "From Albert Flores", date: "10 Feb 2022 at 01:00 pm", amount: "+$12,600.00", color: "text-green-400" },
+  { id: 2, type: "sent", name: "To Jenny Wilson", date: "9 Feb 2022 at 06:00 am", amount: "-$824.00", color: "text-red-400" },
+  { id: 3, type: "sent", name: "Mailchimp Support", date: "8 Feb 2022 at 02:00 pm", amount: "-$746.00", color: "text-red-400" },
+];
+
+const DailyCheckIn = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState("boost");
+    const [faqOpen, setFaqOpen] = useState(null);
+    const [openIndex, setOpenIndex] = useState();
+    const [dailyRewards, setDailyRewards] = useState([]);
+    const [claimedRewards, setClaimedRewards] = useState([]);
+    const [lastClaimedDay, setLastClaimedDay] = useState(null);
+    const [firstClaimedDate, setFirstClaimedDate] = useState(null);
+    const [eligibleRewardId, setEligibleRewardId] = useState(null);
+    const [modalMessage, setModalMessage] = useState("");
+    const [connect, setConnected] = useState(false);
+
+    const toggleFaq = (index) => {
+        setFaqOpen(faqOpen === index ? null : index);
+      };
+
+
+      useEffect(() => {
+        fetchRewards();
+        Claimed();
+      }, []);
+      // const dailyRewards = [
+      //   { day: 1, amount: "4,000", bonus: false },
+      //   { day: 2, amount: "8,000", bonus: false },
+      //   { day: 3, amount: "12,000", bonus: false },
+      //   { day: 4, amount: "15,000", bonus: false },
+      //   { day: 5, amount: "20,000", bonus: false },
+      //   { day: 6, amount: "25,000", bonus: false },
+      //   { day: 7, amount: "30,000", bonus: true },
+      //   { day: 8, amount: "40,000", bonus: false },
+      //   { day: 9, amount: "50,000", bonus: false },
+      //   { day: 10, amount: "60,000", bonus: false },
+      //   { day: 11, amount: "70,000", bonus: false },
+      //   { day: 12, amount: "90,000", bonus: false },
+      //   { day: 13, amount: "70,000", bonus: false },
+      //   { day: 14, amount: "20,000", bonus: false },
+      //   { day: 15, amount: "70,000", bonus: false },
+      //   { day: 16, amount: "52,000", bonus: false },
+      //   { day: 17, amount: "40,000", bonus: false },
+      //   { day: 18, amount: "50,000", bonus: false },
+      //   { day: 19, amount: "20,000", bonus: false },
+      //   { day: 20, amount: "60,000", bonus: false },
+   
+      // ];
+      
+      const fetchRewards = async () => {
+        try {
+            const response = await Api.get('auth/daycoin');
+            console.log("API Response:", response.data);
+            if(response?.data){
+              setDailyRewards(response.data.data);
+            }
+            else {
+              console.error("API Response:", error);
+              // throw new Error('Failed to fetch ');
+            }      
+            // if(response.data.telegram_id){
+            //   setConnected(true);
+            // }
+            // else{
+            //   setConnected(false);
+            // }
+        } catch (error) {
+          toast.error("❌ Fetching rewards failed:", error,{ duration: 1000 });
+        }
+      };
+      const Claimed = async () => {
+        try {
+          const response = await Api.post('auth/claim-day');
+          // console.log(response.data); 
+      
+          if (response.data.lastClaimed) {
+            const lastClaimedTimestamp = new Date(response.data.lastClaimed).getTime();
+            const nowTimestamp = new Date().getTime();
+      
+            // Convert to day numbers
+            const lastClaimedDay = Math.floor(lastClaimedTimestamp / (1000 * 60 * 60 * 24));
+            const nowDay = Math.floor(nowTimestamp / (1000 * 60 * 60 * 24));
+      
+            // Calculate days missed
+            const daysMissed = nowDay - lastClaimedDay;
+      
+            // Check if user skipped 2+ days
+            if (daysMissed >= 2) {
+              setEligibleRewardId(response.data.userClaimsCount + daysMissed);
+            } else {
+              // Check if 24 hours have passed since last claim
+              const hoursPassed = (nowTimestamp - lastClaimedTimestamp) / (1000 * 60 * 60); 
+              if (hoursPassed >= 24) {
+                setEligibleRewardId(response.data.userClaimsCount + 1);
+              } else {
+                setEligibleRewardId(null); // Block claiming before 24 hours
+              }
+            }
+      
+            setLastClaimedDay(response.data.userClaimsCount);
+          } else {
+            setEligibleRewardId(1);
+            setLastClaimedDay(0);
+          }
+        } catch (error) {
+          // console.log(response.data);
+          toast.error(error, '❌ Failed to fetch claim data',{ duration: 1000 });
+        }
+      };
+      
+      
+      const handleClaim = async (reward) => {
+        if (reward.id !== eligibleRewardId) {
+          toast.error("❌ You must wait 24 hours before claiming the next reward!",{ duration: 1000 });
+          // setIsModalOpen(true);
+          return;
+        }
+      
+        try {
+          const response = await Api.post('auth/claim-reward', { rewardId: reward.id });      
+          if (response?.data?.success) {
+            setClaimedRewards([...claimedRewards, reward.id]);
+            // setIsModalOpen(true);
+            toast.success("🎉 Reward claimed successfully!",{ duration: 1000 });
+            // alert("🎉 Reward claimed successfully!");
+            Claimed(); // Refresh claim status
+          } else {
+            throw new Error("Claim failed");
+          }
+        } catch (error) {
+          // console.error("❌ Claiming reward failed:", error);
+          toast.error( "❌ Wrong Your AiCoinX Account.",{ duration: 1000 });
+          // setIsModalOpen(true);
+        }
+      };
+
+  return (
+    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+      <Toaster position="top-right" reverseOrder={false} />
+            <h2 className="text-2xl font-bold mb-4">Daily Boost</h2>
+      {/* Header */}
+      <div className="flex w-full max-w-sm bg-\[\#131a10\] rounded-lg p-1">
+        <button 
+          className={`flex-1 py-3 rounded-lg text-sm font-semibold ${activeTab === "mining" ? "bg-purple-500 text-white" : "bg-\[\#131a10\]"}`} 
+          onClick={() => setActiveTab("mining")}
+        >
+            <Link to="/Airdrop" className="w-full h-full block text-center"> Mining </Link>
+          
+         
+        </button>
+        <button 
+          className={`flex-1 py-3 rounded-lg text-sm font-semibold ${activeTab === "boost" ? "bg-purple-500 text-white" : "bg-\[\#131a10\]"}`} 
+          onClick={() => setActiveTab("boost")}
+        >
+          Daily Boost
+        </button>
+      </div>
+      
+     <br/>
+
+      {/* Header Text */}
+      <h3 className="text-lg font-semibold text-center mt-6 px-4">
+        Check in daily to claim points and boost your mining rewards!
+      </h3>
+
+      {/* Daily Rewards Grid */}
+      <div className="grid grid-cols-4 gap-3 mt-6">
+        {dailyRewards.map((reward) => (
+          <div
+            key={reward.id}
+            className={`p-3 rounded-lg flex flex-col items-center justify-center border border-green-500 text-center bg-[#1a1129] 
+              // ${reward.id === eligibleRewardId ? "opacity-100" : "opacity-50 pointer-events-none"}
+              `}
+            onClick={() => reward.id === eligibleRewardId && handleClaim(reward)}
+          >
+            <span className="text-gray-400 text-sm">Day {reward.id}</span>
+            <img src="/assets/klink30.svg" alt="Token" className="w-6 h-6 mt-2" />
+            <span className="text-white-400 font-bold">{reward.coins}</span>
+           
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+export default DailyCheckIn;
