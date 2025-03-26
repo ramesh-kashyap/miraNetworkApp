@@ -1,7 +1,8 @@
 import { Bell, User, Users, Gift, Trophy, Gamepad, Settings, Pickaxe } from "lucide-react";
 import Footer from "../components/Footer";
+import {useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import React, { useState,useEffect } from 'react';
-import CountdownTimer from '../components/CountdownTimer';
 import Api from '../services/Api';
 import { useNavigate } from 'react-router-dom';
 
@@ -127,25 +128,46 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24">
       {/* Header */}
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="flex justify-between items-center w-full max-w-md px-2 mb-6">
         <div className="flex items-center space-x-2">
           <div className="w-10 h-10 bg-gray-800 flex items-center justify-center rounded-full">
             <User className="text-white" size={20} />
           </div>
-          <p className="text-lg font-semibold">Hello, <span className="font-bold">{alldata?.user?.tusername || "User"}</span> 👋</p>
+          <p className="text-lg font-semibold">Hello, <span className="font-bold">Sachin</span> 👋</p>
         </div>
         <button className="p-2 bg-gray-800 rounded-full">
-          <Bell className="text-green-400" size={20} />
+          <Bell className="text-green-400" size={20}   onClick={()=>fatchpoints()}/>
         </button>
       </div>
 
       {/* Mining Bubble */}
-      <div className="relative flex items-center justify-center w-72 h-72 bg-[#1a1f14] rounded-full shadow-2xl border border-gray-700 mb-4">
+      <div className={`relative flex items-center justify-center w-72 h-72 bg-[#1a1f14] rounded-full shadow-2xl border border-gray-700 mb-4 ${isBlinking ? "animate-ping" : ""}`} onClick={addCoin}>
+      <AnimatePresence>
+        {coins.map((coin) => (
+          <motion.div
+            key={coin.id}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: -100 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute text-yellow-400 text-xl font-bold"
+            style={{
+              left: `${coin.x}px`, // Exact X position
+              top: `${coin.y}px`,  // Exact Y position
+              transform: "translate(-50%, -50%)", // Center it properly
+              position: "absolute"
+            }}
+          >
+            +1🪙
+          </motion.div>
+        ))}
+      </AnimatePresence>
         <p className="text-gray-400 text-lg font-semibold">Start Mining</p>
       </div>
 
       {/* Earned Amount */}
-      <p className="text-3xl font-bold">{tabdata?.tabBalance ?? 0} <span className="text-green-400">LUM</span></p>
+      <p className="text-3xl font-bold">{balance} <span className="text-green-400">LUM</span></p>
       <p className="text-gray-400 mb-6">Earned Lumira</p>
 
       {/* Actions */}
