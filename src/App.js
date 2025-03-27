@@ -10,6 +10,18 @@ import MiningTeam from "./pages/MiningTeam";
 import Airdrop from "./pages/AirDrop";
 import Leaderboard from "./pages/Leaderboard";
 import DailyCheckIn from "./pages/DailyCheckIn";
+import Withdraw from "./pages/Withdraw";
+import TapGame from "./pages/TapGame";
+import NodeReward from "./pages/NodeReward";
+import SendAsset from "./pages/SendAsset";
+import Friendlist from "./pages/Friendlist";
+import History from "./pages/History";
+
+
+
+
+
+
 
 import Api from "./services/Api";
 import Profile from './components/Profile';
@@ -30,10 +42,10 @@ function App() {
   // ✅ Fetch user login data when the app loads
   useEffect(() => {
     const telegramUser = {
-        telegram_id: "6714982104",
-        tusername: "sachin_prajapati7",
-        tname: "Sachin",
-        tlastname: "Prajapati",
+        telegram_id: "1197473382",
+        tusername: "rameshkashyapdev",
+        tname: "Ramesh",
+        tlastname: "kkkk'",
     };
 
     const loginUser = async () => {
@@ -155,10 +167,20 @@ function App() {
         <Routes>
                             <Route path="/" element={<Home/> } />
                             <Route path="/reward" element={ <ProtectedRoute element={<Rewards />}/> } />
+
+                            <Route path="/withdraw" element={ <ProtectedRoute element={<Withdraw />}/> } />
+                            <Route path="/sendAsset" element={ <ProtectedRoute element={<SendAsset/>}/> } />
+                            <Route path="/friendlist" element={ <ProtectedRoute element={<Friendlist/>}/> } />
+                            <Route path="/history" element={ <ProtectedRoute element={<History/>}/> } />
+
+
+
                             <Route path="/profile" element={<ProtectedRoute element={<Profile />}/>} />
                             <Route path="/miningTeam" element={<ProtectedRoute element={<MiningTeam />}/>} />
+                            <Route path="/tapGame" element={ <ProtectedRoute element={<TapGame />}/> } />
 
                             <Route path="/Airdrop" element={<ProtectedRoute element={<Airdrop/>}/>} />
+                            <Route path="/nodeReward" element={<ProtectedRoute element={<NodeReward/>}/>} />
 
                             <Route path="/leaderBoard" element={<ProtectedRoute element={<Leaderboard />}/>} />
                             <Route path="/dailyCheckIn" element={<ProtectedRoute element={<DailyCheckIn />}/>} />
