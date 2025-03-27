@@ -1,0 +1,21 @@
+<svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1" y="0.5" width="39" height="39" rx="19.5" fill="url(#paint0_linear_7545_132625)"/>
+<rect x="1" y="0.5" width="39" height="39" rx="19.5" stroke="url(#paint1_angular_7545_132625)"/>
+<circle cx="17.5" cy="14" r="4" stroke="white" stroke-width="1.5"/>
+<path d="M23.5 17C25.1569 17 26.5 15.6569 26.5 14C26.5 12.3431 25.1569 11 23.5 11" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+<ellipse cx="17.5" cy="25" rx="7" ry="4" stroke="white" stroke-width="1.5"/>
+<path d="M26.5 22C28.2542 22.3847 29.5 23.3589 29.5 24.5C29.5 25.5293 28.4863 26.4229 27 26.8704" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+<defs>
+<linearGradient id="paint0_linear_7545_132625" x1="20.5" y1="0" x2="20.5" y2="40" gradientUnits="userSpaceOnUse">
+<stop stop-color="#08967C"/>
+<stop offset="1" stop-color="#024945"/>
+</linearGradient>
+<radialGradient id="paint1_angular_7545_132625" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(20.5 20) rotate(90) scale(28.601 24.6565)">
+<stop stop-color="#94FFDF"/>
+<stop offset="0.239" stop-color="#94FFDF" stop-opacity="0"/>
+<stop offset="0.499421" stop-color="#94FFDF"/>
+<stop offset="0.759842" stop-color="#94FFDF" stop-opacity="0"/>
+<stop offset="1" stop-color="#94FFDF"/>
+</radialGradient>
+</defs>
+</svg>
