@@ -10,13 +10,18 @@
 }
 .bg-\[\#1a1129\] {
     --tw-bg-opacity: 1;
-    background-color: rgb(10 15 7);
+    background-color: #204b4730;
 }
 .bg-purple-500 {
     --tw-bg-opacity: 1;
     background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
 }
+.bg-apin{
+  --tw-bg-opacity: 1;
+    background-color: #204b4730;
+}
 /* From Uiverse.io by mrhyddenn */ 
+
 .loader {
     position: relative;
     width: 150px;
@@ -87,3 +92,24 @@
       transform: rotate(360deg);
     }
   }
+
+  .swiper-wrapper {
+    transition-timing-function: ease-in-out !important;
+    transition-duration: 1000ms !important; /* Adjust speed */
+  }
+  
+  .swiper-slide {
+    width: 100% !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transition: transform 0.3s ease-in-out !important;
+  }
+  
+  .imgbg {
+    background-image: url("/public/assets/img/bg_dream.png");
+    background-size: cover;   /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repetition */
+}
