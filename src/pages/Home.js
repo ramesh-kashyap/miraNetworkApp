@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState,useEffect } from 'react';
 import {
   FaCog,
   FaBell,
@@ -19,7 +19,11 @@ import 'swiper/css';
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import Footer from "../components/Footer";
-export default function Wallet() {
+import { Toaster, toast } from 'react-hot-toast';
+export default function home() {
+
+ 
+
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-6 relative pb-28 w-full max-w-md mx-auto font-sans">
       

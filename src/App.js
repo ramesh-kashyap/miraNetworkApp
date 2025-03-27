@@ -16,7 +16,7 @@ import NodeReward from "./pages/NodeReward";
 import SendAsset from "./pages/SendAsset";
 import Friendlist from "./pages/Friendlist";
 import History from "./pages/History";
-
+import Login  from "./pages/Login";
 
 
 
@@ -184,8 +184,7 @@ function App() {
 
                             <Route path="/leaderBoard" element={<ProtectedRoute element={<Leaderboard />}/>} />
                             <Route path="/dailyCheckIn" element={<ProtectedRoute element={<DailyCheckIn />}/>} />
-
-
+                            <Route path="/login" element={<ProtectedRoute element={<Login/>}/>}/>                          
 
 
         </Routes>
