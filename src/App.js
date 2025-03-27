@@ -1,6 +1,7 @@
 import  React,{ useEffect, useState, useRef } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 import Home from "./pages/Home";
 // import { Loader } from "lucide-react";

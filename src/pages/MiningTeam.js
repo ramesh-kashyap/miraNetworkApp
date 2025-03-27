@@ -84,7 +84,7 @@ getInviteBonus.invite_bonus ?? 0} pt</p>
     <p className="text-gray-400">Loading...</p>
   )}
 </div>
-      
+      {/* Inactive Miners Section */}
       <div className="mb-10 w-full">
       </div>
       
