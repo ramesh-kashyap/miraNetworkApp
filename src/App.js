@@ -16,8 +16,9 @@ import NodeReward from "./pages/NodeReward";
 import SendAsset from "./pages/SendAsset";
 import Friendlist from "./pages/Friendlist";
 import History from "./pages/History";
-import Login  from "./pages/Login";
-
+import Login  from "./pages/auth/Login";
+import Register  from "./pages/auth/Register";
+import MiningIntro from "./pages/Miniintro";
 
 
 
@@ -26,7 +27,8 @@ import Login  from "./pages/Login";
 import Api from "./services/Api";
 import Profile from './components/Profile';
 
-import ProtectedRoute from "./components/ProtectedRoute";
+// import ProtectedRoute from "./components/ProtectedRoute";
+import { ProtectedRoute, PublicRoute } from './Helper/Helper';
 // import { Toaster, toast } from "react-hot-toast";
 import Loader from "./components/Loader";
 
@@ -42,10 +44,10 @@ function App() {
   // ✅ Fetch user login data when the app loads
   useEffect(() => {
     const telegramUser = {
-        telegram_id: "1197473382",
-        tusername: "rameshkashyapdev",
-        tname: "Ramesh",
-        tlastname: "kkkk'",
+        // telegram_id: "1197473382",
+        // tusername: "rameshkashyapdev",
+        // tname: "Ramesh",
+        // tlastname: "kkkk'",
     };
 
     const loginUser = async () => {
@@ -151,40 +153,54 @@ function App() {
 //       }
 //   };
 
-  const ProtectedRoute = ({ element }) => {
-  if (loading) {
-    return <Loader />;
-   }
-   return token ? element : <Navigate to="/" />;
-};
+//   const ProtectedRoute = ({ element }) => {
+//   if (loading) {
+//     return <Loader />;
+//    }
+
+//    console.log("tokenn"+token);
+   
+//    return token ? element : <Navigate to="/miningintro" />;
+// };
   return (
     
     <Router>
-      {loading ? (
+      {
+      loading ? (
         <Loader /> 
-      ) : (
+      ) :
+       (
 
         <Routes>
-                            <Route path="/" element={<Home/> } />
-                            <Route path="/reward" element={ <ProtectedRoute element={<Rewards />}/> } />
 
-                            <Route path="/withdraw" element={ <ProtectedRoute element={<Withdraw />}/> } />
-                            <Route path="/sendAsset" element={ <ProtectedRoute element={<SendAsset/>}/> } />
-                            <Route path="/friendlist" element={ <ProtectedRoute element={<Friendlist/>}/> } />
-                            <Route path="/history" element={ <ProtectedRoute element={<History/>}/> } />
+                            <Route element={<PublicRoute />}>
+                            <Route path="/miningintro" element={<MiningIntro />} />
+                            <Route path="/login" element={<Login/>}/> 
+                            <Route path="/Register" element={<Register/>}/>
+                            </Route>
+                            <Route element={<ProtectedRoute />}>
+                            <Route path="/" element={<Home />} />                            
+                            <Route path="/reward" element={<Rewards /> } />
+
+                            <Route path="/withdraw" element={<Withdraw /> } />
+                            <Route path="/sendAsset" element={ <SendAsset/> } />
+                            <Route path="/friendlist" element={ <Friendlist/> } />
+                            <Route path="/history" element={ <History/> } />
 
 
 
-                            <Route path="/profile" element={<ProtectedRoute element={<Profile />}/>} />
-                            <Route path="/miningTeam" element={<ProtectedRoute element={<MiningTeam />}/>} />
-                            <Route path="/tapGame" element={ <ProtectedRoute element={<TapGame />}/> } />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/miningTeam" element={<MiningTeam />} />
+                            <Route path="/tapGame" element={ <TapGame /> } />
 
-                            <Route path="/Airdrop" element={<ProtectedRoute element={<Airdrop/>}/>} />
-                            <Route path="/nodeReward" element={<ProtectedRoute element={<NodeReward/>}/>} />
+                            <Route path="/Airdrop" element={<Airdrop/>} />
+                            <Route path="/nodeReward" element={<NodeReward/>} />
 
-                            <Route path="/leaderBoard" element={<ProtectedRoute element={<Leaderboard />}/>} />
-                            <Route path="/dailyCheckIn" element={<ProtectedRoute element={<DailyCheckIn />}/>} />
-                            <Route path="/login" element={<ProtectedRoute element={<Login/>}/>}/>                          
+                            <Route path="/leaderBoard" element={<Leaderboard />} />
+                            <Route path="/dailyCheckIn" element={<DailyCheckIn />} />
+                            
+                            </Route>
+                         
 
 
         </Routes>
