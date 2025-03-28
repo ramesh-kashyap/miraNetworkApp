@@ -1,132 +1,131 @@
 import React, { useState,useEffect } from 'react';
-import { FaArrowLeft, FaUserPlus, FaUsers, FaGift, FaTrophy, FaGamepad, FaWrench, FaHammer } from "react-icons/fa6";
-import { Bell, User, Users, Gift, Trophy, Gamepad, Settings, Pickaxe } from "lucide-react";
+import { FaArrowLeft, FaGem } from "react-icons/fa";
 import Api from '../services/Api';
-import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+
 
 const leaderboardData = [
-    { id: 1, name: "gunalp123", points: "120,689,860", avatar: "assets/klink4.svg" },
-    { id: 2, name: "edenjin1", points: "116,876,320", avatar: "assets/klink4.svg" },
-    { id: 3, name: "YanJogja", points: "110,275,586", avatar: "assets/klink4.svg" },
-    { id: 4, name: "metakine", points: "106,007,763", avatar: "assets/klink4.svg" }
-  ];
+  { name: "kim***", value: "2.796B", img: "/avatars/1.png" },
+  { name: "jyb***", value: "2.101B", img: "/avatars/2.png" },
+  { name: "sun***", value: "1.726B", img: "/avatars/3.png" },
+];
 
-const Leaderboard = () => {
+export default function Leaderboard() {
+  const navigate = useNavigate();
+  const [top3, setTop3] = useState([]);
+const [rest7, setRest7] = useState([]);
+    const [error, setError] = useState(null); 
 
- const [alldata, setAlldata] = useState(null);  // State to store user data
- const [allteam, setTeam] = useState(null); 
- 
- const [topUsers, setTopUsers] = useState(null);  // State to store user data
-
-      const [error, setError] = useState(null); 
-
-      const fetchAlldata = async () => {
-        try {
-            const response = await Api.get('auth/total-balance');
-            setAlldata(response.data);  // Store API response in state
-        } catch (err) {
-            setError(err.response?.data?.error || "Error fetching data");
-        }
-    };
-
-
-    const fetchTeam = async () => {
+    const fetchIncome = async () => {
       try {
-          const response = await Api.get('auth/TotalTeam');
-          setTeam(response.data);  // Store API response in state
+        const response = await Api.get('auth/topuser');
+        const allUsers = response.data.topUsers || [];
+        setTop3(allUsers.slice(0, 3));
+        setRest7(allUsers.slice(3));
       } catch (err) {
-          setError(err.response?.data?.error || "Error fetching data");
+        console.error("API Error:", err);
+        setError(err.response?.data?.error || "Error fetching data");
       }
-  };
-  
+    };
+    
+    
 
-
-
-  const fetchTopUsers = async () => {
-    try {
-      const response = await Api.get('auth/topuser'); // ✅ lowercase
-      setTopUsers(response.data.topUsers); // ✅ only topUsers array
-    } catch (err) {
-      console.error("Top Users Error:", err);
-      setError(err.response?.data?.message || "Error fetching top users");
-    }
-  };
     useEffect(() => {
-      // console.log('hello');
-      fetchTeam ();
-      fetchAlldata();
-      fetchTopUsers();
+      fetchIncome();
     }, []);
-
-
-
-
-
-
+    
+    useEffect(() => {
+      console.log("Top 3:", top3);
+      console.log("Rest 7:", rest7);
+    }, [top3, rest7]);
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
-    
-      
-      <h2 className="text-2xl font-bold mb-4">AirDrop Points</h2>
-      
-   
-       
-       <button className="mt-4 px-6 py-2 bg-[#131a10] text-white-400 border border-green-500 rounded-lg shadow-lg font-semibold">
-        Pool I
-      </button>
-
-      
-      <h3 className="text-gray-400 text-sm mt-4">Total Pool I Airdrop Points</h3>
-      <div className="flex items-center mt-2">
-        <img src="/assets/klink30.svg" alt="Token" className="w-8 h-8 mr-2" />
-        <h1 className="text-4xl font-bold">{alldata?.allBalance ?? 0}</h1>
+    <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-eurostile relative overflow-hidden">
+      <div className="flex items-center mb-4">
+      <button
+  onClick={() => navigate(-1)}
+  className="p-2 w-10 h-10 rounded-xl bg-[#101a19] border border-[#1efcb9]/20 flex items-center justify-center shadow-md"
+>
+  <FaArrowLeft size={18} className="text-[#1efcb9]" />
+</button>
+        <h1 className="flex-grow text-center text-xl font-bold tracking-widest ml-[-40px]">LEADERBOARD</h1>
       </div>
 
-      
-      <div className="w-full mt-6 bg-[#1a1129] p-4 rounded-lg shadow-md border border-gray-700">
-  <h3 className="text-lg font-bold mb-4">Community Leaderboard</h3>
+      {/* <div className="flex w-full mb-2 rounded-xl overflow-hidden text-sm font-semibold shadow">
+        <button className="flex-1 py-2 text-black bg-gradient-to-r from-[#1efcb9] to-[#108b75]">Week</button>
+        <button className="flex-1 py-2 bg-[#1a1a1a] text-gray-400">Month</button>
+      </div> */}
 
-  {topUsers?.length > 0 ? (
-    topUsers.map((user, index) => (
-      <div
-        key={user.id}
-        className="flex justify-between items-center py-4 border-b border-gray-600 last:border-0"
-      >
-        <div className="flex items-center space-x-3">
-          <span className="text-lg font-bold text-gray-300">#{index + 1}</span>
-          <img
-            src="/assets/klink4.svg"
-            // alt={user.name}
-            className="w-12 h-12 rounded-full border-2 border-green-500"
-          />
-          <span className="text-white font-semibold text-sm">
-            {user.tusername || user.tname || "Unknown"}
-          </span>
-        </div>
-        <div className="flex items-center">
-          <img
-            src="/assets/klink30.svg"
-            alt="Token"
-            className="w-6 h-6 mr-1"
-          />
-          <span className="text-white font-semibold text-sm">
-             {user.balance || 0}
-          </span>
-        </div>
+      {/* <p className="text-center text-xs text-gray-400 mb-6">24/03/2025 - 27/03/2025</p> */}
+      {Array.isArray(top3) && top3.length === 3 && (
+  <div className="flex justify-around items-end mb-6">
+    {/* 2nd */}
+    <div className="flex flex-col items-center">
+      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1efcb9] to-[#108b75] p-1 border-2 border-[#1efcb9]">
+        <img
+          src="/assets/images/default_avt.png"
+          alt="2nd"
+          className="rounded-full w-full h-full object-cover"
+        />
       </div>
-    ))
-  ) : (
-    <p className="text-gray-400">Loading or no users found.</p>
-  )}
-</div>
+      <p className="text-sm mt-2 text-[#1efcb9] font-semibold">
+        {top3[1]?.tusername} <FaGem className="inline-block text-[#1efcb9] text-xs ml-1" />
+      </p>
+      <p className="text-xs text-white font-medium">{top3[1]?.balance}</p>
+      <div className="text-2xl font-bold text-white mt-1">2</div>
+    </div>
 
-    
- 
-   
-      <Footer/>
+    {/* 1st */}
+    <div className="flex flex-col items-center">
+      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 p-1 border-4 border-[#ffd700] shadow-lg">
+        <img
+          src="/assets/images/111.jpeg"
+          alt="1st"
+          className="rounded-full w-full h-full object-cover"
+        />
+      </div>
+      <p className="text-lg mt-2 text-[#1efcb9] font-semibold">
+        {top3[0]?.tusername} <FaGem className="inline-block text-sm ml-1" />
+      </p>
+      <p className="text-sm text-white font-semibold"> {top3[0]?.balance}</p>
+      <div className="text-3xl font-bold text-white mt-1">1</div>
+    </div>
 
+    {/* 3rd */}
+    <div className="flex flex-col items-center">
+      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#1efcb9] to-[#108b75] p-1 border-2 border-[#1efcb9]">
+        <img
+          src="/assets/images/default_avt.png"
+          alt="3rd"
+          className="rounded-full w-full h-full object-cover"
+        />
+      </div>
+      <p className="text-sm mt-2 text-[#1efcb9] font-semibold">
+        {top3[2]?.tusername} <FaGem className="inline-block text-[#1efcb9] text-xs ml-1" />
+      </p>
+      <p className="text-xs text-white font-medium">{top3[2]?.balance}</p>
+      <div className="text-2xl font-bold text-white mt-1">3</div>
+    </div>
+  </div>
+)}
+      <div className="bg-[#101a19] rounded-t-2xl p-4 shadow-inner">
+      {rest7.length > 0 ? (
+    rest7.map((user, index) => (
+          <div key={index}  className="flex items-center justify-between py-4 border-b border-white/10">
+            <div className="flex items-center gap-3">
+            <span className="text-[#1efcb9] font-bold w-4 text-right">{index + 4}</span>
+            <img src="/assets/images/default_avt.png" className="w-8 h-8 rounded-full object-cover" alt="avatar" />
+              <span className="text-white text-sm">{user.tusername}</span>
+            </div>
+            <div className="text-[#1efcb9] text-sm font-bold flex items-center gap-1">
+            {user.balance} <FaGem className="text-xs" />
+            </div>
+          </div>
+       ))
+      ) : (
+        <p>No users found</p>
+      )}
+  
+      </div>
     </div>
   );
-};
-
-export default Leaderboard;
+}

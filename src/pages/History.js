@@ -45,13 +45,27 @@ export default function History() {
             }).replace(",", "");
         }
 
+
+
+        const getUserImage = (remarks) => {
+            switch (remarks) {
+              case "Mining Bonus":
+                return "/assets/images/3.png";
+              case "Referral bonus":
+                return "/assets/images/6.png";
+              case "Node Reward":
+                return "/assets/images/9.png";
+              default:
+                return "/assets/images/default.png"; // fallback image
+            }
+          };
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-sans">
       <div className="flex items-center mb-6">
         <button className="p-2 w-10 h-10 rounded-xl bg-[#101a19] border border-[#1efcb9]/20 flex items-center justify-center shadow-md">
           <FaArrowLeft size={18} className="text-[#1efcb9]" />
         </button>
-        <h1 className="flex-grow text-center text-xl font-bold tracking-widest text-white ml-[-40px]">HISTORY</h1>
+        <h1 className="flex-grow text-center text-xl font-bold tracking-widest text-white ml-[-40px]">Income</h1>
       </div>
 
       <div className="space-y-4">
@@ -61,10 +75,10 @@ export default function History() {
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-[#101a19] text-[#1efcb9] rounded-md flex items-center justify-center text-lg">
               <img
-          src="assets/img/11.svg"
-          alt="Athene"
-         
-        />  
+  src={getUserImage(user.remarks)}
+  alt="Reward Type"
+  className="w-6 h-6 object-contain"
+/>
               </div>
               <div>
                 <p className="text-white font-semibold text-sm mb-0.5">{user.user_id_fk}</p>
