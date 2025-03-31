@@ -1,10 +1,8 @@
-import  React,{ useEffect, useState, useRef } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-// import { useLocation } from "react-router-dom";
-import { Toaster, toast } from "react-hot-toast";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import Home from "./pages/Home";
-// import { Loader } from "lucide-react";
 import Rewards from "./pages/Rewards";
 import MiningTeam from "./pages/MiningTeam";
 import Airdrop from "./pages/AirDrop";
@@ -16,200 +14,68 @@ import NodeReward from "./pages/NodeReward";
 import SendAsset from "./pages/SendAsset";
 import Friendlist from "./pages/Friendlist";
 import History from "./pages/History";
-import Login  from "./pages/auth/Login";
-import Register  from "./pages/auth/Register";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import MiningIntro from "./pages/Miniintro";
-
-
-
-
-
 import Api from "./services/Api";
 import Profile from './components/Profile';
-
-// import ProtectedRoute from "./components/ProtectedRoute";
 import { ProtectedRoute, PublicRoute } from './Helper/Helper';
-// import { Toaster, toast } from "react-hot-toast";
 import Loader from "./components/Loader";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ProfileSettings from "./pages/ProfileSettings";
+import Updateprofile from "./pages/Updateprofile";
+import ChangePassword from "./pages/ChangePassword";
+
+
+
+
 
 function App() {
-//   const location = useLocation();
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  const [telegram_id, setTelegramId] = useState(localStorage.getItem("telegram_id"));
-  const [username, setUsername] = useState("Guest"); // ✅ Default username
-  const [loading, setLoading] = useState(true);
-  const requestSent = useRef(false);
+  const [loading, setLoading] = useState(false);
 
-  // ✅ Fetch user login data when the app loads
-  useEffect(() => {
-    const telegramUser = {
-        // telegram_id: "1197473382",
-        // tusername: "rameshkashyapdev",
-        // tname: "Ramesh",
-        // tlastname: "kkkk'",
-    };
-
-    const loginUser = async () => {
-      
-        if (requestSent.current) return; // ✅ Prevent duplicate API calls
-           requestSent.current = true;
-        
-        try {
-            const response = await Api.post('auth/telegram-login',telegramUser);
-            if (response.data.token) {
-                console.log(response.data);
-                setToken(response.data.token);
-                setTelegramId(response.data.telegram_id);
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("telegram_id", response.data.telegram_id);
-
-                // ✅ Fetch username after login
-                // fetchUserInfo(response.data.telegram_id);
-            } else {
-                console.error("❌ Login Error:", response.data.message);
-            }
-        } catch (error) {
-            console.error("❌ API Error:", error.message, error.stack);
-            alert(error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-
-    loginUser();
-      if (!window.Telegram || !window.Telegram.WebApp) {
-          console.error("❌ Telegram WebApp SDK is missing.");
-          setLoading(false);
-          return;
-      }
-      const tg = window.Telegram.WebApp;
-      tg.expand();
-      const initDataUnsafe = tg.initDataUnsafe;
-
-      if (initDataUnsafe && initDataUnsafe.user) {
-          setUser(initDataUnsafe.user);
-          const telegramUser = {
-              telegram_id: initDataUnsafe.user.id,
-              tusername: initDataUnsafe.user.username || "",
-              tname: initDataUnsafe.user.first_name || "",
-              tlastname: initDataUnsafe.user.last_name || "",
-          };
-
-          const loginUser = async () => {
-            
-              if (requestSent.current) return; // ✅ Prevent duplicate API calls
-                 requestSent.current = true;
-              
-              try {
-                  const response = await Api.post('auth/telegram-login',telegramUser);
-                  if (response.data.token) {
-                      setToken(response.data.token);
-                      setTelegramId(response.data.telegram_id);
-                      localStorage.setItem("token", response.data.token);
-                      localStorage.setItem("telegram_id", response.data.telegram_id);
-
-                      // ✅ Fetch username after login
-                    //   fetchUserInfo(response.data.telegram_id);
-                  } else {
-                      console.error("❌ Login Error:", response.data.message);
-                  }
-              } catch (error) {
-                  console.error("❌ API Error:", error.message, error.stack);
-                  alert(error.message);
-              } finally {
-                  setLoading(false);
-              }
-          };
-
-
-          loginUser();
-      }
-  }, []);
-
-
-  
-  // ✅ Fetch user info only when telegram_id is available
-//   useEffect(() => {
-//       if (telegram_id) {
-//           fetchUserInfo(telegram_id);
-//       }
-//   }, [telegram_id]);
-
-//   const fetchUserInfo = async (telegram_id) => {
-//       try {
-//           const response = await Api.post('auth/telegram-user-detail', { telegram_id });
-//           if (response.data.status) {
-//               setUsername(response.data.user.user_id
-//                   ? response.data.user.name
-//                   : `${response.data.user.tname} ${response.data.user.tlastname}`.trim()
-//               );
-//           }
-//       } catch (err) {
-//           console.error("❌ Error fetching user info:", err);
-//       } finally {
-//           setLoading(false);
-//       }
-//   };
-
-//   const ProtectedRoute = ({ element }) => {
-//   if (loading) {
-//     return <Loader />;
-//    }
-
-//    console.log("tokenn"+token);
-   
-//    return token ? element : <Navigate to="/miningintro" />;
-// };
   return (
-    
-    <Router>
-      {
-      loading ? (
-        <Loader /> 
-      ) :
-       (
+    <>
+<ToastContainer position="top-center" autoClose={3000} />
+<Router>
 
+      {loading ? (
+        <Loader />
+      ) : (
         <Routes>
+          <Route element={<PublicRoute />}>
+            <Route path="/miningintro" element={<MiningIntro />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+          </Route>
 
-                            <Route element={<PublicRoute />}>
-                            <Route path="/miningintro" element={<MiningIntro />} />
-                            <Route path="/login" element={<Login/>}/> 
-                            <Route path="/Register" element={<Register/>}/>
-                            </Route>
-                            <Route element={<ProtectedRoute />}>
-                            <Route path="/" element={<Home />} />                            
-                            <Route path="/reward" element={<Rewards /> } />
-
-                            <Route path="/withdraw" element={<Withdraw /> } />
-                            <Route path="/sendAsset" element={ <SendAsset/> } />
-                            <Route path="/friendlist" element={ <Friendlist/> } />
-                            <Route path="/history" element={ <History/> } />
-
-
-
-                            <Route path="/profile" element={<Profile />} />
-                            <Route path="/miningTeam" element={<MiningTeam />} />
-                            <Route path="/tapGame" element={ <TapGame /> } />
-
-                            <Route path="/Airdrop" element={<Airdrop/>} />
-                            <Route path="/nodeReward" element={<NodeReward/>} />
-
-                            <Route path="/leaderBoard" element={<Leaderboard />} />
-                            <Route path="/dailyCheckIn" element={<DailyCheckIn />} />
-                            
-                            </Route>
-                         
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/reward" element={<Rewards />} />
+            <Route path="/withdraw" element={<Withdraw />} />
+            <Route path="/sendAsset" element={<SendAsset />} />
+            <Route path="/friendlist" element={<Friendlist />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/miningTeam" element={<MiningTeam />} />
+            <Route path="/tapGame" element={<TapGame />} />
+            <Route path="/Airdrop" element={<Airdrop />} />
+            <Route path="/nodeReward" element={<NodeReward />} />
+            <Route path="/leaderBoard" element={<Leaderboard />} />
+            <Route path="/dailyCheckIn" element={<DailyCheckIn />} />
+            <Route path="/ProfileSettings" element={<ProfileSettings />} />
+            <Route path="/updateprofile" element={<Updateprofile />} />
+            <Route path="/changePassword" element={<ChangePassword />} />
 
 
+
+
+          </Route>
         </Routes>
-
-
       )}
     </Router>
-
+    </>
   );
-};
+}
 
 export default App;

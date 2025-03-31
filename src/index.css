@@ -113,3 +113,8 @@
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents repetition */
 }
+.react-international-phone-country-selector-button {
+
+  height: var(--react-international-phone-height, 51px);
+
+}
