@@ -15,21 +15,21 @@ const history = [
 ];
 
 export default function History() {
-    const [income, setIncome] = useState([]);
-    const [error, setError] = useState(null); 
-    const fetchIncome = async () => {
-        try {
-          const response = await Api.get('auth/all-income');
-          setIncome(response.data?.data || []); // <- ensure it's an array
-        } catch (err) {
-          setError(err.response?.data?.error || "Error fetching data");
-          setIncome([]); // <- even on error, avoid null
-        }
-      };
-      
-        useEffect(() => {
-          fetchIncome ();
-        }, []);
+      const [income, setIncome] = useState([]);
+      const [error, setError] = useState(null); 
+      const fetchIncome = async () => {
+          try {
+            const response = await Api.get('auth/all-income');
+            setIncome(response.data?.data || []); // <- ensure it's an array
+          } catch (err) {
+            setError(err.response?.data?.error || "Error fetching data");
+            setIncome([]); // <- even on error, avoid null
+          }
+        };
+        
+          useEffect(() => {
+            fetchIncome ();
+          }, []);
 
 
         const formatDate = (dateString) => {
