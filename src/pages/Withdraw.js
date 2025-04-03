@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 export default function Withdraw() {
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+    <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       {/* Header */}
       <div className="flex items-center w-full mb-8">
         <button className="bg-[#1a1a1a] p-3 rounded-full">

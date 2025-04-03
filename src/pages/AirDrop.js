@@ -3,16 +3,17 @@ import { FaArrowUp, FaArrowDown, FaClock, FaWallet, FaDownload, FaCoins } from "
 import Footer from "../components/Footer";
 
 const tokens = [
-  { name: "ATN", value: 25, icon: "/tokens/atn.png" },
-  { name: "DOGE", value: 0, icon: "/tokens/doge.png" },
-  { name: "GEM", value: 5020100, icon: "/tokens/gem.png" },
-  { name: "AUSD", value: 0, icon: "/tokens/ausd.png", subtitle: "$0" },
-  { name: "P2P", value: 0, icon: "/tokens/p2p.png" },
+  { name: "GiggleToken", value: 25, icon: "/tokens/atn.png" },
+  { name: "MemeMoola", value: 0, icon: "/tokens/doge.png" },
+  { name: "ChuckleCoin", value: 5020100, icon: "/tokens/gem.png" },
+  { name: "BrokeAFCoin", value: 0, icon: "/tokens/ausd.png", subtitle: "$0" },
+  { name: "TrollToken", value: 0, icon: "/tokens/p2p.png" },
+  { name: "LMAOCash", value: 0, icon: "/tokens/p2p.png" },
 ];
 
 export default function Airdrop() {
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+    <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       
       <h1 className="text-center text-3xl font-light tracking-widest mb-6">WALLET</h1>
 

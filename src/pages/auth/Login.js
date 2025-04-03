@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col justify-between px-4 pt-6 pb-8 w-full max-w-md mx-auto font-sans relative overflow-hidden">
+    <div className="min-h-screen imgbg text-white flex flex-col justify-between px-4 pt-6 pb-8 w-full max-w-md mx-auto font-sans relative overflow-hidden">
       
       <div className="absolute inset-0 z-0  bg-cover bg-center opacity-30 blur-sm"></div>
 

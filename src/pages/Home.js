@@ -20,13 +20,52 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import Footer from "../components/Footer";
 import { Toaster, toast } from 'react-hot-toast';
+import {useNavigate } from "react-router-dom";
+import Api from '../services/Api';
 export default function home() {
+  const [streak, setStreak ] = useState();
+  const [streakno, setStreakno] =useState();
+  const navigate = useNavigate(); 
+   useEffect(()=>{
+    handleStreaktime();
+   },[])
 
+  const handleStreak = async () =>{
+    try {
+      const response = await Api.post('auth/streak',{streak: 100});
+      console.log("API Response:", response.data);
+      if (response?.data?.success) {
+        toast.success("✅ 100 coins claimed successfully!", { duration: 1000 });
+    } else {
+        toast.error(response?.data?.message,"❌ You have already claimed your streak reward today!", { duration: 1000 });
+    }
+  }
+   catch (error) {
+    toast.error(response?.data?.message,"❌ Fetching rewards failed:", error,{ duration: 1000 });
+  }
+  }
  
+  const handleStreaktime = async () => {
+    try {
+        const response = await Api.get('auth/streak_time');
+        console.log("API Response:", response.data);
+        if (response?.data?.isSameDay != null) {
+            setStreak(response.data.isSameDay); // Ensure setStreak is defined
+            setStreakno(response.data.strekno);
+        } else {
+            console.error(`${response?.data?.message} ❌ You have already claimed your streak reward today!`);
+            setStreak(response.data.isSameDay); 
+            setStreakno(response.data.strekno);
+        }
+    } catch (error) {
+        console.error("❌ Fetching rewards failed:", error.message);
+    }
+};
+
 
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-6 relative pb-28 w-full max-w-md mx-auto font-sans">
-      
+       <Toaster position="top-right" reverseOrder={false} />
       <div className="flex items-center justify-between w-full mb-4">
         <div className="flex items-center gap-3">
           {/* <div className="w-12 h-12 rounded-full bg-[#1efcb9]/20 flex items-center justify-center text-lg font-bold text-[#42eac2]">
@@ -87,12 +126,17 @@ export default function home() {
         className="w-full bg-apin border border-[#1efcb9]/20 rounded-xl p-4 flex justify-between items-center mb-4 shadow-sm mt-4">
         <div className="flex flex-col items-center">      
           <p className="text-xs text-gray-400">STREAK</p>
-          <p className="text-3xl font-bold text-[#42eac2] mt-1">1</p>
+          <p className="text-3xl font-bold text-[#42eac2] mt-1">{streakno}</p>
         </div>
-        <div className="bg-gradient-to-r from-[#1efcb9] to-[#108b75] px-5 py-2 rounded-xl text-xs text-black flex items-center gap-2 shadow-md">
-          <span>Received 100</span>
-          <FaGem className="text-[#1efcb9]" />
-        </div>
+        <div
+  className={`bg-gradient-to-r from-[#1efcb9] to-[#108b75] px-5 py-2 rounded-xl text-xs text-black flex items-center gap-2 shadow-md ${streak === null ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+  onClick={streak !== null ? handleStreak : undefined}
+  disabled={streak === null}
+>
+  <span>Received 100</span>
+  <FaGem className="text-[#1efcb9]" />
+</div>
+
       </div>
 
      
@@ -110,11 +154,11 @@ export default function home() {
   <h3 className="text-xs text-white mb-2 font-medium tracking-wide">MINING</h3>
   <div className="grid grid-cols-4 gap-4 text-center">
     <div>
-      <img src="/assets/athn/ic_home_tap.webp" alt="TAP" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/ic_home_tap.webp" alt="TAP" className="w-10 h-10 mx-auto" onClick={()=>navigate("/tapgame")}/>
       <p className="text-white text-xs mt-1">TAP</p>
     </div>
     <div>
-      <img src="/assets/athn/ic_home_node.webp" alt="Node" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/ic_home_node.webp" alt="Node" className="w-10 h-10 mx-auto"  onClick={()=>navigate("/nodereward")}/>
       <p className="text-white text-xs mt-1">Node</p>
     </div>
     <div>
@@ -122,7 +166,7 @@ export default function home() {
       <p className="text-white text-xs mt-1">Boost</p>
     </div>
     <div>
-      <img src="/assets/athn/ic_home_leaderboard.webp" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/ic_home_leaderboard.webp" alt="Leaderboard" className="w-10 h-10 mx-auto" onClick={()=>navigate("/leaderBoard")} />
       <p className="text-white text-xs mt-1">Leaderboard</p>
     </div>
   </div>
@@ -134,11 +178,11 @@ export default function home() {
         <h3 className="text-xs text-white mb-2 font-medium tracking-wide">COMMUNITY</h3>
         <div className="grid grid-cols-4 gap-4 text-center">
     <div>
-      <img src="/assets/athn/ic_home_statistic.webp" alt="TAP" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/ic_home_statistic.webp" alt="TAP" className="w-10 h-10 mx-auto" onClick={()=>navigate("/tapgame")}/>
       <p className="text-white text-xs mt-1">TAP</p>
     </div>
     <div>
-      <img src="/assets/athn/ic_home_friend.webp" alt="Node" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/ic_home_friend.webp" alt="Node" className="w-10 h-10 mx-auto"  onClick={()=>navigate("/nodereward")}/>
       <p className="text-white text-xs mt-1">Node</p>
     </div>
     <div>
@@ -146,7 +190,7 @@ export default function home() {
       <p className="text-white text-xs mt-1">Boost</p>
     </div>
     <div>
-      <img src="/assets/athn/ic_home_telegram.webp" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/ic_home_telegram.webp" alt="Leaderboard" className="w-10 h-10 mx-auto"onClick={()=>navigate("/leaderBoard")} />
       <p className="text-white text-xs mt-1">Leaderboard</p>
     </div>
     <div>

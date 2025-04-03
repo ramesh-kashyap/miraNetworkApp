@@ -60,7 +60,7 @@ export default function History() {
             }
           };
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-sans">
+    <div className="min-h-screen imgbg text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-sans">
       <div className="flex items-center mb-6">
         <button className="p-2 w-10 h-10 rounded-xl bg-[#101a19] border border-[#1efcb9]/20 flex items-center justify-center shadow-md">
           <FaArrowLeft size={18} className="text-[#1efcb9]" />

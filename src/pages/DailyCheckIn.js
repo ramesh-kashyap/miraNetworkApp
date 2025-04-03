@@ -145,7 +145,7 @@ const DailyCheckIn = () => {
       };
 
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+    <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       <Toaster position="top-right" reverseOrder={false} />
             <h2 className="text-2xl font-bold mb-4">Daily Boost</h2>
       {/* Header */}

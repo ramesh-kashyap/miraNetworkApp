@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 export default function MiningIntro() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col justify-between items-center px-6 pt-20 pb-10 w-full max-w-md mx-auto font-sans" style={{paddingBottom:'6.5rem',paddingTop:'13rem'}}>
+    <div className="min-h-screen imgbg text-white flex flex-col justify-between items-center px-6 pt-20 pb-10 w-full max-w-md mx-auto font-sans" style={{paddingBottom:'6.5rem',paddingTop:'13rem'}}>
       <div className="w-full flex justify-center">
       
         <img src="assets/item_dream1-f7368629.png"/>

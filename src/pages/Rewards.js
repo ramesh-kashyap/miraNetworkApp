@@ -20,6 +20,7 @@ const Rewards = () => {
   const telegram_id = localStorage.getItem("telegram_id");
    const [alldata, setAlldata] = useState(null);  // State to store user data
     const [error, setError] = useState(null); 
+    const [Quest, setQuest] = useState();
 
   useEffect(() => {
     getTaskRecord();
@@ -29,7 +30,7 @@ const Rewards = () => {
 
   const getTaskRecord = async () => {
     try {
-      const response = await Api.post("auth/getTasks", { telegram_id });
+      const response = await Api.post("auth/getTasks");
       setTasks(response.data.buttonTask);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -46,13 +47,6 @@ const Rewards = () => {
         setError(err.response?.data?.error || "Error fetching data");
     }
 };
-
-
-
-
-
-
-
 
 
   const getUserBalance = async () => {
@@ -72,7 +66,9 @@ const Rewards = () => {
   const handleStart = async (taskId, taskUrl) => {
     window.open(taskUrl);
     setLoadingTasks((prev) => ({ ...prev, [taskId]: true }));
-    const response = await Api.post("auth/startTask", { telegram_id, task_id: taskId });
+    const response = await Api.post("auth/startTask", { task_id: taskId });
+    console.log(response);
+
     if (!response.data.success) {
       setLoadingTasks((prev) => ({ ...prev, [taskId]: false }));
       toast.error(response.data.message);
@@ -89,7 +85,7 @@ const Rewards = () => {
   const handleClaim = async (taskId) => {
     try {
       setLoadingTasks((prev) => ({ ...prev, [taskId]: true }));
-      await Api.post("auth/claimTask", { telegram_id, task_id: taskId });
+      await Api.post("auth/claimTask", { task_id: taskId });
       setTimeout(() => {
         setLoadingTasks((prev) => ({ ...prev, [taskId]: false }));
         toast.success('claimed successfully!');
@@ -108,15 +104,6 @@ const Rewards = () => {
 
   const pendingTasks = tasks?.filter((task) => task.status !== "completed");
   const finishedTasks = tasks?.filter((task) => task.status === "completed");
-
-
-
-
-
-
-
-
-
 
 
   // const task = [
@@ -156,39 +143,89 @@ const Rewards = () => {
     { id: 3, title: "Invite 100 friends", points: "+1000 POINT", progress: "1/100" },
   ];
 
+     useEffect(()=>{
+      checkquest();
+        },[])
 
+
+    const dailyquest = async () =>{
+      try{
+         const response = await Api.post("auth/dailyquest");
+        console.log("API Response:", response.data);
+              if (response?.data?.success) {
+                toast.success("✅ 100 coins claimed successfully!", { duration: 1000 });
+            } else {
+                toast.error(response?.data?.message,"❌ You have already claimed your Quest reward today!", { duration: 1000 });
+            }
+      }
+      catch{
+         console.error(error,"Somthing is wrong");
+      }
+    }
+
+    const checkquest = async () =>{
+      try {
+        const response = await Api.get('auth/checkquest');
+        console.log("API Response:", response.data);
+        if (response?.data?.isSameDay != null) {
+            setQuest(response.data.isSameDay);
+        } else {
+            console.error(`${response?.data?.message} ❌ You have already claimed your Quest reward today!`);
+            setQuest(response.data.isSameDay);
+        }
+    } catch (error) {
+        console.error("❌ Fetching rewards failed:", error.message);
+    }
+    }
 
 
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+    <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+      <Toaster position="top-right" reverseOrder={false} />
       <h2 className="text-2xl font-bold mb-4">Rewards</h2>
 
       
-      <div className="bg-gray-800 p-6 rounded-xl shadow-lg text-center mb-6">
+      <div className="bg-apin p-6 rounded-xl shadow-lg text-center mb-6">
         <h3 className="text-3xl font-bold">{alldata?.totalBalance?? 0}. Points</h3>
-        <p className="text-gray-400 text-sm">Total Rewards</p>
+        <p className=" text-sm">Total Rewards</p>
         <div className="grid grid-cols-3 gap-4 mt-4">
-          <div className="bg-gray-700 p-4 rounded-lg text-center">
-            <p className="text-gray-400 text-sm">Mining</p>
+          <div className="bg-apin-700 p-4 rounded-lg text-center">
+            <p className="text-sm">Mining</p>
             <p className="text-lg font-bold">{alldata?.totalBalance?? 0} .pt</p>
           </div>
-          <div className="bg-gray-700 p-4 rounded-lg text-center">
-            <p className="text-gray-400 text-sm">Tasks</p>
+          <div className="bg-apin-700 p-4 rounded-lg text-center">
+            <p className="text-white-400 text-sm">Tasks</p>
             <p className="text-lg font-bold">{alldata?.bonus ?? 0}.pt</p>
           </div>
-          <div className="bg-gray-700 p-4 rounded-lg text-center">
-            <p className="text-gray-400 text-sm">Referral</p>
+          <div className="bg-apin-700 p-4 rounded-lg text-center">
+            <p className="text-white-400 text-sm">Referral</p>
             <p className="text-lg font-bold">0 pt</p>
           </div>
         </div>
       </div>
 
-      
+          <div className="w-full flex flex-col gap-3 mt-6">
+              <h4 className="text-base font-semibold text-neutral-1000">Finished Tasks</h4>            
+               
+               <div className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
+               <div className="flex items-center space-x-3">
+                 <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white">
+                 <img alt="" src="" className="w-6 h-6" />
+                 </div>
+                 <div>
+                   <p className="font-semibold">Daily Quest</p>
+                   <p className="text-green-400 text-sm">+20,000 POINT</p>
+                 </div>
+               </div>
+                 <button className={`bg-white text-black px-5 py-2 rounded-full text-sm font-semibold${Quest === null ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} onClick={Quest !== null ? dailyquest : undefined}
+  disabled={Quest === null}>Quest</button>
+             </div>
+            </div>
 
       <h3 className="text-xl font-bold mb-4">Available Tasks</h3>
       <div className="space-y-4">
         {pendingTasks?.map((task) => (
-          <div className="flex items-center justify-between bg-gray-800 p-4 rounded-xl shadow-lg">
+          <div className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white">
               <img alt={task.name} src={task.icon} className="w-6 h-6" />
@@ -209,12 +246,12 @@ const Rewards = () => {
         ))}
       </div>
 
-       {finishedTasks?.length > 0 && (
+       {/* {finishedTasks?.length > 0 && (
             <div className="w-full flex flex-col gap-3 mt-6">
               <h4 className="text-base font-semibold text-neutral-1000">Finished Tasks</h4>
               {finishedTasks.map((task) => (
                
-               <div className="flex items-center justify-between bg-gray-800 p-4 rounded-xl shadow-lg">
+               <div className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
                <div className="flex items-center space-x-3">
                  <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white">
                  <img alt={task.name} src={task.icon} className="w-6 h-6" />
@@ -236,16 +273,16 @@ const Rewards = () => {
       <h3 className="text-xl font-bold mt-8 mb-4">Invite Friends</h3>
       <div className="space-y-4 w-full">
         {invites.map((invite) => (
-          <div key={invite.id} className="flex items-center justify-between bg-gray-800 p-4 rounded-xl shadow-lg">
+          <div key={invite.id} className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
             <div>
               <p className="font-semibold">{invite.title}</p>
               <p className="text-green-400 text-sm">{invite.points}</p>
               <button className="mt-2 bg-white text-black px-5 py-2 rounded-full text-sm font-semibold">Invite</button>
             </div>
-            <div className="bg-gray-700 p-2 px-4 rounded-full text-sm font-semibold">{invite.progress}</div>
+            <div className="bg-apin-700 p-2 px-4 rounded-full text-sm font-semibold">{invite.progress}</div>
           </div>
         ))}
-      </div>
+      </div> */}
      
 
       <Footer />

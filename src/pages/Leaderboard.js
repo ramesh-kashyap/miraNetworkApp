@@ -39,7 +39,7 @@ const [rest7, setRest7] = useState([]);
       console.log("Rest 7:", rest7);
     }, [top3, rest7]);
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-eurostile relative overflow-hidden">
+    <div className="min-h-screen imgbg text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-eurostile relative overflow-hidden">
       <div className="flex items-center mb-4">
       <button
   onClick={() => navigate(-1)}

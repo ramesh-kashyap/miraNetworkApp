@@ -11,8 +11,6 @@ export const PublicRoute = () => {
 };
 
 export const ProtectedRoute = () => {
-
-    console.log("ggG"+isAuthenticated());
     
     return isAuthenticated() ?  <Outlet /> : <Navigate to="/miningintro" />;
 };

@@ -47,7 +47,7 @@ export default function SignUp() {
     
 
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-8 pb-8 relative w-full max-w-md mx-auto">
+    <div className="min-h-screen imgbg text-white px-4 pt-8 pb-8 relative w-full max-w-md mx-auto">
      
       <div className="absolute inset-0 bg bg-cover bg-center opacity-20 -z-10" />
 

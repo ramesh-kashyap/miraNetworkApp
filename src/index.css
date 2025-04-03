@@ -5,6 +5,9 @@
     --tw-bg-opacity: 1;
     background-color: rgb(19 26 16 / var(--tw-bg-opacity, 1));
 }
+.bg-apin-700{
+  background-color:#42eac2;
+}
 .bottom-4 {
     bottom: 0rem;
 }
@@ -108,8 +111,15 @@
   }
   
   .imgbg {
-    background-image: url("/public/assets/img/bg_dream.png");
-    background-size: cover;   /* Ensures the image covers the entire element */
+    background-image: url("/public/assets/images/backg.jpeg");
+    background-size: contain;   /* Ensures the image covers the entire element */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents repetition */
+    background-attachment: fixed; 
 }
+.rounded-foot{
+  border-radius:15px;
+}
+ .bg-green-400{
+  background-color: #44f6e0;
+ }

@@ -44,7 +44,7 @@ export default function MiningTeam() {
 
 
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+    <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       <div className="w-full bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/30 rounded-2xl p-6 mb-6 shadow-xl">
         <h2 className="text-center text-[#ffffffcc] text-lg font-light tracking-widest mb-4">YOUR FRIENDS</h2>
         <div className="flex flex-col items-center mb-4">
