@@ -210,11 +210,11 @@ const Rewards = () => {
                <div className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
                <div className="flex items-center space-x-3">
                  <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white">
-                 <img alt="" src="" className="w-6 h-6" />
+                 <img alt="csdd" src="assets/images/icon-cal.webp" className="w-6 h-6" />
                  </div>
                  <div>
                    <p className="font-semibold">Daily Quest</p>
-                   <p className="text-green-400 text-sm">+20,000 POINT</p>
+                   <p className="text-green-400 text-sm">+20,000 TR</p>
                  </div>
                </div>
                  <button className={`bg-white text-black px-5 py-2 rounded-full text-sm font-semibold${Quest === null ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} onClick={Quest !== null ? dailyquest : undefined}
@@ -232,7 +232,7 @@ const Rewards = () => {
               </div>
               <div>
                 <p className="font-semibold">{task.name}</p>
-                <p className="text-green-400 text-sm">+{task.reward} POINT</p>
+                <p className="text-green-400 text-sm">+{task.reward} LMAO</p>
               </div>
             </div>
 

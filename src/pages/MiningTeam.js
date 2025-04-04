@@ -13,10 +13,14 @@ export default function MiningTeam() {
 
   const [allmember, setMember] = useState(null); 
   const [error, setError] = useState(null); 
+  const [refel, setRefal] = useState(null);
    const fetchTeam = async () => {
      try {
          const response = await Api.get('auth/TotalTeam');
-         setTeam(response.data);  // Store API response in state
+         console.log(response.data);
+         setTeam(response.data); 
+         setRefal(response.data.refal);
+          // Store API response in state
      } catch (err) {
          setError(err.response?.data?.error || "Error fetching data");
      }
@@ -85,7 +89,7 @@ export default function MiningTeam() {
           />
         </div>
         <div className="flex items-center justify-center text-[#1efcb9] font-semibold text-base">
-          76386191bb80
+          {refel}
           <FaCopy className="ml-2 cursor-pointer text-white" />
         </div>
       </div>

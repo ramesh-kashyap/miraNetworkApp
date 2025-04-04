@@ -75,7 +75,7 @@ export default function TapGame() {
         <p className="text-sm text-white mb-3 tracking-wide">Total GEM earned from TAP</p>
         <div className="flex justify-center items-center gap-3 text-xl">
           <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md">{balance}</div>
-          <FaGem className="text-[#1efcb9] text-xl" />
+          <img src="assets/images/gemcoin.png" alt="gemcoin" style={{width:40, height: 30}}/>
         </div>
       </div>
 

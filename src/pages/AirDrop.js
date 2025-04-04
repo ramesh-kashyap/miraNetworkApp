@@ -1,17 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowUp, FaArrowDown, FaClock, FaWallet, FaDownload, FaCoins } from "react-icons/fa6";
 import Footer from "../components/Footer";
+import Api from '../services/Api';
 
-const tokens = [
-  { name: "GiggleToken", value: 25, icon: "/tokens/atn.png" },
-  { name: "MemeMoola", value: 0, icon: "/tokens/doge.png" },
-  { name: "ChuckleCoin", value: 5020100, icon: "/tokens/gem.png" },
-  { name: "BrokeAFCoin", value: 0, icon: "/tokens/ausd.png", subtitle: "$0" },
-  { name: "TrollToken", value: 0, icon: "/tokens/p2p.png" },
-  { name: "LMAOCash", value: 0, icon: "/tokens/p2p.png" },
-];
 
 export default function Airdrop() {
+ 
+  const [gigcoin ,setTapcoin]= useState();
+  const [moolcoin ,setStreakcoin]= useState();
+  const [gige, setNodecoin] =useState();
+  const [trcoin ,setquestcoin]= useState(); 
+  const [lamo ,settaskcoin]= useState(); 
+  const tokens = [
+    { name: "GiggleToken", value: gigcoin + gige, icon: "assets/images/gemcoin.png" },
+    { name: "MemeMoola", value: moolcoin, icon: "assets/images/mcoin.png" },
+    { name: "ChuckleCoin", value: 5020100, icon: "assets/images/chcoin.png" },
+    // { name: "BrokeAFCoin", value: 0, icon: "assets/images/ausd.png", subtitle: "$0" },
+    { name: "TrollToken", value: trcoin, icon: "assets/images/trcoin.png" },
+    { name: "LMAOCash", value: lamo, icon: "assets/images/lmcoin.png" },
+  ];
+  useEffect(()=>{
+    coins();
+  },[])
+   
+  const coins = async () =>{
+    try{
+      const response = await Api.get('auth/coins');
+      console.log("hello")
+       if(response.data){
+        console.log(response.data.taskbal);
+        console.log(response.data.data.tabbalance);
+           setTapcoin(response.data.data.tabbalance);
+           setNodecoin(response.data.data.meme_coin);
+           setStreakcoin(response.data.data.streak);
+           setquestcoin(response.data.data.dailyquest);
+           settaskcoin(response.data.taskbal);
+       }  
+    }
+    catch{
+      console.error("Somthing is write");
+    }
+  }
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       
@@ -44,13 +73,13 @@ export default function Airdrop() {
         {tokens.map((token, idx) => (
           <div key={idx} className="flex justify-between items-center py-4 border-b border-[#1e3d37] last:border-0">
             <div className="flex items-center space-x-3">
-              <img src={token.icon} alt={token.name} className="w-8 h-8 rounded-full" />
+              <img src={token.icon} alt={token.name} className="w-9 h-8 rounded-full" />
               <div>
                 <p className="text-white font-semibold text-lg">{token.name}</p>
                 {token.subtitle && <p className="text-xs text-gray-400">{token.subtitle}</p>}
               </div>
             </div>
-            <p className="text-[#f6f641] font-semibold text-lg">{token.value.toLocaleString()}</p>
+            <p className="text-[#f6f641] font-semibold text-lg">{token.value}</p>
           </div>
         ))}
       </div>
