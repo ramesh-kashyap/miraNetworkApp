@@ -166,7 +166,7 @@ export default function NodeReward() {
       </div>
       <Toaster position="top-right" reverseOrder={false} />
       <div className="relative z-10 flex w-full mb-6 rounded-xl overflow-hidden shadow-md">
-        <button className="flex-1 text-center py-3 bg-[#101a19] text-gray-400 font-medium text-sm" onClick={() => navigate("/tapgame")}>TAP</button>
+        <button className="flex-1 text-center py-3 bg-apin text-gray-400 font-medium text-sm" onClick={() => navigate("/tapgame")}>TAP</button>
         <button className="flex-1 text-center py-3 bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black font-bold text-sm tracking-wide">YOUR NODE</button>
       </div>
 
@@ -181,7 +181,7 @@ export default function NodeReward() {
         </p>
       </div>
 
-      <div className="relative z-10 w-full bg-[#101a19] border border-[#1efcb9]/20 rounded-2xl px-6 py-6 text-center mb-10 shadow-xl">
+      <div className="relative z-10 w-full bg-apin border border-[#1efcb9]/20 rounded-2xl px-6 py-6 text-center mb-10 shadow-xl">
         <div className="text-4xl font-extrabold text-[#1efcb9] mb-2 flex justify-center items-center gap-2">
         {todayReward.toFixed(4)}
         <img src="assets/images/gemcoin.png" alt="gemcoin" style={{width:30, height: 20}}/>
@@ -205,7 +205,7 @@ export default function NodeReward() {
       </div>
 
       <div className="relative z-10 grid grid-cols-2 gap-4 w-full">
-        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl px-4 py-5 text-center">
+        <div className="bg-apin border border-[#1efcb9]/20 rounded-xl px-4 py-5 text-center">
           <div className="text-2xl font-bold text-[#1efcb9] mb-1 flex items-center justify-center gap-1">
             2.12 
             <img src="assets/images/gemcoin.png" alt="gemcoin" style={{width:40, height: 30}}/>
@@ -213,7 +213,7 @@ export default function NodeReward() {
           </div>
           <p className="text-xs text-white">Basic Harvest Rate</p>
         </div>
-        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl px-4 py-5 text-center">
+        <div className="bg-apin border border-[#1efcb9]/20 rounded-xl px-4 py-5 text-center">
           <div className="text-2xl font-bold text-white mb-1 flex items-center justify-center gap-1">
             0% <IoRocketOutline className="text-xl text-[#1efcb9]" />
           </div>

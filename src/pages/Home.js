@@ -72,7 +72,7 @@ export default function home() {
           {/* <div className="w-12 h-12 rounded-full bg-[#1efcb9]/20 flex items-center justify-center text-lg font-bold text-[#ffffff]">
             R
           </div> */}
-          <img src="/assets/athn/avt.webp" alt="Slide 1" style={{width: 30}}/>
+          <img src="/assets/images/tresure.png" alt="Slide 1" style={{width: 35}}/>
           <div>
             <p className="font-semibold text-base leading-tight">Rames</p>
             <p className="text-[#ffffff] text-xs">Level 15</p>

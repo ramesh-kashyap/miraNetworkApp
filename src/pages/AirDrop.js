@@ -71,7 +71,7 @@ export default function Airdrop() {
       </div>
 
       
-      <div className="bg-[#101e1d] rounded-xl px-4 py-6 w-full">
+      <div className="bg-apin rounded-xl px-4 py-6 w-full">
         <h2 className="text-[#ffffff] mb-4 text-base tracking-widest font-light">BALANCE</h2>
         {tokens.map((token, idx) => (
           <div key={idx} className="flex justify-between items-center py-4 border-b border-[#1e3d37] last:border-0">

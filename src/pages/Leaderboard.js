@@ -43,7 +43,7 @@ const [rest7, setRest7] = useState([]);
       <div className="flex items-center mb-4">
       <button
   onClick={() => navigate(-1)}
-  className="p-2 w-10 h-10 rounded-xl bg-[#101a19] border border-[#1efcb9]/20 flex items-center justify-center shadow-md"
+  className="p-2 w-10 h-10 rounded-xl bg-apin border border-[#1efcb9]/20 flex items-center justify-center shadow-md"
 >
   <FaArrowLeft size={18} className="text-[#1efcb9]" />
 </button>
@@ -107,7 +107,7 @@ const [rest7, setRest7] = useState([]);
     </div>
   </div>
 )}
-      <div className="bg-[#101a19] rounded-t-2xl p-4 shadow-inner">
+      <div className="bg-apin rounded-t-2xl p-4 shadow-inner">
       {rest7.length > 0 ? (
     rest7.map((user, index) => (
           <div key={index}  className="flex items-center justify-between py-4 border-b border-white/10">

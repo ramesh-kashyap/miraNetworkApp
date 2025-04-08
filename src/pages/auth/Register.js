@@ -88,7 +88,7 @@ export default function SignUp() {
   return (
     <div className="min-h-screen imgbg text-white px-4 pt-8 pb-8 w-full max-w-md mx-auto">
       <button
-        className="w-10 h-10 rounded-xl bg-[#101a19]/60 flex items-center justify-center mb-8 border border-[#1efcb9]/20"
+        className="w-10 h-10 rounded-xl bg-apin/60 flex items-center justify-center mb-8 border border-[#1efcb9]/20"
         onClick={() => navigate("/miningintro")}
       >
         <span className="text-[#1efcb9] text-xl">←</span>

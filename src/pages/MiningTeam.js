@@ -95,11 +95,11 @@ export default function MiningTeam() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 w-full">
-        <button className="flex flex-col items-center justify-center bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
+        <button className="flex flex-col items-center justify-center bg-gradient-to-br bg-apin border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
           <FaUsers className="text-[#1efcb9] text-2xl mb-2" />
           <span className="text-sm text-white text-center px-1 leading-tight">Join the Athene Community</span>
         </button>
-        <button className="flex flex-col items-center justify-center bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
+        <button className="flex flex-col items-center justify-center bg-gradient-to-br bg-apin border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
           <FaPaperPlane className="text-[#1efcb9] text-2xl mb-2" />
           <span className="text-sm text-white text-center px-1 leading-tight">Invite friends to get huge rewards</span>
         </button>

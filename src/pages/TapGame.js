@@ -86,10 +86,10 @@ export default function TapGame() {
 
       <div className="flex w-full mb-6 rounded-xl overflow-hidden shadow-lg">
         <button className="flex-1 text-center py-3 bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black font-bold text-sm tracking-wide">TAP</button>
-        <button className="flex-1 text-center py-3 bg-[#101a19] text-gray-400 font-medium text-sm" onClick={() => navigate("/nodereward")}>YOUR NODE</button>
+        <button className="flex-1 text-center py-3 bg-apin text-gray-400 font-medium text-sm" onClick={() => navigate("/nodereward")}>YOUR NODE</button>
       </div>
 
-      <div className="w-full bg-[#101a19] border border-[#1efcb9]/20 rounded-2xl px-4 py-6 text-center mb-6 shadow-md">
+      <div className="w-full bg-apin border border-[#1efcb9]/20 rounded-2xl px-4 py-6 text-center mb-6 shadow-md">
         <p className="text-sm text-white mb-3 tracking-wide">Total GIG earned from TAP</p>
         <div className="flex justify-center items-center gap-3 text-xl">
           <div className="w-5 h-5 rounded-full flex items-center justify-center text-white font-bold shadow-md">{balance}</div>
@@ -134,11 +134,11 @@ export default function TapGame() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 w-full mb-6">
-        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl p-5 text-center shadow-sm">
+        <div className="bg-apin border border-[#1efcb9]/20 rounded-xl p-5 text-center shadow-sm">
           <p className="text-sm text-gray-400 tracking-wide">Level</p>
           <p className="text-3xl font-extrabold text-[#1efcb9] mt-2">15</p>
         </div>
-        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl p-5 text-center shadow-sm">
+        <div className="bg-apin border border-[#1efcb9]/20 rounded-xl p-5 text-center shadow-sm">
           <p className="text-sm text-gray-400 mb-2 tracking-wide">Conversion Rate</p>
           <p className="text-base text-white font-medium">
             1 <span className="text-yellow-300 font-bold">EC</span> ≈ <span className="text-[#1efcb9] font-bold">1.060</span> 

@@ -20,7 +20,7 @@ export default function Withdraw() {
       {/* Choose Asset */}
       <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Choose an asset</label>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
+        <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <div className="flex items-center space-x-2">
             <img src="/assets/img/ATN.svg" alt="ATN" className="w-6 h-6 rounded-full" />
             <span className="text-white font-medium">ATN</span>
@@ -35,7 +35,7 @@ export default function Withdraw() {
           <label className="text-gray-400">Amount you want to withdraw</label>
           <span className="text-[#1efcb9]">Balance: 25</span>
         </div>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
+        <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <input
             type="text"
             placeholder="Amount"
@@ -48,7 +48,7 @@ export default function Withdraw() {
       {/* Wallet Address */}
       <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Wallet address</label>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
+        <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <input
             type="text"
             placeholder="Wallet address"
@@ -61,7 +61,7 @@ export default function Withdraw() {
       {/* Network */}
       <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Network</label>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
+        <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <span className="text-white font-semibold text-sm">Athene Parthenon</span>
           <FaChevronDown className="text-[#1efcb9]" />
         </div>

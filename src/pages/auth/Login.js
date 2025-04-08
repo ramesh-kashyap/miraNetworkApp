@@ -45,7 +45,7 @@ export default function Login() {
 
       <div className="relative z-10 w-full">
         <button
-          className="w-10 h-10 rounded-xl bg-[#101a19]/60 flex items-center justify-center mb-8 border border-[#1efcb9]/20 backdrop-blur-md"
+          className="w-10 h-10 rounded-xl bg-apin/60 flex items-center justify-center mb-8 border border-[#1efcb9]/20 backdrop-blur-md"
           onClick={() => navigate("/miningintro")}
         >
           <FaArrowLeft className="text-[#1efcb9] text-lg" />
@@ -64,7 +64,7 @@ export default function Login() {
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full py-4 pl-12 pr-4 bg-[#101a19]/60 border border-white/10 rounded-xl text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
+                className="w-full py-4 pl-12 pr-4 bg-apin/60 border border-white/10 rounded-xl text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
               />
               <FaEnvelope className="absolute top-1/2 left-4 transform -translate-y-1/2 text-[#1efcb9]" />
             </div>
@@ -78,7 +78,7 @@ export default function Login() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full py-4 pl-12 pr-10 bg-[#101a19]/60 border border-white/10 rounded-xl text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
+                className="w-full py-4 pl-12 pr-10 bg-apin/60 border border-white/10 rounded-xl text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
               />
               <FaLock className="absolute top-1/2 left-4 transform -translate-y-1/2 text-[#1efcb9]" />
               <FaEyeSlash className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400" />

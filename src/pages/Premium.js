@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Api from '../services/Api';
 import { Toaster, toast } from 'react-hot-toast';
+import {useNavigate } from "react-router-dom";
 export default function Premium() {
+   const navigate = useNavigate();
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [airo ,setAirocoin] = useState(0);
     const [selectedPrice, setSelectedPrice] = useState(0); 
@@ -9,7 +11,7 @@ export default function Premium() {
     
     // for form use
 //   const activeTab = 'bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black font-bold';
-//   const inactiveTab = 'bg-[#101a19] text-white/50';
+//   const inactiveTab = 'bg-apin text-white/50';
 
 const packages = [
     { name: 'Bronze', price: 3 },
@@ -75,7 +77,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
     <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-10 pb-32 w-full max-w-md mx-auto font-sans">
         <Toaster position="top-right" reverseOrder={false} />
       <div className="flex items-center mb-6">
-        <button className="text-2xl text-[#1efcb9]">←</button>
+        <button className="text-2xl text-[#1efcb9]" onClick={()=>navigate("/")}>←</button>
         <h1 className="flex-1 text-center text-white font-semibold text-lg tracking-widest">PREMIUM</h1>
       </div>
 
@@ -102,7 +104,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
             className={`cursor-pointer rounded-lg py-4 px-3 border transition-all duration-300 ${
               selectedIndex === idx
                 ? 'bg-[#1efcb9] text-black border-[#1efcb9]'
-                : 'bg-[#101a19] text-white/80 border-[#1efcb9]/20'
+                : 'bg-apin text-white/80 border-[#1efcb9]/20'
             }`}
           >
             <p className="text-sm text-white/70">{pkg.name}</p>
@@ -111,31 +113,31 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
         ))}
         </div>
 
-      <div className="rounded-xl bg-[#101a19] p-4 mb-5 text-center border border-white/10">
+      <div className="rounded-xl bg-apin p-4 mb-5 text-center border border-white/10">
         <div className="text-white/70 text-sm mb-1">Number of packages sold</div>
         <div className="text-[#faff00] text-2xl font-bold tracking-widest">279,938</div>
       </div>
 
       <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="bg-[#101a19] border border-white/10 rounded-xl px-4 py-6 text-center">
+        <div className="bg-apin border border-white/10 rounded-xl px-4 py-6 text-center">
           <div className="text-sm text-white/70 mb-1">Total commission from direct referral (USDT)</div>
           <div className="text-[#faff00] text-lg font-bold">185,779.9</div>
         </div>
-        <div className="bg-[#101a19] border border-white/10 rounded-xl px-4 py-6 text-center">
+        <div className="bg-apin border border-white/10 rounded-xl px-4 py-6 text-center">
           <div className="text-sm text-white/70 mb-1">Total commission from indirect referral (USDT)</div>
           <div className="text-[#faff00] text-lg font-bold">78,300.5</div>
         </div>
       </div>
 
-      <div className="rounded-xl border border-white/10 text-center py-6 text-sm tracking-wide bg-[#101a19] text-white mb-5">
+      <div className="rounded-xl border border-white/10 text-center py-6 text-sm tracking-wide bg-apin text-white mb-5">
         TOP 100 USERS<br />RECEIVING COMMISSIONS
       </div>
 
-      <div className="rounded-xl border border-white/10 text-center py-4 text-sm tracking-wide bg-[#101a19] text-white mb-5">
+      <div className="rounded-xl border border-white/10 text-center py-4 text-sm tracking-wide bg-apin text-white mb-5">
       ATN REVENUE SHARING
       </div>
 
-      <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-2xl px-5 py-6 text-white shadow-lg">
+      <div className="bg-apin border border-[#1efcb9]/20 rounded-2xl px-5 py-6 text-white shadow-lg">
        
 
         <h3 className="text-white font-semibold text-sm mb-4">Benefits of Bronze package</h3>
@@ -162,12 +164,12 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
           </li>
         </ul>
 
-        <button className="mt-8 w-full py-3 bg-gradient-to-r from-[#1efcb9] to-[#9f1eff] text-black font-semibold rounded-full text-sm">
+        {/* <button className="mt-8 w-full py-3 bg-gradient-to-r from-[#1efcb9] to-[#9f1eff] text-black font-semibold rounded-full text-sm">
           Restore Purchase
-        </button>
+        </button> */}
         {canPurchase && (
         <div className="fixed top-[400px] left-1/2 transform -translate-x-1/2 w-[400px]">
-          <button className="w-full py-3 bg-gradient-to-r from-[#1efcb9] to-[#42eac2] text-black font-semibold rounded-full text-sm text-center" onClick={handleBuy}>
+          <button className="w-full py-3 bg-gradient-to-r from-[#1efcb9] to-[#9f1eff] text-black font-semibold rounded-full text-sm text-center" onClick={handleBuy}>
           Buy {packages[selectedIndex]?.name} AIRO {selectedPrice}
        </button>
         </div>

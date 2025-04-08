@@ -21,7 +21,7 @@ export default function ProfileSettings() {
         <div />
       </div>
 
-      <div className="bg-[#101a19] rounded-xl p-4 mb-6">
+      <div className="bg-apin rounded-xl p-4 mb-6">
         <div className="flex justify-between items-center mb-2">
           <div>
             <p className="text-lg font-semibold">Rames</p>

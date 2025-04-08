@@ -41,7 +41,7 @@ export default function Lautery() {
         <div className="w-6" />
       </div>
 
-      <div className="rounded-xl bg-[#101a19] p-4 text-center mb-4 border border-white/10">
+      <div className="rounded-xl bg-apin p-4 text-center mb-4 border border-white/10">
         <h2 className="text-lg font-bold">
           <span className="text-white">Get </span>
           <span className="text-yellow-400">1 BTC</span>
@@ -50,7 +50,7 @@ export default function Lautery() {
         </h2>
       </div>
 
-      <div className="bg-[#101a19] text-[#1efcb9] text-xs rounded-full px-3 py-2 mb-4 text-center">
+      <div className="bg-apin text-[#1efcb9] text-xs rounded-full px-3 py-2 mb-4 text-center">
         🎉 Congratulations to Milad for winning 100USDT!
       </div>
 
@@ -59,7 +59,7 @@ export default function Lautery() {
         {items.map(item => (
           <div
             key={item.id}
-            className="bg-[#101a19] rounded-xl p-4 border border-white/10 flex flex-col gap-3"
+            className="bg-apin rounded-xl p-4 border border-white/10 flex flex-col gap-3"
           >
             <div className="flex items-center gap-4">
               <img src={item.logo} alt={item.title} className="w-12 h-12 rounded-full bg-white object-contain" />
@@ -98,7 +98,7 @@ export default function Lautery() {
 
       {modalVisible && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-[#101a19] text-white p-6 rounded-xl w-[90%] max-w-sm relative">
+          <div className="bg-apin text-white p-6 rounded-xl w-[90%] max-w-sm relative">
             <button onClick={() => setModalVisible(false)} className="absolute top-3 right-4 text-xl">✕</button>
             <h2 className="text-center text-lg font-bold mb-2">Select number of copies to purchase</h2>
             <p className="text-center text-sm text-gray-300 mb-1">

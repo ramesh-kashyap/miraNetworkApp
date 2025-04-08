@@ -62,7 +62,7 @@ export default function History() {
   return (
     <div className="min-h-screen imgbg text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-sans">
       <div className="flex items-center mb-6">
-        <button className="p-2 w-10 h-10 rounded-xl bg-[#101a19] border border-[#1efcb9]/20 flex items-center justify-center shadow-md">
+        <button className="p-2 w-10 h-10 rounded-xl bg-apin border border-[#1efcb9]/20 flex items-center justify-center shadow-md">
           <FaArrowLeft size={18} className="text-[#1efcb9]" />
         </button>
         <h1 className="flex-grow text-center text-xl font-bold tracking-widest text-white ml-[-40px]">Income</h1>
@@ -73,7 +73,7 @@ export default function History() {
             income.map((user, index) => (
           <div key={index} className="flex justify-between items-center border-b border-white/10 pb-4">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-[#101a19] text-[#1efcb9] rounded-md flex items-center justify-center text-lg">
+              <div className="w-10 h-10 bg-apin text-[#1efcb9] rounded-md flex items-center justify-center text-lg">
               <img
   src={getUserImage(user.remarks)}
   alt="Reward Type"
