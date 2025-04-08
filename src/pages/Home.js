@@ -163,7 +163,7 @@ export default function home() {
       <p className="text-white text-xs mt-1">TAP</p>
     </div>
     <div>
-      <img src="/assets/athn/ic_home_node.webp" alt="Node" className="w-10 h-10 mx-auto"  onClick={()=>navigate("/nodereward")}/>
+      <img src="/assets/athn/21.png" alt="Node" className="w-10 h-10 mx-auto"  onClick={()=>navigate("/nodereward")}/>
       <p className="text-white text-xs mt-1">Node</p>
     </div>
     <div>
@@ -211,7 +211,7 @@ export default function home() {
       <p className="text-white text-xs mt-1">Facebook</p>
     </div>
     <div>
-      <img src="/assets/athn/ic_home_home.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/22.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
       <p className="text-white text-xs mt-1">Home</p>
     </div>
     <div>
@@ -219,7 +219,7 @@ export default function home() {
       <p className="text-white text-xs mt-1">Support</p>
     </div>
     <div>
-      <img src="/assets/athn/ic_home_blog.webp" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/23.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
       <p className="text-white text-xs mt-1">Blog</p>
     </div>
     <div>

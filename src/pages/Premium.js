@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Api from '../services/Api';
+import { Toaster, toast } from 'react-hot-toast';
 export default function Premium() {
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [airo ,setAirocoin] = useState(0);
     const [selectedPrice, setSelectedPrice] = useState(0); 
     const [aironame, setAironame] =useState(0);
+    
     // for form use
 //   const activeTab = 'bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black font-bold';
 //   const inactiveTab = 'bg-[#101a19] text-white/50';
+
 const packages = [
     { name: 'Bronze', price: 3 },
     { name: 'Silver', price: 18 },
@@ -32,7 +35,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
              console.log(response.data.taskbal);
              console.log(response.data.data);
                 setAirocoin(response.data.data.airo);
-                setAironame(response.data.data.aironame);
+                setAironame(response.data.daxta.aironame);
             }  
          }
          catch{
@@ -40,9 +43,37 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
          }
        }
 
+       const handleBuy = async () => {
+        //  packages.name === aironame;
+        if (packages.name === aironame) {
+          toast.error("You can only buy the next package or you don't have enough balance.");
+          return;
+        }
+      
+        try {
+          const response = await Api.post('auth/buy-package', {
+            packageName: packages[selectedIndex].name,
+            packagePrice: packages[selectedIndex].price,
+          });
+      
+          if (response.data.success) {
+            toast.success("Package purchased successfully!", { duration: 1000 });
+            // Optionally reload user data or update state
+          } else {
+            toast.error(response?.data?.message,"❌ Purchase failed!", { duration: 1000 });
+            // console.warn("Purchase failed:", response.data.message);
+            
+          }
+        } catch (error) {
+          toast.error(response.data?.message,"❌ Error purchasing package!", { duration: 1000 });
+        }
+      };
+      
+      
+
   return (
     <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-10 pb-32 w-full max-w-md mx-auto font-sans">
-
+        <Toaster position="top-right" reverseOrder={false} />
       <div className="flex items-center mb-6">
         <button className="text-2xl text-[#1efcb9]">←</button>
         <h1 className="flex-1 text-center text-white font-semibold text-lg tracking-widest">PREMIUM</h1>
@@ -136,7 +167,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
         </button>
         {canPurchase && (
         <div className="fixed top-[400px] left-1/2 transform -translate-x-1/2 w-[400px]">
-          <button className="w-full py-3 bg-gradient-to-r from-[#1efcb9] to-[#42eac2] text-black font-semibold rounded-full text-sm text-center">
+          <button className="w-full py-3 bg-gradient-to-r from-[#1efcb9] to-[#42eac2] text-black font-semibold rounded-full text-sm text-center" onClick={handleBuy}>
           Buy {packages[selectedIndex]?.name} AIRO {selectedPrice}
        </button>
         </div>

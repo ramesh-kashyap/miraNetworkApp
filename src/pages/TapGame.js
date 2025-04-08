@@ -12,6 +12,7 @@ export default function TapGame() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dots, setDots] = useState([]);
   const [isBlinking, setIsBlinking] = useState(false);
+  const [premium,  setPremium] = useState();
   const addCoin = (event) => {
     setIsBlinking(true);
     setTimeout(() => {
@@ -56,12 +57,29 @@ export default function TapGame() {
       console.log(response.data);
       if(response.data.tabbalance){
         setBalance(response.data.tabbalance);
+        setPremium(response.data.premium);
       }
     }
     catch (err) {
      console.error("Error updating balance:", err,{ duration: 1000 });
     }
    }
+
+   const getCoinValue = (premium) => {
+    switch (premium) {
+      case 'Bronze':
+        return 2;
+      case 'Silver':
+        return 3;
+      case 'Golden':
+        return 4;
+      case 'Diamond':
+        return 5;  
+      default:
+        return 1;
+    }
+  };
+  const coinValue = getCoinValue(premium);
 
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 pb-24 w-full max-w-md mx-auto font-sans">
@@ -108,7 +126,7 @@ export default function TapGame() {
               position: "absolute"
             }}
           >
-            +1🪙
+            +{coinValue}🪙
           </motion.div>
         ))}
       </AnimatePresence>
