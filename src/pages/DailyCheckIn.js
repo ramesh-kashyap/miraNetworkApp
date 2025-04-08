@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import Api from '../services/Api';
 import { Toaster, toast } from 'react-hot-toast';
 const transactions = [
-  { id: 1, type: "received", name: "From Albert Flores", date: "10 Feb 2022 at 01:00 pm", amount: "+$12,600.00", color: "text-green-400" },
+  { id: 1, type: "received", name: "From Albert Flores", date: "10 Feb 2022 at 01:00 pm", amount: "+$12,600.00", color: "text-white-379" },
   { id: 2, type: "sent", name: "To Jenny Wilson", date: "9 Feb 2022 at 06:00 am", amount: "-$824.00", color: "text-red-400" },
   { id: 3, type: "sent", name: "Mailchimp Support", date: "8 Feb 2022 at 02:00 pm", amount: "-$746.00", color: "text-red-400" },
 ];

@@ -205,19 +205,19 @@ const Rewards = () => {
       </div>
 
           <div className="w-full flex flex-col gap-3 mt-6">
-              <h4 className="text-base font-semibold text-neutral-1000">Finished Tasks</h4>            
+              <h4 className="text-base font-semibold text-neutral-1000">Daily Tasks</h4>            
                
                <div className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
                <div className="flex items-center space-x-3">
-                 <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white">
+                 <div className="w-10 h-10 flex items-center justify-center rounded-full bg-black">
                  <img alt="csdd" src="assets/images/icon-cal.webp" className="w-6 h-6" />
                  </div>
                  <div>
                    <p className="font-semibold">Daily Quest</p>
-                   <p className="text-green-400 text-sm">+20,000 TR</p>
+                   <p className="text-white-379 text-sm">+20,000 TR</p>
                  </div>
                </div>
-                 <button className={`bg-white text-black px-5 py-2 rounded-full text-sm font-semibold${Quest === null ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} onClick={Quest !== null ? dailyquest : undefined}
+                 <button className={`bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black px-5 py-2 rounded-full text-sm font-semibold${Quest === null ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`} onClick={Quest !== null ? dailyquest : undefined}
   disabled={Quest === null}>Quest</button>
              </div>
             </div>
@@ -232,15 +232,15 @@ const Rewards = () => {
               </div>
               <div>
                 <p className="font-semibold">{task.name}</p>
-                <p className="text-green-400 text-sm">+{task.reward} LMAO</p>
+                <p className="text-white-379 text-sm">+{task.reward} LMAO</p>
               </div>
             </div>
 
             {claimableTasks[task.id] ? (
-              <button onClick={() => handleClaim(task.id)} className="bg-white text-black px-5 py-2 rounded-full text-sm font-semibold">   {loadingTasks[task.id] ? "Loading..." : "Claim"}
+              <button onClick={() => handleClaim(task.id)} className="bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black px-5 py-2 rounded-full text-sm font-semibold">   {loadingTasks[task.id] ? "Loading..." : "Claim"}
               </button>
             ) : (
-              <button onClick={() => handleStart(task.id, task.link)} className="bg-white text-black px-5 py-2 rounded-full text-sm font-semibold" disabled={loadingTasks[task.id]}>   {loadingTasks[task.id] ? "Loading..." : "Start"}</button>
+              <button onClick={() => handleStart(task.id, task.link)} className="bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black px-5 py-2 rounded-full text-sm font-semibold" disabled={loadingTasks[task.id]}>   {loadingTasks[task.id] ? "Loading..." : "Start"}</button>
             )}
           </div>
         ))}
@@ -258,7 +258,7 @@ const Rewards = () => {
                  </div>
                  <div>
                    <p className="font-semibold">{task.name}</p>
-                   <p className="text-green-400 text-sm">+{task.reward} POINT</p>
+                   <p className="text-white-379 text-sm">+{task.reward} POINT</p>
                  </div>
                </div>
                  <button className="bg-white text-black px-5 py-2 rounded-full text-sm font-semibold">   Finished</button>
@@ -276,7 +276,7 @@ const Rewards = () => {
           <div key={invite.id} className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
             <div>
               <p className="font-semibold">{invite.title}</p>
-              <p className="text-green-400 text-sm">{invite.points}</p>
+              <p className="text-white-379 text-sm">{invite.points}</p>
               <button className="mt-2 bg-white text-black px-5 py-2 rounded-full text-sm font-semibold">Invite</button>
             </div>
             <div className="bg-apin-700 p-2 px-4 rounded-full text-sm font-semibold">{invite.progress}</div>

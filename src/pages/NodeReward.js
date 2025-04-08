@@ -51,7 +51,7 @@ export default function NodeReward() {
           console.log("API Response:", response);
           if(response.data){
             setDailyRewards(response.data.data.hour_bal);
-            console.log(response);
+            console.log(response.data.data.meme_date);
           }
           else {
             console.error("API Response:", error);
@@ -72,12 +72,11 @@ export default function NodeReward() {
           }
   
           const { lastClaimed } = response.data;
-  
-          if (lastClaimed) {
+          if (lastClaimed) {            
               const lastClaimedTimestamp = new Date(lastClaimed).getTime();
               const nowTimestamp = Date.now();
               const timeRemaining = 24 * 60 * 60 * 1000 - (nowTimestamp - lastClaimedTimestamp);
-  
+              // console.log("now claim".timeRemaining);
               if (timeRemaining <= 0) {
                   setEligibleRewardId(1); // Allow claim
                   setCountdown(null);
@@ -173,7 +172,9 @@ export default function NodeReward() {
 
       <div className="relative z-10 text-center mb-10 pt-4">
         <div className="text-4xl font-extrabold text-[#1efcb9] flex justify-center items-center gap-2">
-        {dailyRewards} <FaGem className="text-[#1efcb9] text-2xl" />
+        {dailyRewards} 
+        <img src="assets/images/gemcoin.png" alt="gemcoin" style={{width:30, height: 20}}/>
+        {/* <FaGem className="text-[#1efcb9] text-2xl" /> */}
         </div>
         <p className="text-white tracking-widest text-sm mt-2 flex justify-center items-center gap-1">
           EVERY HOUR <FaInfoCircle className="text-sm text-gray-400" />
@@ -182,7 +183,9 @@ export default function NodeReward() {
 
       <div className="relative z-10 w-full bg-[#101a19] border border-[#1efcb9]/20 rounded-2xl px-6 py-6 text-center mb-10 shadow-xl">
         <div className="text-4xl font-extrabold text-[#1efcb9] mb-2 flex justify-center items-center gap-2">
-        {todayReward.toFixed(4)}<FaGem className="text-[#1efcb9] text-xl" />
+        {todayReward.toFixed(4)}
+        <img src="assets/images/gemcoin.png" alt="gemcoin" style={{width:30, height: 20}}/>
+        {/* <FaGem className="text-[#1efcb9] text-xl" /> */}
         </div>
         <p className="text-sm text-gray-300 mb-1 tracking-wide"> {countdown !== null ? formatTime(countdown) : "00h 00m 00s"}</p>
         <p className="text-xs text-gray-400">Time until the next reward</p>
@@ -202,13 +205,15 @@ export default function NodeReward() {
       </div>
 
       <div className="relative z-10 grid grid-cols-2 gap-4 w-full">
-        <div className="bg-[#101a19] border border-[#1efcb9]/30 rounded-xl px-4 py-5 text-center">
+        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl px-4 py-5 text-center">
           <div className="text-2xl font-bold text-[#1efcb9] mb-1 flex items-center justify-center gap-1">
-            2.12 <FaGem className="text-[#1efcb9] text-lg" />
+            2.12 
+            <img src="assets/images/gemcoin.png" alt="gemcoin" style={{width:40, height: 30}}/>
+            {/* <FaGem className="text-[#1efcb9] text-lg" /> */}
           </div>
           <p className="text-xs text-white">Basic Harvest Rate</p>
         </div>
-        <div className="bg-[#101a19] border border-[#1efcb9]/30 rounded-xl px-4 py-5 text-center">
+        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl px-4 py-5 text-center">
           <div className="text-2xl font-bold text-white mb-1 flex items-center justify-center gap-1">
             0% <IoRocketOutline className="text-xl text-[#1efcb9]" />
           </div>

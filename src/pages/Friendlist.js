@@ -3,8 +3,7 @@ import { FaArrowLeft, FaCheck, FaUserFriends, FaCalendarCheck, FaGift, FaStar, F
 import { MdToken } from "react-icons/md";
 import { RiCalendarEventLine } from "react-icons/ri";
 import Api from '../services/Api';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const history = [
 //   { icon: <FaStar />, label: "Quest reward", time: "11:43 07/02/2025", amount: "+20,000" },
@@ -16,6 +15,7 @@ const history = [
 ];
 
 export default function Friendlist() {
+  const navigate = useNavigate();
       const [allteam, setTeam] = useState(null); 
       const [error, setError] = useState(null); 
 
@@ -53,8 +53,8 @@ export default function Friendlist() {
   return (
     <div className="min-h-screen imgbg text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-sans">
       <div className="flex items-center mb-6">
-        <button className="p-2 w-10 h-10 rounded-xl bg-[#101a19] border border-[#1efcb9]/20 flex items-center justify-center shadow-md">
-          <FaArrowLeft size={18} className="text-[#1efcb9]" />
+        <button className="p-2 w-10 h-10 rounded-xl bg-[#101a19] border border-[#1efcb9]/20 flex items-center justify-center shadow-md" onClick={()=>navigate("/miningTeam")}>
+          <FaArrowLeft size={18} className="text-[#1efcb9]"/>
         </button>
         <h1 className="flex-grow text-center text-xl font-bold tracking-widest text-white ml-[-40px]">Team</h1>
       </div>

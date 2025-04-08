@@ -110,16 +110,49 @@
     transition: transform 0.3s ease-in-out !important;
   }
   
-  .imgbg {
-    background-image: url("/public/assets/images/backg.jpeg");
-    background-size: contain;   /* Ensures the image covers the entire element */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents repetition */
+  /* .imgbg {
+    background-image: url("/public/assets/img/background.jpeg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed; 
+} */
+.imgbg {
+  background-image: linear-gradient(to bottom, #48007d 0%, rgba(159, 30, 255, 0) 40%), 
+                      url("/public/assets/img/background.jpeg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
 .rounded-foot{
-  border-radius:15px;
+  border-radius:5px;
 }
  .bg-green-400{
-  background-color: #44f6e0;
+  background-color: #cb86ff;
  }
+ .border-\[\#1efcb9\]\/20{
+  border-color: #cb86ff;
+}
+.to-\[\#108b75\]{
+  --tw-gradient-to :#9f1eff var(--tw-gradient-to-position);
+}
+.from-\[\#1efcb9\]{
+  --tw-gradient-from :#cb86ff var(--tw-gradient-from-position);
+}
+.text-black{
+  color: #fff var(--tw-text-opacity, 1);
+}
+.text-gray-400{
+  color: #9ca3af;
+}
+.bg-apin-700{
+ background-color:#cb86ff;
+}
+.border-\[\#1efcb9\]{
+   background-color: #cb86ff;;
+}
+.text-\[\#1efcb9\]{
+  color:#cb86ff;
+}

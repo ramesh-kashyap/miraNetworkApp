@@ -26,7 +26,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ProfileSettings from "./pages/ProfileSettings";
 import Updateprofile from "./pages/Updateprofile";
 import ChangePassword from "./pages/ChangePassword";
-
+import Premium from "./pages/Premium";
 
 
 
@@ -66,8 +66,8 @@ function App() {
             <Route path="/ProfileSettings" element={<ProfileSettings />} />
             <Route path="/updateprofile" element={<Updateprofile />} />
             <Route path="/changePassword" element={<ChangePassword />} />
-
-
+            <Route path="/premium" element={<Premium/>}/>
+            
 
 
           </Route>

@@ -49,13 +49,13 @@ export default function MiningTeam() {
 
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
-      <div className="w-full bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/30 rounded-2xl p-6 mb-6 shadow-xl">
+      <div className="w-full bg-gradient-to-br bg-apin border border-[#1efcb9]/20 rounded-2xl p-6 mb-6 shadow-xl">
         <h2 className="text-center text-[#ffffffcc] text-lg font-light tracking-widest mb-4">YOUR FRIENDS</h2>
         <div className="flex flex-col items-center mb-4">
           <div className="text-5xl font-extrabold text-white mb-2">0</div>
           <Link
   to="/friendlist"
-  className="text-black text-sm font-semibold bg-gradient-to-r from-[#1efcb9] to-[#108b75] px-6 py-2 rounded-full inline-flex items-center gap-2"
+  className="text-black text-sm font-semibold bg-gradient-to-r bg-apin px-6 py-2 rounded-full inline-flex items-center gap-2"
 >
   View details <FaExternalLinkAlt size={12} />
 </Link>
@@ -66,20 +66,20 @@ export default function MiningTeam() {
             <span className="text-xs text-[#bbbbbb]">Direct Referral</span>
           </div>
           <div>
-            <div className="text-xl font-bold mb-1">{allmember ?.getInviteBonus.invite_bonus ?? 0}</div>
+            {/* <div className="text-xl font-bold mb-1">{allmember ?.getInviteBonus.invite_bonus ?? 0}</div> */}
             <span className="text-xs text-[#bbbbbb]"> Referral Reward</span>
           </div>
         </div>
       </div>
 
-      <div className="w-full flex items-start text-sm text-[#1efcb9] mb-6 px-1">
+      <div className="w-full flex items-start text-sm text-[#ffffff] mb-6 px-1">
         <FiZap className="mt-1 mr-2 text-lg" />
         <p className="leading-tight">
           Maximize your data network:<br />More nodes, faster mining!
         </p>
       </div>
 
-      <div className="w-full bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/30 rounded-2xl p-6 mb-6 shadow-xl text-center">
+      <div className="w-full bg-gradient-to-br bg-apin border border-[#1efcb9]/20 rounded-2xl p-6 mb-6 shadow-xl text-center">
         <h3 className="text-white font-semibold text-lg mb-4">Expand your network now</h3>
         <div className="flex justify-center mb-4">
           <img
@@ -88,18 +88,18 @@ export default function MiningTeam() {
             className="rounded-xl shadow-md"
           />
         </div>
-        <div className="flex items-center justify-center text-[#1efcb9] font-semibold text-base">
+        <div className="flex items-center justify-center text-[#ffffff] font-semibold text-base">
           {refel}
           <FaCopy className="ml-2 cursor-pointer text-white" />
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4 w-full">
-        <button className="flex flex-col items-center justify-center bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/30 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
+        <button className="flex flex-col items-center justify-center bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
           <FaUsers className="text-[#1efcb9] text-2xl mb-2" />
           <span className="text-sm text-white text-center px-1 leading-tight">Join the Athene Community</span>
         </button>
-        <button className="flex flex-col items-center justify-center bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/30 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
+        <button className="flex flex-col items-center justify-center bg-gradient-to-br from-[#0f1c17] to-[#10241b] border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
           <FaPaperPlane className="text-[#1efcb9] text-2xl mb-2" />
           <span className="text-sm text-white text-center px-1 leading-tight">Invite friends to get huge rewards</span>
         </button>

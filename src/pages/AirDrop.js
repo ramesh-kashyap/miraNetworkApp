@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { FaArrowUp, FaArrowDown, FaClock, FaWallet, FaDownload, FaCoins } from "react-icons/fa6";
 import Footer from "../components/Footer";
 import Api from '../services/Api';
-
+import {useNavigate } from "react-router-dom";
 
 export default function Airdrop() {
- 
+  const navigate = useNavigate();
   const [gigcoin ,setTapcoin]= useState();
   const [moolcoin ,setStreakcoin]= useState();
   const [gige, setNodecoin] =useState();
   const [trcoin ,setquestcoin]= useState(); 
   const [lamo ,settaskcoin]= useState(); 
+  const [airo ,setAirocoin] = useState();
   const tokens = [
+    { name: "AIRO", value: airo, icon: "assets/images/AIROcoin.png" },
     { name: "GiggleToken", value: gigcoin + gige, icon: "assets/images/gemcoin.png" },
     { name: "MemeMoola", value: moolcoin, icon: "assets/images/mcoin.png" },
     { name: "ChuckleCoin", value: 5020100, icon: "assets/images/chcoin.png" },
@@ -29,12 +31,13 @@ export default function Airdrop() {
       console.log("hello")
        if(response.data){
         console.log(response.data.taskbal);
-        console.log(response.data.data.tabbalance);
+        console.log(response.data.data);
            setTapcoin(response.data.data.tabbalance);
            setNodecoin(response.data.data.meme_coin);
            setStreakcoin(response.data.data.streak);
            setquestcoin(response.data.data.dailyquest);
            settaskcoin(response.data.taskbal);
+           setAirocoin(response.data.data.airo);
        }  
     }
     catch{
@@ -47,7 +50,7 @@ export default function Airdrop() {
       <h1 className="text-center text-3xl font-light tracking-widest mb-6">WALLET</h1>
 
       
-      <div className="border border-[#1efcb9]/40 rounded-2xl p-4 text-center mb-10 backdrop-blur bg-white/5 w-full">
+      <div className="border border-[#1efcb9]/20 rounded-2xl p-4 text-center mb-10 backdrop-blur bg-white/5 w-full">
         <p className="text-sm text-[#a0dacf] mb-2">ATN halving countdown</p>
         <div className="flex justify-center space-x-4 text-xl">
           <CountdownBox value="066" label="Days" />
@@ -61,15 +64,15 @@ export default function Airdrop() {
       <div className="grid grid-cols-3 gap-6 mb-12 w-full">
         <ActionButton icon={<FaArrowUp />} label="Send" />
         <ActionButton icon={<FaArrowDown />} label="Receive" />
-        <ActionButton icon={<FaClock />} label="History" />
+        <ActionButton icon={<FaClock />} label="History" onClick={() => navigate("/history")}/>
         <ActionButton icon={<FaCoins />} label="Deposit" />
-        <ActionButton icon={<FaDownload />} label="Withdraw" />
+        <ActionButton icon={<FaDownload />} label="Withdraw"  onClick={() => navigate("/withdraw")}/>
         <ActionButton icon={<FaWallet />} label="Vesting" />
       </div>
 
       
       <div className="bg-[#101e1d] rounded-xl px-4 py-6 w-full">
-        <h2 className="text-[#42eac2] mb-4 text-base tracking-widest font-light">BALANCE</h2>
+        <h2 className="text-[#ffffff] mb-4 text-base tracking-widest font-light">BALANCE</h2>
         {tokens.map((token, idx) => (
           <div key={idx} className="flex justify-between items-center py-4 border-b border-[#1e3d37] last:border-0">
             <div className="flex items-center space-x-3">
@@ -88,9 +91,9 @@ export default function Airdrop() {
   );
 }
 
-function ActionButton({ icon, label }) {
+function ActionButton({ icon, label, onClick }) {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center cursor-pointer" onClick={onClick}>
       <div className="bg-gradient-to-b from-[#1efcb9] to-[#108b75] p-5 rounded-full shadow-xl">
         <div className="text-black text-xl">{icon}</div>
       </div>
@@ -99,9 +102,10 @@ function ActionButton({ icon, label }) {
   );
 }
 
+
 function CountdownBox({ value, label }) {
   return (
-    <div className="flex flex-col items-center text-[#42eac2]">
+    <div className="flex flex-col items-center text-[#ffffff]">
       <p className="text-2xl font-bold">{value}</p>
       <span className="text-xs text-white">{label}</span>
     </div>

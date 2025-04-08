@@ -71,10 +71,10 @@ export default function TapGame() {
         <button className="flex-1 text-center py-3 bg-[#101a19] text-gray-400 font-medium text-sm" onClick={() => navigate("/nodereward")}>YOUR NODE</button>
       </div>
 
-      <div className="w-full bg-[#101a19] border border-[#1efcb9]/40 rounded-2xl px-4 py-6 text-center mb-6 shadow-md">
-        <p className="text-sm text-white mb-3 tracking-wide">Total GEM earned from TAP</p>
+      <div className="w-full bg-[#101a19] border border-[#1efcb9]/20 rounded-2xl px-4 py-6 text-center mb-6 shadow-md">
+        <p className="text-sm text-white mb-3 tracking-wide">Total GIG earned from TAP</p>
         <div className="flex justify-center items-center gap-3 text-xl">
-          <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-md">{balance}</div>
+          <div className="w-5 h-5 rounded-full flex items-center justify-center text-white font-bold shadow-md">{balance}</div>
           <img src="assets/images/gemcoin.png" alt="gemcoin" style={{width:40, height: 30}}/>
         </div>
       </div>
@@ -116,14 +116,16 @@ export default function TapGame() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 w-full mb-6">
-        <div className="bg-[#101a19] border border-[#1efcb9]/30 rounded-xl p-5 text-center shadow-sm">
+        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl p-5 text-center shadow-sm">
           <p className="text-sm text-gray-400 tracking-wide">Level</p>
           <p className="text-3xl font-extrabold text-[#1efcb9] mt-2">15</p>
         </div>
-        <div className="bg-[#101a19] border border-[#1efcb9]/30 rounded-xl p-5 text-center shadow-sm">
+        <div className="bg-[#101a19] border border-[#1efcb9]/20 rounded-xl p-5 text-center shadow-sm">
           <p className="text-sm text-gray-400 mb-2 tracking-wide">Conversion Rate</p>
           <p className="text-base text-white font-medium">
-            1 <span className="text-yellow-300 font-bold">EC</span> ≈ <span className="text-[#1efcb9] font-bold">1.060</span> <FaGem className="inline-block ml-1 text-[#1efcb9]" />
+            1 <span className="text-yellow-300 font-bold">EC</span> ≈ <span className="text-[#1efcb9] font-bold">1.060</span> 
+            {/* <FaGem className="inline-block ml-1 text-[#1efcb9]" /> */}
+            <img className="inline-block ml-1 text-[#1efcb9]" src="assets/images/gemcoin.png" alt="gemcoin" style={{width:30, height: 20}}/>
           </p>
         </div>
       </div>
@@ -132,7 +134,7 @@ export default function TapGame() {
         disabled
         className="w-full bg-[#1a1a1a] text-gray-500 py-3 rounded-xl font-semibold text-sm border border-[#333] cursor-not-allowed opacity-60 tracking-wide"
       >
-        Convert EC and get GEM
+        Convert EC and get GIG
       </button>
       <Footer/>
 

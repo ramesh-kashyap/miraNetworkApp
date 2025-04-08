@@ -46,9 +46,9 @@ const Profile = () => {
   };
 
   // ✅ Show a loader while fetching data
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
 
   return (

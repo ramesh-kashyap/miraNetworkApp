@@ -45,7 +45,7 @@ export default function Login() {
 
       <div className="relative z-10 w-full">
         <button
-          className="w-10 h-10 rounded-xl bg-[#101a19]/60 flex items-center justify-center mb-8 border border-[#1efcb9]/40 backdrop-blur-md"
+          className="w-10 h-10 rounded-xl bg-[#101a19]/60 flex items-center justify-center mb-8 border border-[#1efcb9]/20 backdrop-blur-md"
           onClick={() => navigate("/miningintro")}
         >
           <FaArrowLeft className="text-[#1efcb9] text-lg" />

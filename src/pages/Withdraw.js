@@ -1,13 +1,14 @@
 import React from "react";
 import { FaArrowLeft, FaQrcode, FaChevronDown } from "react-icons/fa6";
 import Footer from "../components/Footer";
-
+import {useNavigate } from "react-router-dom";
 export default function Withdraw() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       {/* Header */}
       <div className="flex items-center w-full mb-8">
-        <button className="bg-[#1a1a1a] p-3 rounded-full">
+        <button className="bg-[#1a1a1a] p-3 rounded-full"  onClick={() => navigate("/airdrop")}>
           <FaArrowLeft className="text-white text-lg" />
         </button>
         <h2 className="flex-grow text-center text-xl font-light tracking-widest">
@@ -19,7 +20,7 @@ export default function Withdraw() {
       {/* Choose Asset */}
       <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Choose an asset</label>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/30 w-full">
+        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <div className="flex items-center space-x-2">
             <img src="/assets/img/ATN.svg" alt="ATN" className="w-6 h-6 rounded-full" />
             <span className="text-white font-medium">ATN</span>
@@ -34,7 +35,7 @@ export default function Withdraw() {
           <label className="text-gray-400">Amount you want to withdraw</label>
           <span className="text-[#1efcb9]">Balance: 25</span>
         </div>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/30 w-full">
+        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <input
             type="text"
             placeholder="Amount"
@@ -47,7 +48,7 @@ export default function Withdraw() {
       {/* Wallet Address */}
       <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Wallet address</label>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/30 w-full">
+        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <input
             type="text"
             placeholder="Wallet address"
@@ -60,7 +61,7 @@ export default function Withdraw() {
       {/* Network */}
       <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Network</label>
-        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/30 w-full">
+        <div className="flex items-center justify-between bg-[#101a19] px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <span className="text-white font-semibold text-sm">Athene Parthenon</span>
           <FaChevronDown className="text-[#1efcb9]" />
         </div>
@@ -81,7 +82,7 @@ export default function Withdraw() {
       <button className="w-full bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black text-lg font-semibold py-3 rounded-full shadow-md">
         Confirm
       </button>
-      <Footer/>
+      {/* <Footer/> */}
 
     </div>
   );

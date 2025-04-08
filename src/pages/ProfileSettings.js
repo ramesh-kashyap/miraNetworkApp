@@ -25,7 +25,7 @@ export default function ProfileSettings() {
         <div className="flex justify-between items-center mb-2">
           <div>
             <p className="text-lg font-semibold">Rames</p>
-            <p className="text-sm text-[#42eac2]">Level 23</p>
+            <p className="text-sm text-[#ffffff]">Level 23</p>
           </div>
           <span className="bg-yellow-400 text-black font-bold px-3 py-1 rounded-md text-sm">Premium</span>
         </div>
@@ -33,7 +33,7 @@ export default function ProfileSettings() {
         <div className="w-full h-2 bg-[#333] rounded-full mb-1">
           <div className="h-2 bg-[#1efcb9] rounded-full w-[70%]" />
         </div>
-        <div className="text-sm flex justify-between text-[#42eac2]">
+        <div className="text-sm flex justify-between text-[#ffffff]">
           <span>370,270.07 / 538,691.59 💎</span>
           <span>Level 24</span>
         </div>
@@ -61,7 +61,7 @@ export default function ProfileSettings() {
           
           <div className="flex justify-between items-center border-b border-white/10 py-3">
             <span>Version</span>
-            <span className="text-[#42eac2] font-semibold text-sm">2.2.1</span>
+            <span className="text-[#ffffff] font-semibold text-sm">2.2.1</span>
           </div>
   
           <div className="flex justify-between items-center pt-4">

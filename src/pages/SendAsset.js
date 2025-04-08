@@ -17,7 +17,7 @@ export default function SendAsset() {
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/122.svg"
   alt="Internal"
@@ -25,7 +25,7 @@ export default function SendAsset() {
 />          <p className="text-sm font-semibold text-white">Internal</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/126.svg"
   alt="Internal"
@@ -33,7 +33,7 @@ export default function SendAsset() {
 />           <p className="text-sm font-semibold text-white">Gaming</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/129.svg"
   alt="Internal"
@@ -41,7 +41,7 @@ export default function SendAsset() {
 />           <p className="text-sm font-semibold text-white">Prediction</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/128.svg"
   alt="Internal"
@@ -49,7 +49,7 @@ export default function SendAsset() {
 />           <p className="text-sm font-semibold text-white">P2P</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/127.svg"
   alt="Internal"
@@ -57,7 +57,7 @@ export default function SendAsset() {
 />           <p className="text-sm font-semibold text-white">Launchpad</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/123.svg"
   alt="Internal"
@@ -65,7 +65,7 @@ export default function SendAsset() {
 />           <p className="text-sm font-semibold text-white">ATX Exchange</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/124.svg"
   alt="Internal"
@@ -73,7 +73,7 @@ export default function SendAsset() {
 />           <p className="text-sm font-semibold text-white">ATX Funding</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/124.svg"
   alt="Internal"
@@ -81,7 +81,7 @@ export default function SendAsset() {
 />           <p className="text-sm font-semibold text-white">Hexobank Funding</p>
         </div>
 
-        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/30 rounded-xl py-4 px-5">
+        <div className="flex items-center gap-4 bg-[#101a19]/70 border border-[#1efcb9]/20 rounded-xl py-4 px-5">
         <img
   src="/assets/images/124.svg"
   alt="Internal"
