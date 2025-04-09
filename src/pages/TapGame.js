@@ -103,12 +103,12 @@ export default function TapGame() {
         <FaInfoCircle className="ml-2 text-gray-400 text-base" />
       </div>
        
-      <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-[#1efcb9]/60 shadow-xl mb-8 relative" onClick={addCoin}>
+      <div className="w-64 h-64 rounded-full overflow-hidden border-4 Bgtap border-[#1efcb9]/60 shadow-xl mb-8 relative" onClick={addCoin}>
       
         <img
-          src="assets/img/12.png"
+          src="assets/img/t12.png"
           alt="Athene"
-          className={`w-full h-full object-cover${isBlinking ? "animate-ping": ""}`} onClick={addCoin}
+          className={`w-full h-full object-cover imgtp ${isBlinking ? "animate-ping": ""}`} onClick={addCoin}
         />
         <AnimatePresence>
         {coins.map((coin) => (

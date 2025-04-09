@@ -45,7 +45,7 @@ export default function Airdrop() {
     }
   }
   return (
-    <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+    <div className="min-h-screen imgbg2 text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
       
       <h1 className="text-center text-3xl font-light tracking-widest mb-6">WALLET</h1>
 

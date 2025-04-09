@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Api from '../services/Api';
 import { Toaster, toast } from 'react-hot-toast';
 import {useNavigate } from "react-router-dom";
+import { FaArrowLeft, FaQrcode, FaChevronDown } from "react-icons/fa6";
 export default function Premium() {
    const navigate = useNavigate();
     const [selectedIndex, setSelectedIndex] = useState(null);
@@ -74,10 +75,12 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
       
 
   return (
-    <div className="min-h-screen bg-[#0a0f07] text-white px-4 pt-10 pb-32 w-full max-w-md mx-auto font-sans">
+    <div className="min-h-screen imgbg text-white px-4 pt-10 pb-32 w-full max-w-md mx-auto font-sans">
         <Toaster position="top-right" reverseOrder={false} />
       <div className="flex items-center mb-6">
-        <button className="text-2xl text-[#1efcb9]" onClick={()=>navigate("/")}>←</button>
+        <button className="bg-[#9f1eff] p-3 rounded-full"  onClick={() => navigate("/")}>
+                          <FaArrowLeft className="text-white text-lg" />
+                        </button>
         <h1 className="flex-1 text-center text-white font-semibold text-lg tracking-widest">PREMIUM</h1>
       </div>
 

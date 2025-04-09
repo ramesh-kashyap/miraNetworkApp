@@ -238,6 +238,10 @@ export default function home() {
       <img src="/assets/athn/premium.webp" alt="Leaderboard" className="w-10 h-10 mx-auto" onClick={()=>navigate("/Premium")}/>
       <p className="text-white text-xs mt-1">Premium</p>
     </div>
+    <div>
+      <img src="/assets/athn/latry.png" alt="Leaderboard" className="w-10 h-10 mx-auto" onClick={()=>navigate("/lautery")}/>
+      <p className="text-white text-xs mt-1">Lautery</p>
+    </div>
   </div>
       </div>
       <Footer/>

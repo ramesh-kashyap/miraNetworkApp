@@ -194,7 +194,7 @@ export default function NodeReward() {
     onClick={() => handleClaim({ id: eligibleRewardId })}
     disabled={!eligibleRewardId}
     className={`mt-4 w-full py-2 rounded-xl font-semibold text-sm border border-[#333] 
-        ${eligibleRewardId ? "bg-[#1efcb9] text-white cursor-pointer" : "bg-[#1a1a1a] text-gray-500 cursor-not-allowed"}`}
+        ${eligibleRewardId ? "bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-white cursor-pointer" : "bg-[#1a1a1a] text-gray-500 cursor-not-allowed"}`}
 >
     Claim
 </button>
