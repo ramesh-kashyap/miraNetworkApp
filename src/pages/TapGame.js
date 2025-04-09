@@ -105,11 +105,7 @@ export default function TapGame() {
        
       <div className="w-64 h-64 rounded-full overflow-hidden border-4 Bgtap border-[#1efcb9]/60 shadow-xl mb-8 relative" onClick={addCoin}>
       
-        <img
-          src="assets/img/t12.png"
-          alt="Athene"
-          className={`w-full h-full object-cover imgtp ${isBlinking ? "animate-ping": ""}`} onClick={addCoin}
-        />
+        <img src="assets/img/t12.png" alt="Athene" className={`w-full h-full object-cover imgtp ${isBlinking ? "animate-ping": ""}`} onClick={addCoin}/>
         <AnimatePresence>
         {coins.map((coin) => (
           <motion.div
@@ -148,12 +144,12 @@ export default function TapGame() {
         </div>
       </div>
 
-      <button
+      {/* <button
         disabled
         className="w-full bg-[#1a1a1a] text-gray-500 py-3 rounded-xl font-semibold text-sm border border-[#333] cursor-not-allowed opacity-60 tracking-wide"
       >
         Convert EC and get GIG
-      </button>
+      </button> */}
       <Footer/>
 
     </div>
