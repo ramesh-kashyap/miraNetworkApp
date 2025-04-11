@@ -1,11 +1,59 @@
-import React from "react";
+import React ,{useState}from "react";
 import { FaArrowLeft, FaQrcode, FaChevronDown } from "react-icons/fa6";
 import Footer from "../components/Footer";
 import {useNavigate } from "react-router-dom";
+import { Toaster, toast } from 'react-hot-toast';
+import Api from '../services/Api';
 export default function Withdraw() {
+  const initialState = {
+    currency: "AIRO",
+    amount: "",
+    wallet: "",
+    network: "BNB SmartChain", // since it's always the same
+  };
+  
+  const [formData, setFormData] = useState(initialState);
+  const { currency, amount, wallet, network } = formData;
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // useEffect(()=>{
+  //      withfatch();
+  //      },[])
+  // const withfatch = async () => {
+  //   try {
+  //     const response = await Api.get("auth/withdraw", formData);
+  //     console.log(response.data);
+  //     if (response.data) {
+                
+  //     } 
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Error submitting withdraw request.");
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
+    console.log(formData);
+    e.preventDefault(); // ✅ You had this commented, needs to be active
+    try {
+      const response = await Api.post("auth/withdraw", formData);
+      console.log(response.data);
+      if (response.data) {
+         toast.success(response.data?.message || "Withdraw successfully!", { duration: 1000 });
+        setFormData(initialState);
+      } 
+    } catch (error) {
+      console.error(error);
+      toast.error("Error submitting withdraw request.");
+    }
+  };
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+      <Toaster position="top-right" reverseOrder={false} />
       {/* Header */}
       <div className="flex items-center w-full mb-8">
         <button className="bg-[#1a1a1a] p-3 rounded-full"  onClick={() => navigate("/airdrop")}>
@@ -18,16 +66,32 @@ export default function Withdraw() {
 
 
       {/* Choose Asset */}
-      <div className="w-full mb-6">
+      {/* <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Choose an asset</label>
         <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <div className="flex items-center space-x-2">
-            <img src="/assets/img/ATN.svg" alt="ATN" className="w-6 h-6 rounded-full" />
-            <span className="text-white font-medium">ATN</span>
+            <img src="assets/images/AIROcoin.png" alt="AIRO" className="w-6 h-6 rounded-full" />
+            <span className="text-white font-medium">AIRO</span>
           </div>
           <FaChevronDown className="text-[#1efcb9]" />
         </div>
-      </div>
+      </div> */}
+      <div className="w-full mb-6">
+  <label className="text-gray-400 text-sm mb-1 block">Choose an asset</label>
+  <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
+  <select
+            name="currency"
+            className="bg-transparent outline-none text-white placeholder-gray-500 text-sm flex-1"
+            value={currency}
+            onChange={handleChange}
+          >
+            <option value="AIRO">AIRO</option>
+            <option value="USDT">USDT</option>
+          </select>
+  {/* <FaChevronDown className="text-[#1efcb9]" /> */}
+  </div>
+</div>
+
 
       {/* Amount */}
       <div className="w-full mb-6">
@@ -37,8 +101,9 @@ export default function Withdraw() {
         </div>
         <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <input
-            type="text"
-            placeholder="Amount"
+            type="number"
+            name="amount"
+            placeholder="Amount" value={amount} onChange={handleChange}
             className="bg-transparent outline-none text-white placeholder-gray-500 text-sm flex-1"
           />
           <button className="text-[#1efcb9] font-semibold text-sm">MAX</button>
@@ -51,18 +116,22 @@ export default function Withdraw() {
         <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <input
             type="text"
-            placeholder="Wallet address"
+            name="wallet"
+            placeholder="Wallet address" value={wallet} onChange={handleChange}
             className="bg-transparent outline-none text-white placeholder-gray-500 text-sm flex-1"
           />
           <FaQrcode className="text-[#1efcb9] ml-3" />
         </div>
       </div>
 
-      {/* Network */}
       <div className="w-full mb-6">
         <label className="text-gray-400 text-sm mb-1 block">Network</label>
         <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
-          <span className="text-white font-semibold text-sm">Athene Parthenon</span>
+        <input
+            type="text" placeholder="BNB SmartChai" value="BNB SmartChain" readOnly
+            className="bg-transparent outline-none text-white placeholder-gray-500 text-sm flex-1"
+          />
+          {/* <span className="text-white font-semibold text-sm">BNB SmartChain</span> */}
           <FaChevronDown className="text-[#1efcb9]" />
         </div>
       </div>
@@ -75,11 +144,11 @@ export default function Withdraw() {
       {/* Fee */}
       <div className="w-full flex justify-between text-sm text-[#1efcb9] mb-6">
         <span>Fee:</span>
-        <span>0.0 ATN</span>
+        <span>0.0 AIRO</span>
       </div>
 
       {/* Confirm Button */}
-      <button className="w-full bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black text-lg font-semibold py-3 rounded-full shadow-md">
+      <button onClick={handleSubmit} className="w-full bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black text-lg font-semibold py-3 rounded-full shadow-md">
         Confirm
       </button>
       {/* <Footer/> */}

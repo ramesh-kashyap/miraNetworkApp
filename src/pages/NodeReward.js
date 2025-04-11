@@ -221,6 +221,8 @@ export default function NodeReward() {
         </div>
       </div>
 
+      <Footer/>
+
     </div>
   );
 }

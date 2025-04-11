@@ -63,8 +63,8 @@ export default function Login() {
                 type="email"
                 placeholder="Your email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full py-4 pl-12 pr-4 bg-apin/60 border border-white/10 rounded-xl text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
+                onChange={(e) => setEmail(e.target.value)} style={{color:'#000'}}
+                className="w-full py-4 pl-12 pr-4 bg-apin/60 border border-white/10 rounded-xl text-sm text-black placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
               />
               <FaEnvelope className="absolute top-1/2 left-4 transform -translate-y-1/2 text-[#1efcb9]" />
             </div>
@@ -77,8 +77,8 @@ export default function Login() {
                 type="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full py-4 pl-12 pr-10 bg-apin/60 border border-white/10 rounded-xl text-sm text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
+                onChange={(e) => setPassword(e.target.value)} style={{color:'#000'}}
+                className="w-full py-4 pl-12 pr-10 bg-apin/60 border border-white/10 rounded-xl text-sm text-black placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
               />
               <FaLock className="absolute top-1/2 left-4 transform -translate-y-1/2 text-[#1efcb9]" />
               <FaEyeSlash className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400" />

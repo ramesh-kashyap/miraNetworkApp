@@ -33,11 +33,11 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
        const coins = async () =>{
          try{
            const response = await Api.get('auth/coins');
-           console.log("hello")
+           console.log(response.data.data);
             if(response.data){
              console.log(response.data.taskbal);
              console.log(response.data.data);
-                setAirocoin(response.data.data.airo);
+                setAirocoin(response.data.data.usdt);
                 setAironame(response.data.daxta.aironame);
             }  
          }
@@ -106,7 +106,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
             onClick={() => handlePackageSelect(idx)}
             className={`cursor-pointer rounded-lg py-4 px-3 border transition-all duration-300 ${
               selectedIndex === idx
-                ? 'bg-[#1efcb9] text-black border-[#1efcb9]'
+                ? 'bg-gradient-to-r from-[#1efcb9] to-[#9f1eff] text-black border-[#1efcb9]'
                 : 'bg-apin text-white/80 border-[#1efcb9]/20'
             }`}
           >
@@ -173,7 +173,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
         {canPurchase && (
         <div className="fixed top-[400px] left-1/2 transform -translate-x-1/2 w-[400px]">
           <button className="w-full py-3 bg-gradient-to-r from-[#1efcb9] to-[#9f1eff] text-black font-semibold rounded-full text-sm text-center" onClick={handleBuy}>
-          Buy {packages[selectedIndex]?.name} AIRO {selectedPrice}
+          Buy {packages[selectedIndex]?.name} {selectedPrice} USDT
        </button>
         </div>
          )}

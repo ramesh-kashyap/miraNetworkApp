@@ -6,7 +6,7 @@ const Footer = () => {
   const location = useLocation(); // Get the current route
 
   return (
-    <div className="fixed bottom-2 w-full max-w-md bg-gradient-to-r from-[#1efcb9] to-[#108b75] rounded-full flex justify-around items-center border border-gray-700 shadow-md" style={{zIndex:10}}>
+    <div className="fixed bottom-2 w-full max-w-md bg-gradient-to-r from-[#1efcb9] to-[#108b75]  flex justify-around items-center border border-gray-700 shadow-md" style={{zIndex:10,borderRadius:'10px',background:'rgba(128, 128, 128, 0.5)',bottom:'-0.2rem'}}>
       
       {/* Gift Icon - Link to Rewards Page */}
       <Link to="/">

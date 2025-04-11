@@ -66,7 +66,7 @@ export default function MiningTeam() {
             <span className="text-xs text-[#bbbbbb]">Direct Referral</span>
           </div>
           <div>
-            {/* <div className="text-xl font-bold mb-1">{allmember ?.getInviteBonus.invite_bonus ?? 0}</div> */}
+            <div className="text-xl font-bold mb-1">{allmember ?.getInviteBonus.invite_bonus ?? 0}</div>
             <span className="text-xs text-[#bbbbbb]"> Referral Reward</span>
           </div>
         </div>

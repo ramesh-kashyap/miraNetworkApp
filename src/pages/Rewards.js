@@ -153,7 +153,7 @@ const Rewards = () => {
          const response = await Api.post("auth/dailyquest");
         console.log("API Response:", response.data);
               if (response?.data?.success) {
-                toast.success("✅ 100 coins claimed successfully!", { duration: 1000 });
+                toast.success("coins claimed successfully!", { duration: 1000 });
             } else {
                 toast.error(response?.data?.message,"❌ You have already claimed your Quest reward today!", { duration: 1000 });
             }
@@ -222,8 +222,8 @@ const Rewards = () => {
              </div>
             </div>
 
-      <h3 className="text-xl font-bold mb-4">Available Tasks</h3>
-      <div className="space-y-4">
+      <h3 className="text-xl font-bold mb-4" style={{marginTop:'1rem'}}>Available Tasks</h3>
+      <div className="w-full flex flex-col gap-3 mt-6">
         {pendingTasks?.map((task) => (
           <div className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
             <div className="flex items-center space-x-3">
@@ -246,7 +246,7 @@ const Rewards = () => {
         ))}
       </div>
 
-       {/* {finishedTasks?.length > 0 && (
+       {finishedTasks?.length > 0 && (
             <div className="w-full flex flex-col gap-3 mt-6">
               <h4 className="text-base font-semibold text-neutral-1000">Finished Tasks</h4>
               {finishedTasks.map((task) => (
@@ -261,7 +261,7 @@ const Rewards = () => {
                    <p className="text-white-379 text-sm">+{task.reward} POINT</p>
                  </div>
                </div>
-                 <button className="bg-white text-black px-5 py-2 rounded-full text-sm font-semibold">   Finished</button>
+                 <button className="bg-gradient-to-r from-[#1efcb9] to-[#108b75] text-black px-5 py-2 rounded-full text-sm font-semibold">   Finished</button>
              
              </div>
 
@@ -272,7 +272,7 @@ const Rewards = () => {
       
       <h3 className="text-xl font-bold mt-8 mb-4">Invite Friends</h3>
       <div className="space-y-4 w-full">
-        {invites.map((invite) => (
+        {/* {invites.map((invite) => (
           <div key={invite.id} className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">
             <div>
               <p className="font-semibold">{invite.title}</p>
@@ -281,8 +281,8 @@ const Rewards = () => {
             </div>
             <div className="bg-apin-700 p-2 px-4 rounded-full text-sm font-semibold">{invite.progress}</div>
           </div>
-        ))}
-      </div> */}
+        ))} */}
+      </div>
      
 
       <Footer />

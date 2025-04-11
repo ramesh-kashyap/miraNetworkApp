@@ -119,13 +119,13 @@
 } */
 .imgbg {
   background-image: 
-    linear-gradient(to bottom, #48007d 0%, rgba(159, 30, 255, 0) 40%),
+    linear-gradient(to bottom, #2f2838 0%, rgba(159, 30, 255, 0) 40%),
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* dark overlay to simulate opacity */
     url("/public/assets/img/angle3.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 .imgbg2 {
   background-image: 
@@ -180,4 +180,10 @@
 }
 .text-\[\#1efcb9\]{
   color:#cb86ff;
+}
+
+.bg-apin {
+  --tw-bg-opacity: 1;
+  background-color: #0000005c;
+  background: rgb(78 78 78 / 40%);
 }

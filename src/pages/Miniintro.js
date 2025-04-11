@@ -23,7 +23,7 @@ export default function MiningIntro() {
         <button onClick={() => navigate("/login")} className="flex-1 py-3 rounded-xl text-black font-semibold bg-gradient-to-r from-[#1efcb9] to-[#0bc7a2] shadow-md active:scale-95 transition-transform">
           Sign In
         </button>
-        <button onClick={() => navigate("/register")} className="flex-1 py-3 rounded-xl border border-[#1efcb9] text-[#1efcb9] font-semibold bg-transparent hover:bg-[#1efcb9]/10 shadow-md active:scale-95 transition-transform">
+        <button onClick={() => navigate("/register")} className="flex-1 py-3 rounded-xl border text-[#1efcb9] font-semibold bg-transparent hover:bg-[#1efcb9]/10 shadow-md active:scale-95 transition-transform">
           Sign Up
         </button>
       </div>

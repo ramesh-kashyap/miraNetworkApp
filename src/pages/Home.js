@@ -26,9 +26,12 @@ import Api from '../services/Api';
 export default function home() {
   const [streak, setStreak ] = useState();
   const [streakno, setStreakno] =useState();
+  const [username, setUsername] = useState("Guest"); // ✅ Default username
+
   const navigate = useNavigate(); 
    useEffect(()=>{
     handleStreaktime();
+    coins();
    },[])
 
   const handleStreak = async () =>{
@@ -45,6 +48,19 @@ export default function home() {
     toast.error(response?.data?.message,"❌ Fetching rewards failed:", error,{ duration: 1000 });
   }
   }
+
+    const coins = async () =>{
+      try{
+        const response = await Api.get('auth/coins');
+        console.log("hello")
+         if(response.data){
+          setUsername(response.data.data.name);
+         }  
+      }
+      catch{
+        console.error("Somthing is write");
+      }
+    }
  
   const handleStreaktime = async () => {
     try {
@@ -72,9 +88,9 @@ export default function home() {
           {/* <div className="w-12 h-12 rounded-full bg-[#1efcb9]/20 flex items-center justify-center text-lg font-bold text-[#ffffff]">
             R
           </div> */}
-          <img src="/assets/images/tresure.png" alt="Slide 1" style={{width: 35}}/>
+          <img src="/assets/klink4.svg" alt="Slide 1"  onClick={() => navigate("/updateprofile")} style={{width: 35}}/>
           <div>
-            <p className="font-semibold text-base leading-tight">Rames</p>
+            <p className="font-semibold text-base leading-tight">{username}</p>
             <p className="text-[#ffffff] text-xs">Level 15</p>
           </div>
         </div>
@@ -110,9 +126,7 @@ export default function home() {
         <SwiperSlide>
           <img src="/assets/img/airdrop2.png" alt="Slide 4" style={{width:412, height: 150, borderRadius:10}}className="slide-img" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="/assets/athn/b5.webp" alt="Slide 5" style={{width:412, height: 150, borderRadius:10}}className="slide-img" />
-        </SwiperSlide>
+       
       </Swiper>
 
       {/* <div className="w-full h-28 bg-[#101f1d] rounded-xl mb-5 flex items-center justify-center text-xs text-center text-white px-6 shadow-inner">

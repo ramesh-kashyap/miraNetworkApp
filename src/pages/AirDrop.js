@@ -6,18 +6,19 @@ import {useNavigate } from "react-router-dom";
 
 export default function Airdrop() {
   const navigate = useNavigate();
-  const [gigcoin ,setTapcoin]= useState();
-  const [moolcoin ,setStreakcoin]= useState();
-  const [gige, setNodecoin] =useState();
-  const [trcoin ,setquestcoin]= useState(); 
-  const [lamo ,settaskcoin]= useState(); 
-  const [airo ,setAirocoin] = useState();
+  const [gigcoin ,setTapcoin]= useState(0);
+  const [moolcoin ,setStreakcoin]= useState(0);
+  const [gige, setNodecoin] =useState(0);
+  const [trcoin ,setquestcoin]= useState(0); 
+  const [lamo ,settaskcoin]= useState(0); 
+  const [airo ,setAirocoin] = useState(0);
   const tokens = [
     { name: "AIRO", value: airo, icon: "assets/images/AIROcoin.png" },
+    { name: "USDT", value: 0, icon: "assets/images/tether-usdt-logo.svg" },
     { name: "GiggleToken", value: gigcoin + gige, icon: "assets/images/gemcoin.png" },
     { name: "MemeMoola", value: moolcoin, icon: "assets/images/mcoin.png" },
     { name: "ChuckleCoin", value: 5020100, icon: "assets/images/chcoin.png" },
-    // { name: "BrokeAFCoin", value: 0, icon: "assets/images/ausd.png", subtitle: "$0" },
+  
     { name: "TrollToken", value: trcoin, icon: "assets/images/trcoin.png" },
     { name: "LMAOCash", value: lamo, icon: "assets/images/lmcoin.png" },
   ];
@@ -30,14 +31,13 @@ export default function Airdrop() {
       const response = await Api.get('auth/coins');
       console.log("hello")
        if(response.data){
-        console.log(response.data.taskbal);
-        console.log(response.data.data);
-           setTapcoin(response.data.data.tabbalance);
-           setNodecoin(response.data.data.meme_coin);
-           setStreakcoin(response.data.data.streak);
-           setquestcoin(response.data.data.dailyquest);
-           settaskcoin(response.data.taskbal);
-           setAirocoin(response.data.data.airo);
+
+           setTapcoin(response.data.data.tabbalance?response.data.data.tabbalance:0);
+           setNodecoin(response.data.data.meme_coin?response.data.data.meme_coin:0);
+           setStreakcoin(response.data.data.streak?response.data.data.streak:0);
+           setquestcoin(response.data.data.dailyquest?response.data.data.dailyquest:0);
+           settaskcoin(response.data.taskbal?response.data.taskbal:0);
+           setAirocoin(response.data.data.airo?response.data.data.airo:0);
        }  
     }
     catch{
@@ -51,7 +51,7 @@ export default function Airdrop() {
 
       
       <div className="border border-[#1efcb9]/20 rounded-2xl p-4 text-center mb-10 backdrop-blur bg-white/5 w-full">
-        <p className="text-sm text-[#a0dacf] mb-2">ATN halving countdown</p>
+        <p className="text-sm text-[#a0dacf] mb-2">AIRO halving countdown</p>
         <div className="flex justify-center space-x-4 text-xl">
           <CountdownBox value="066" label="Days" />
           <CountdownBox value="07" label="Hours" />

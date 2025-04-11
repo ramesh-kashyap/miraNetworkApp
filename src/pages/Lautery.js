@@ -118,9 +118,10 @@ export default function Lautery() {
             <div className="flex-1">
               <div className="font-semibold text-white mb-1">{lautry.gudis_name}</div>
               <div className="h-2 bg-[#333] rounded-full relative">
+                {/* <p>{(   lautry.bet_amount/lautry.amount) * 100}</p> */}
                 <div
                   className="absolute top-0 left-0 h-2 bg-[#9f1eff] rounded-full"
-                  style={{ width: `${lautry.bet_amount}%` }}
+                  style={{ width: `${( lautry.bet_amount/lautry.amount) * 100}%` }}
                 />
                 <span
                   className="absolute top-[-18px] text-xs text-white"
