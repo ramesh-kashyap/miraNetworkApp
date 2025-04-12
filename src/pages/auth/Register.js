@@ -106,7 +106,7 @@ export default function SignUp() {
             placeholder="Full name"
             value={formData.fullName}
             onChange={handleChange}
-            className="w-full py-3 pl-12 pr-4 bg-transparent border border-white/10 rounded-xl placeholder:text-white/40"
+            className="w-full py-3 pl-12 pr-4 bg-apin border border-[#cb86ff] rounded-xl placeholder:text-white/40"
           />
           <FaUser className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white" />
         </div>
@@ -120,7 +120,7 @@ export default function SignUp() {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full py-3 pl-12 pr-4 bg-transparent border border-white/10 rounded-xl placeholder:text-white/40"
+            className="w-full py-3 pl-12 pr-4 bg-apin border border-[#cb86ff] rounded-xl placeholder:text-white/40"
           />
           <FaEnvelope className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white" />
         </div>
@@ -138,7 +138,7 @@ export default function SignUp() {
       country: meta.country.iso2.toUpperCase() 
     });
   }}
-  inputClassName="!bg-transparent !text-white !border-white/10 !rounded-xl !pl-12 !pr-4 !h-[53px] !text-base w-full"
+  inputClassName="!bg-[rgb(78_78_78_/_40%)] !text-white !border-[#cb86ff] !rounded-xl !pl-12 !pr-4 !h-[53px] !text-base w-full"
   containerClassName="w-full !h-[55px]"
   buttonClassName="!h-[55px] !border-r !border-white/10 !bg-transparent"
 />
@@ -153,7 +153,7 @@ export default function SignUp() {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full py-3 pl-12 pr-10 bg-transparent border border-white/10 rounded-xl placeholder:text-white/40"
+            className="w-full py-3 pl-12 pr-10 bg-apin border border-[#cb86ff] rounded-xl placeholder:text-white/40"
           />
           <FaLock className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white" />
           <FaEyeSlash className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white/60" />
@@ -168,7 +168,7 @@ export default function SignUp() {
             placeholder="Re-enter Password"
             value={formData.repeatPassword}
             onChange={handleChange}
-            className="w-full py-3 pl-12 pr-10 bg-transparent border border-white/10 rounded-xl placeholder:text-white/40"
+            className="w-full py-3 pl-12 pr-10 bg-apin border border-[#cb86ff] rounded-xl placeholder:text-white/40"
           />
           <FaLock className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white" />
           <FaEyeSlash className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white/60" />
@@ -183,7 +183,7 @@ export default function SignUp() {
             placeholder="Referral code"
             value={formData.referralCode}
             onChange={handleChange}
-            className="w-full py-3 pl-12 pr-4 bg-transparent border border-white/10 rounded-xl placeholder:text-white/40"
+            className="w-full py-3 pl-12 pr-4 bg-apin border border-[#cb86ff] rounded-xl placeholder:text-white/40"
           />
           <FaUser className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white" />
         </div>

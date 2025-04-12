@@ -101,12 +101,12 @@ export default function Login() {
 
       <div className="relative z-10 w-full mt-10">
         <div className="flex items-center justify-center mb-6 text-gray-400 text-sm">
-          <span className="border-b border-white/10 flex-1 mr-2"></span>
+          {/* <span className="border-b border-white/10 flex-1 mr-2"></span>
           Or
-          <span className="border-b border-white/10 flex-1 ml-2"></span>
+          <span className="border-b border-white/10 flex-1 ml-2"></span> */}
         </div>
 
-        <div className="flex justify-center gap-6">
+        {/* <div className="flex justify-center gap-6">
           <button className="bg-white rounded-full p-3 shadow-xl hover:scale-110 transition-transform">
             <FcGoogle size={22} />
           </button>
@@ -116,7 +116,7 @@ export default function Login() {
           <button className="bg-white rounded-full p-3 shadow-xl hover:scale-110 transition-transform">
             <FaFacebookF size={22} className="text-[#1877f2]" />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

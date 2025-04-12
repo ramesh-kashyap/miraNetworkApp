@@ -23,6 +23,11 @@
   --tw-bg-opacity: 1;
     background-color: #0000005c;
 }
+.bg-apin1{
+  --tw-bg-opacity: 1;
+    background-color: #00000070;
+}
+
 /* From Uiverse.io by mrhyddenn */ 
 
 .loader {
@@ -127,6 +132,11 @@
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
 }
+.airoOverlay {
+  background: linear-gradient(to bottom, #2f2838 0%, rgba(159, 30, 255, 0) 40%),
+              linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+}
+
 .imgbg2 {
   background-image: 
     linear-gradient(to bottom, #48007d 0%, rgba(159, 30, 255, 0) 40%),

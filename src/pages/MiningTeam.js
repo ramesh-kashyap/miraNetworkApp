@@ -3,6 +3,7 @@ import { FaExternalLinkAlt, FaCopy, FaUsers, FaPaperPlane } from "react-icons/fa
 import { FiZap } from "react-icons/fi";
 import Footer from "../components/Footer";
 import Api from '../services/Api';
+import { Toaster, toast } from 'react-hot-toast';
 import { Link } from "react-router-dom";
 // import { FaExternalLinkAlt } from "react-icons/fa";
 export default function MiningTeam() {
@@ -14,6 +15,18 @@ export default function MiningTeam() {
   const [allmember, setMember] = useState(null); 
   const [error, setError] = useState(null); 
   const [refel, setRefal] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(refel);
+      setCopied(true);
+      
+      setTimeout(() => setCopied(false), 2000); // Reset after 2s
+      toast.success("Copy successful!");
+    } catch (err) {
+      console.error("Failed to copy!", err);
+    }
+  };
    const fetchTeam = async () => {
      try {
          const response = await Api.get('auth/TotalTeam');
@@ -29,7 +42,7 @@ export default function MiningTeam() {
  const fetchMember = async () => {
    try {
        const response = await Api.get('auth/TotalMember');
-       setMember(response.data);  // Store API response in state
+       setMember(response.data);  // Store API response in state       
    } catch (err) {
        setError(err.response?.data?.error || "Error fetching data");
    }
@@ -49,6 +62,7 @@ export default function MiningTeam() {
 
   return (
     <div className="min-h-screen imgbg text-white flex flex-col items-center px-4 pt-8 relative pb-24 w-full max-w-md mx-auto">
+       <Toaster position="top-right" reverseOrder={false} />
       <div className="w-full bg-gradient-to-br bg-apin border border-[#1efcb9]/20 rounded-2xl p-6 mb-6 shadow-xl">
         <h2 className="text-center text-[#ffffffcc] text-lg font-light tracking-widest mb-4">YOUR FRIENDS</h2>
         <div className="flex flex-col items-center mb-4">
@@ -90,14 +104,14 @@ export default function MiningTeam() {
         </div>
         <div className="flex items-center justify-center text-[#ffffff] font-semibold text-base">
           {refel}
-          <FaCopy className="ml-2 cursor-pointer text-white" />
+          <FaCopy className="ml-2 cursor-pointer text-white" onClick={handleCopy}/>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4 w-full">
         <button className="flex flex-col items-center justify-center bg-gradient-to-br bg-apin border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
           <FaUsers className="text-[#1efcb9] text-2xl mb-2" />
-          <span className="text-sm text-white text-center px-1 leading-tight">Join the Athene Community</span>
+          <span className="text-sm text-white text-center px-1 leading-tight">Join the AIRO Community</span>
         </button>
         <button className="flex flex-col items-center justify-center bg-gradient-to-br bg-apin border border-[#1efcb9]/20 rounded-xl py-4 shadow-lg hover:scale-105 transition-transform">
           <FaPaperPlane className="text-[#1efcb9] text-2xl mb-2" />

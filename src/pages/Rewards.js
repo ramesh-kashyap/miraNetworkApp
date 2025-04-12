@@ -11,7 +11,8 @@ import Footer from "../components/Footer";
 
 const Rewards = () => {
   const [tasks, setTasks] = useState([]);
-  const [userBalance, setUsebalance] = useState(0);
+  const [userBalance, TabBalan] = useState(0);
+  const [userMeme, setmeme] = useState(0);
   const [taskBonus, setTaskBonus] = useState(0);
   const [miningBonus, setMiningBonus] = useState(0);
   const [referralBonus, setreferralBonus] = useState(0);
@@ -42,6 +43,12 @@ const Rewards = () => {
   const fetchAlldata = async () => {
     try {
         const response = await Api.get('auth/total-balance');
+        console.log(response.data);
+        TabBalan(response.data.data.tabbalance);
+        setmeme(response.data.data.meme_coin);
+        setTaskBonus(response.data.data.dailyquest);
+        setMiningBonus(response.data.bonus);
+        // setreferralBonus(response.data.referralBonus);
         setAlldata(response.data);  // Store API response in state
     } catch (err) {
         setError(err.response?.data?.error || "Error fetching data");
@@ -52,11 +59,12 @@ const Rewards = () => {
   const getUserBalance = async () => {
     try {
       const response = await Api.get("auth/get-user-balance");
+      console.log(response.data);
       if (response.data.success) {
-        setUsebalance(response.data.userbalance);
-        setTaskBonus(response.data.taskBonus);
-        setMiningBonus(response.data.miningBonus);
-        setreferralBonus(response.data.referralBonus);
+        // TabBalan(response.data.data.tabbalance);
+        // setTaskBonus(response.data.data.dailyquest);
+        // setMiningBonus(response.data.bonus);
+        // setreferralBonus(response.data.referralBonus);
       }
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -186,16 +194,16 @@ const Rewards = () => {
 
       
       <div className="bg-apin p-6 rounded-xl shadow-lg text-center mb-6">
-        <h3 className="text-3xl font-bold">{alldata?.totalBalance?? 0}. Points</h3>
+        <h3 className="text-3xl font-bold">{miningBonus?? 0} LEMO</h3>
         <p className=" text-sm">Total Rewards</p>
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div className="bg-apin-700 p-4 rounded-lg text-center">
             <p className="text-sm">Mining</p>
-            <p className="text-lg font-bold">{alldata?.totalBalance?? 0} .pt</p>
+            <p className="text-lg font-bold">{userBalance+ userMeme ?? 0} GIG</p>
           </div>
           <div className="bg-apin-700 p-4 rounded-lg text-center">
             <p className="text-white-400 text-sm">Tasks</p>
-            <p className="text-lg font-bold">{alldata?.bonus ?? 0}.pt</p>
+            <p className="text-lg font-bold">{taskBonus?? 0} TR</p>
           </div>
           <div className="bg-apin-700 p-4 rounded-lg text-center">
             <p className="text-white-400 text-sm">Referral</p>
@@ -270,7 +278,7 @@ const Rewards = () => {
           )}
 
       
-      <h3 className="text-xl font-bold mt-8 mb-4">Invite Friends</h3>
+      {/* <h3 className="text-xl font-bold mt-8 mb-4">Invite Friends</h3> */}
       <div className="space-y-4 w-full">
         {/* {invites.map((invite) => (
           <div key={invite.id} className="flex items-center justify-between bg-apin p-4 rounded-xl shadow-lg">

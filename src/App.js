@@ -28,7 +28,7 @@ import Updateprofile from "./pages/Updateprofile";
 import ChangePassword from "./pages/ChangePassword";
 import Premium from "./pages/Premium";
 import Lautery from "./pages/Lautery";
-
+import WalletAddress from "./pages/Deposit";
 
 
 function App() {
@@ -68,7 +68,7 @@ function App() {
             <Route path="/changePassword" element={<ChangePassword />} />
             <Route path="/premium" element={<Premium/>}/>
             <Route path="/lautery" element={<Lautery/>}/>
-
+            <Route path="/deposit" element={<WalletAddress/>}/>
 
           </Route>
         </Routes>

@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React ,{useState, useEffect}from "react";
 import { FaArrowLeft, FaQrcode, FaChevronDown } from "react-icons/fa6";
 import Footer from "../components/Footer";
 import {useNavigate } from "react-router-dom";
@@ -15,26 +15,26 @@ export default function Withdraw() {
   const [formData, setFormData] = useState(initialState);
   const { currency, amount, wallet, network } = formData;
   const navigate = useNavigate();
-
+   const [balance, setBalance] =useState();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // useEffect(()=>{
-  //      withfatch();
-  //      },[])
-  // const withfatch = async () => {
-  //   try {
-  //     const response = await Api.get("auth/withdraw", formData);
-  //     console.log(response.data);
-  //     if (response.data) {
-                
-  //     } 
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Error submitting withdraw request.");
-  //   }
-  // };
+  useEffect(()=>{
+       withfatch();
+       },[])
+  const withfatch = async () => {
+    try {
+      const response = await Api.get("auth/withfatch");
+      console.log(response.data.data.usdt);
+      if (response.data) {
+                setBalance(response.data.data.usdt);
+      } 
+    } catch (error) {
+      console.error(error);
+      toast.error("Error submitting withdraw request.");
+    }
+  };
 
   const handleSubmit = async (e) => {
     console.log(formData);
@@ -77,27 +77,28 @@ export default function Withdraw() {
         </div>
       </div> */}
       <div className="w-full mb-6">
-  <label className="text-gray-400 text-sm mb-1 block">Choose an asset</label>
-  <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
-  <select
+       <label className="text-gray-400 text-sm mb-1 block">Choose an asset</label>
+       <select
             name="currency"
-            className="bg-transparent outline-none text-white placeholder-gray-500 text-sm flex-1"
+            className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full"
             value={currency}
             onChange={handleChange}
           >
-            <option value="AIRO">AIRO</option>
-            <option value="USDT">USDT</option>
-          </select>
-  {/* <FaChevronDown className="text-[#1efcb9]" /> */}
-  </div>
-</div>
+            <div className="flex items-center space-x-2">
+            <img src="assets/images/AIROcoin.png" alt="AIRO" className="w-6 h-6 rounded-full ml-0" />            
+          </div> 
+          <option  value="AIRO" className="text-white font-medium" style={{backgroundColor:"#4e4e4e66"}}>AIRO</option>
+            <option value="USDT" className="text-white font-medium" style={{backgroundColor:"#4e4e4e66"}}>USDT</option>           
+          </select>          
+      {/* <FaChevronDown className="text-[#1efcb9]" /> */}
+       </div>
 
 
       {/* Amount */}
       <div className="w-full mb-6">
         <div className="flex justify-between text-sm mb-1">
           <label className="text-gray-400">Amount you want to withdraw</label>
-          <span className="text-[#1efcb9]">Balance: 25</span>
+          <span className="text-[#1efcb9]">Balance: {balance}</span>
         </div>
         <div className="flex items-center justify-between bg-apin px-4 py-4 rounded-xl border border-[#1efcb9]/20 w-full">
           <input
@@ -144,7 +145,7 @@ export default function Withdraw() {
       {/* Fee */}
       <div className="w-full flex justify-between text-sm text-[#1efcb9] mb-6">
         <span>Fee:</span>
-        <span>0.0 AIRO</span>
+        <span>0.0 USDT</span>
       </div>
 
       {/* Confirm Button */}
