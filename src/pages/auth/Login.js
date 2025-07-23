@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaArrowLeft, FaEnvelope, FaLock, FaEyeSlash } from "react-icons/fa";
+import { FaArrowLeft, FaEnvelope, FaLock, FaEyeSlash,FaEye } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple, FaFacebookF } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -63,8 +64,8 @@ export default function Login() {
                 type="email"
                 placeholder="Your email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} style={{color:'#000'}}
-                className="w-full py-4 pl-12 pr-4 bg-apin/60 border border-white/10 rounded-xl text-sm text-black placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full py-3 pl-12 pr-4 bg-apin border border-[#cb86ff] rounded-xl placeholder:text-white/40"
               />
               <FaEnvelope className="absolute top-1/2 left-4 transform -translate-y-1/2 text-[#1efcb9]" />
             </div>
@@ -74,14 +75,21 @@ export default function Login() {
             <label className="text-sm text-white block mb-1">Password</label>
             <div className="relative w-full">
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} style={{color:'#000'}}
-                className="w-full py-4 pl-12 pr-10 bg-apin/60 border border-white/10 rounded-xl text-sm text-black placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#1efcb9]/50 backdrop-blur-md"
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full py-3 pl-12 pr-4 bg-apin border border-[#cb86ff] rounded-xl placeholder:text-white/40"
               />
               <FaLock className="absolute top-1/2 left-4 transform -translate-y-1/2 text-[#1efcb9]" />
-              <FaEyeSlash className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400" />
+
+{/* 👁️ Toggle password visibility */}
+<span
+  onClick={() => setShowPassword(!showPassword)}
+  className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+>
+  {showPassword ? <FaEye /> : <FaEyeSlash />}
+</span>
             </div>
           </div>
 

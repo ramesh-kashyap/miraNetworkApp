@@ -48,7 +48,7 @@ const Rewards = () => {
         setmeme(response.data.data.meme_coin);
         setTaskBonus(response.data.data.dailyquest);
         setMiningBonus(response.data.bonus);
-        // setreferralBonus(response.data.referralBonus);
+        setreferralBonus(response.data.data.invite_bonus);
         setAlldata(response.data);  // Store API response in state
     } catch (err) {
         setError(err.response?.data?.error || "Error fetching data");
@@ -207,7 +207,7 @@ const Rewards = () => {
           </div>
           <div className="bg-apin-700 p-4 rounded-lg text-center">
             <p className="text-white-400 text-sm">Referral</p>
-            <p className="text-lg font-bold">0 pt</p>
+            <p className="text-lg font-bold">{referralBonus ??0} CH</p>
           </div>
         </div>
       </div>

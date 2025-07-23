@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowLeft, FaGamepad, FaRocket, FaExchangeAlt } from "react-icons/fa";
 import { FiGlobe, FiTrendingUp, FiUsers } from "react-icons/fi";
 import { MdOutlineAttachMoney } from "react-icons/md";
-
+import { useNavigate } from "react-router-dom";
 export default function SendAsset() {
+   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0f07] to-[#020402] text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-sans relative overflow-hidden">
-      <div className="flex items-center mb-6">
-        <button className="p-2 w-10 h-10 rounded-xl bg-apin border border-[#1efcb9]/20 flex items-center justify-center shadow-md">
-        <img
-  src="/assets/images/122.svg"
-  alt="Internal"
-  className="w-6 h-6 object-contain"
-/>         </button>
+    <div className="min-h-screen imgbg  bg-gradient-to-b from-[#0a0f07] to-[#020402] text-white px-4 pt-6 pb-24 w-full max-w-md mx-auto font-sans relative overflow-hidden">
+      <div className="flex items-center mb-6"  onClick={() => navigate("/airdrop")}>
+        <button className="bg-[#1a1a1a] p-3 rounded-full">
+                  <FaArrowLeft className="text-white text-lg" />
+                </button>
         <h1 className="flex-grow text-center text-2xl font-bold tracking-wide text-white ml-[-40px]">Send Asset</h1>
       </div>
 

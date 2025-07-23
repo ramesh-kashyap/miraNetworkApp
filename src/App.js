@@ -29,7 +29,8 @@ import ChangePassword from "./pages/ChangePassword";
 import Premium from "./pages/Premium";
 import Lautery from "./pages/Lautery";
 import WalletAddress from "./pages/Deposit";
-
+import Fatchtopuser from "./pages/Fetchtop";
+import Lauterylist from "./pages/LauteryHistory";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -69,7 +70,8 @@ function App() {
             <Route path="/premium" element={<Premium/>}/>
             <Route path="/lautery" element={<Lautery/>}/>
             <Route path="/deposit" element={<WalletAddress/>}/>
-
+            <Route path="/fatchtopuser" element={<Fatchtopuser/>}/>
+            <Route path="/lauterylist" element={<Lauterylist/>}/>
           </Route>
         </Routes>
       )}

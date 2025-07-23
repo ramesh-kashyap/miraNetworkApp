@@ -4,32 +4,6 @@ import Api from '../services/Api';
 import { FaArrowLeft, FaQrcode, FaChevronDown } from "react-icons/fa6";
 import { Toaster, toast } from 'react-hot-toast';
 import {useNavigate } from "react-router-dom";
-const items = [
-  {
-    id: 1,
-    title: '1 ETH',
-    logo: '/assets/img/usdt.png',
-    originalPrice: '2800USDT',
-    price: '1USDT',
-    progress: 70,
-  },
-  {
-    id: 2,
-    title: '1000USDT',
-    logo: '/assets/img/trc20.jpg',
-    originalPrice: '1200USDT',
-    price: '1USDT',
-    progress: 70,
-  },
-  {
-    id: 3,
-    title: 'Tesla Model Y',
-    logo: '/assets/img/pep20.png',
-    originalPrice: '63000USDT',
-    price: '1USDT',
-    progress: 70,
-  },
-];
 
 export default function Lautery() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -70,6 +44,9 @@ export default function Lautery() {
       if(response.data.success){       
        toast.success("✅ Lautery Buy successfully!", { duration: 1000 });
       }
+      else{
+        toast.error(response.data.message ||"Try Again");
+      }
       
     } catch (error) {
       console.error("❌ Buy failed:", error.message);
@@ -102,7 +79,7 @@ export default function Lautery() {
         🎉 Congratulations to Milad for winning 100USDT!
       </div>
 
-      <h2 className="text-white text-sm mb-3 font-semibold">Item List</h2>
+      <h2 className="text-white text-sm mb-3 font-semibold">Gudies List</h2>
       <div className="space-y-4">
       {name.map((lautry) => (
         <div
@@ -116,18 +93,21 @@ export default function Lautery() {
               className="w-12 h-12 rounded-full bg-white object-contain"
             />
             <div className="flex-1">
-              <div className="font-semibold text-white mb-1">{lautry.gudis_name}</div>
+              {/* <div className="font-semibold text-white mb-1">{lautry.gudie_name}</div> */}
               <div className="h-2 bg-[#333] rounded-full relative">
-                {/* <p>{(   lautry.bet_amount/lautry.amount) * 100}</p> */}
+                <p className="absolute h-2" style={{fontSize:15, margin:15}}>{lautry.gudie_name}</p>
                 <div
                   className="absolute top-0 left-0 h-2 bg-[#9f1eff] rounded-full"
-                  style={{ width: `${(lautry.bet_amount / lautry.amount) * 100 < 1 ? 1 : (lautry.bet_amount / lautry.amount) * 100}%` }}
+                  style={{ width: `${Math.min((lautry.bet_amount / lautry.amount) * 100, 100)}%` }}
                 />
                 <span
                   className="absolute top-[-18px] text-xs text-white"
                   style={{ left: `${lautry.bet_amount}%`, transform: 'translateX(-50%)' }}
                 >
-                  {lautry.bet_amount}%
+                    {lautry.amount > 0
+    ? Math.min((lautry.bet_amount / lautry.amount) * 100, 100).toFixed(1)
+    : '0.0'
+  }%
                 </span>
               </div>
             </div>
@@ -135,7 +115,7 @@ export default function Lautery() {
 
           <div className="flex justify-between items-end">
             <div className="text-yellow-400 text-sm font-bold">
-              {lautry.amount}
+              {lautry.bet_on} USDT
               <span className="text-white/40 line-through text-xs ml-2">
                 {lautry.amount}
               </span>
@@ -173,7 +153,7 @@ export default function Lautery() {
                 -
               </button>
               <div className="text-lg font-semibold">
-                {quantity} <span className="text-sm text-gray-300">copies</span>
+                {quantity} <span className="text-sm text-gray-300">USDT</span>
                 <div className="text-xs text-gray-400">Cost {quantity} USDT</div>
               </div>
               <button

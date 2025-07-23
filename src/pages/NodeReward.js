@@ -48,10 +48,10 @@ export default function NodeReward() {
     const fetchRewards = async () => {
       try {
           const response = await Api.get('auth/baycoin');
-          console.log("API Response:", response);
+          // console.log("API Response:", response.data.data);
           if(response.data){
             setDailyRewards(response.data.data.hour_bal);
-            console.log(response.data.data.meme_date);
+            // console.log(response.data.data.hour_bal);
           }
           else {
             console.error("API Response:", error);
@@ -150,7 +150,7 @@ export default function NodeReward() {
             throw new Error("Claim failed");
         }
     } catch (error) {
-        toast.error("❌ Connect Your AiCoinX Account.", { duration: 1000 });
+        toast.error("❌ Somthing Wrong, Try Again!", { duration: 1000 });
     }
 };
 

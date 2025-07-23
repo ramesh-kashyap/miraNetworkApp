@@ -86,8 +86,7 @@ export default function Withdraw() {
           >
             <div className="flex items-center space-x-2">
             <img src="assets/images/AIROcoin.png" alt="AIRO" className="w-6 h-6 rounded-full ml-0" />            
-          </div> 
-          <option  value="AIRO" className="text-white font-medium" style={{backgroundColor:"#4e4e4e66"}}>AIRO</option>
+          </div>           
             <option value="USDT" className="text-white font-medium" style={{backgroundColor:"#4e4e4e66"}}>USDT</option>           
           </select>          
       {/* <FaChevronDown className="text-[#1efcb9]" /> */}

@@ -33,12 +33,12 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
        const coins = async () =>{
          try{
            const response = await Api.get('auth/coins');
-           console.log(response.data.data);
+          //  console.log(response.data.data);
             if(response.data){
-             console.log(response.data.taskbal);
-             console.log(response.data.data);
+            //  console.log(response.data.data.usdt);
+            //  console.log(response.data.data.aironame);
                 setAirocoin(response.data.data.usdt);
-                setAironame(response.data.daxta.aironame);
+                setAironame(response.data.data.aironame);
             }  
          }
          catch{
@@ -116,7 +116,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
         ))}
         </div>
 
-      <div className="rounded-xl bg-apin p-4 mb-5 text-center border border-white/10">
+      {/* <div className="rounded-xl bg-apin p-4 mb-5 text-center border border-white/10">
         <div className="text-white/70 text-sm mb-1">Number of packages sold</div>
         <div className="text-[#faff00] text-2xl font-bold tracking-widest">279,938</div>
       </div>
@@ -138,7 +138,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
 
       <div className="rounded-xl border border-white/10 text-center py-4 text-sm tracking-wide bg-apin text-white mb-5">
       ATN REVENUE SHARING
-      </div>
+      </div> */}
 
       <div className="bg-apin border border-[#1efcb9]/20 rounded-2xl px-5 py-6 text-white shadow-lg">
        
@@ -151,7 +151,7 @@ const canPurchase = selectedIndex !== null && airo >= packages[selectedIndex].pr
           </li>
           <li className="flex items-start gap-2">
             <span className="text-[#1efcb9]">◆</span>
-            Entitled to profit-sharing benefits in ATN every month.
+            Entitled to profit-sharing benefits in AIRO every month.
           </li>
           <li className="flex items-start gap-2">
             <span className="text-[#1efcb9]">◆</span>

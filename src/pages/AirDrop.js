@@ -12,12 +12,14 @@ export default function Airdrop() {
   const [trcoin ,setquestcoin]= useState(0); 
   const [lamo ,settaskcoin]= useState(0); 
   const [airo ,setAirocoin] = useState(0);
+  const [chuckleCoin ,setChuckleCoin] = useState(0);
+  const [UsdtCoin ,setUsdtCoin] = useState(0);
   const tokens = [
     { name: "AIRO", value: airo, icon: "assets/images/AIROcoin.png" },
-    { name: "USDT", value: 0, icon: "assets/images/tether-usdt-logo.svg" },
+    { name: "USDT", value: UsdtCoin, icon: "assets/images/tether-usdt-logo.svg" },
     { name: "GiggleToken", value: gigcoin + gige, icon: "assets/images/gemcoin.png" },
     { name: "MemeMoola", value: moolcoin, icon: "assets/images/mcoin.png" },
-    { name: "ChuckleCoin", value: 5020100, icon: "assets/images/chcoin.png" },
+    { name: "ChuckleCoin", value: chuckleCoin, icon: "assets/images/chcoin.png" },
   
     { name: "TrollToken", value: trcoin, icon: "assets/images/trcoin.png" },
     { name: "LMAOCash", value: lamo, icon: "assets/images/lmcoin.png" },
@@ -29,19 +31,20 @@ export default function Airdrop() {
   const coins = async () =>{
     try{
       const response = await Api.get('auth/coins');
-      console.log("hello")
+      console.log(response.data);
        if(response.data){
-
            setTapcoin(response.data.data.tabbalance?response.data.data.tabbalance:0);
            setNodecoin(response.data.data.meme_coin?response.data.data.meme_coin:0);
            setStreakcoin(response.data.data.streak?response.data.data.streak:0);
            setquestcoin(response.data.data.dailyquest?response.data.data.dailyquest:0);
            settaskcoin(response.data.taskbal?response.data.taskbal:0);
            setAirocoin(response.data.data.airo?response.data.data.airo:0);
+           setUsdtCoin(response.data.data.usdt?response.data.data.usdt:0);
+           setChuckleCoin(response.data.data.invite_bonus?response.data.data.invite_bonus:0);
        }  
     }
     catch{
-      console.error("Somthing is write");
+      console.error("Somthing is wrong");
     }
   }
   return (
@@ -62,10 +65,10 @@ export default function Airdrop() {
 
       
       <div className="grid grid-cols-3 gap-6 mb-12 w-full">
-        <ActionButton icon={<FaArrowUp />} label="Send" />
-        <ActionButton icon={<FaArrowDown />} label="Receive" />
+        <ActionButton icon={<FaArrowUp />} label="Send"   onClick={() => navigate("/sendAsset")}/>
+        <ActionButton icon={<FaArrowDown />} label="Receive"  onClick={() => window.open('https://airocoin.co/register?ref=954920', '_blank')}/>
         <ActionButton icon={<FaClock />} label="History" onClick={() => navigate("/history")}/>
-        <ActionButton icon={<FaCoins />} label="Deposit" />
+        <ActionButton icon={<FaCoins />} label="Deposit"  onClick={() => navigate("/deposit")}/>
         <ActionButton icon={<FaDownload />} label="Withdraw"  onClick={() => navigate("/withdraw")}/>
         <ActionButton icon={<FaWallet />} label="Vesting" />
       </div>

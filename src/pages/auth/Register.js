@@ -6,8 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Api from '../../services/Api';
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
-
-
+import 'react-phone-input-2/lib/style.css';
 
 
 
@@ -23,7 +22,7 @@ export default function SignUp() {
     password: "",
     repeatPassword: "",
     referralCode: "",
-    country:"",
+    countryCode:"",
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -37,10 +36,10 @@ export default function SignUp() {
     e.preventDefault();
     setLoading(true);
 
-    const { fullName, email, phone, password, repeatPassword, referralCode,country } = formData;
+    const { fullName, email, phone, password, repeatPassword, referralCode,countryCode } = formData;
 
     // Basic validations
-    if (!fullName || !email || !phone || !password || !repeatPassword ||!country) {
+    if (!fullName || !email || !phone || !password || !repeatPassword ||!countryCode) {
       toast.error("⚠️ All fields are required!");
       setLoading(false);
       return;
@@ -66,7 +65,7 @@ export default function SignUp() {
         email,
         phone,
         password,
-        country,
+        countryCode,
         repeatPassword,
         referralCode,
       });
@@ -127,22 +126,43 @@ export default function SignUp() {
 
         {/* Phone */}
         <div className="relative mb-5">
-        <PhoneInput
-  defaultCountry="IN"
-  value={formData.phone}
-  onChange={(value, meta) => {
-    setFormData({
-      ...formData,
-      phone: value, 
-      countryCode: meta.country.dialCode, 
-      country: meta.country.iso2.toUpperCase() 
-    });
-  }}
-  inputClassName="!bg-[rgb(78_78_78_/_40%)] !text-white !border-[#cb86ff] !rounded-xl !pl-12 !pr-4 !h-[53px] !text-base w-full"
-  containerClassName="w-full !h-[55px]"
-  buttonClassName="!h-[55px] !border-r !border-white/10 !bg-transparent"
-/>
+  <div className="flex items-center w-full">
+    {/* Flag + Country Code Section */}
+    <div className="relative flex items-center bg-[rgb(78_78_78_/_40%)]  rounded-l-xl px-2 h-[53px] text-white text-base min-w-[85px]">
+      {/* Flag Selector (PhoneInput) */}
+      <PhoneInput
+        defaultCountry="IN"
+        value={formData.countryCode}
+        onChange={(value, meta) => {
+          setFormData({
+            ...formData,
+            countryCode: meta.country.dialCode,
+            country: meta.country.iso2.toUpperCase(),
+          });
+        }}
+        inputClassName="!opacity-0 !w-0"
+        containerClassName="!absolute !left-0 !top-0 w-full h-full"
+        buttonClassName="!h-full !bg-transparent !border-none z-10 !pl-1 !pr-1"
+      />
+      {/* Country Code Display */}
+      <span className="ml-[-15px] z-0">+{formData.countryCode}</span>
+    </div>
+
+    {/* Phone Number Field */}
+    <input
+      type="text"
+      placeholder="Enter phone number"
+      value={formData.phone}
+      onChange={(e) =>
+        setFormData({ ...formData, phone: e.target.value })
+      }
+      className="!bg-[rgb(78_78_78_/_40%)] !text-white !border-l-0 !border-[#cb86ff] rounded-r-xl pl-4 pr-4 h-[53px] text-base w-full"
+    />
+  </div>
 </div>
+
+
+
 
         {/* Password */}
         <label className="text-sm mb-1 block">Password *</label>

@@ -133,8 +133,7 @@
   /* background-attachment: fixed; */
 }
 .airoOverlay {
-  background: linear-gradient(to bottom, #2f2838 0%, rgba(159, 30, 255, 0) 40%),
-              linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background: linear-gradient(to bottom, #361f54 0%, rgba(159, 30, 255, 0) 48%), linear-gradient(rgb(0 0 0 / 67%), rgb(0 0 0 / 89%));
 }
 
 .imgbg2 {
@@ -197,3 +196,53 @@
   background-color: #0000005c;
   background: rgb(78 78 78 / 40%);
 }
+
+
+.react-international-phone-country-selector-dropdown {
+  position: absolute;
+  z-index: 1;
+  top: var(--react-international-phone-dropdown-top, 44px);
+  left: var(--react-international-phone-dropdown-left, 0);
+  display: flex
+;
+  width: 425px;
+  max-height: 250px;
+  border-radius: 20px;
+  flex-direction: column;
+  padding: 4px 0;
+  margin: 0;
+  background-color: var(--react-international-phone-dropdown-item-background-color, var(--react-international-phone-background-color, white));
+  box-shadow: var(--react-international-phone-dropdown-shadow, 2px 2px 16px rgba(0, 0, 0, .25));
+  color: #fff;
+  /* var(--react-international-phone-dropdown-item-text-color, var(--react-international-phone-text-color, #222)); */
+  list-style: none;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  background-color: #000000d9;
+}
+.react-international-phone-country-selector-button{
+  --tw-bg-opacity: 1;
+    background-color: transparent;
+    /* border-color: rgb(203 134 255 / var(--tw-border-opacity, 1)); */
+    margin-right: "5px";
+    border:none;    
+}
+.react-international-phone-country-selector-button:hover {
+  background-color: transparent !important;
+}
+
+
+
+
+.bg-\[rgb\(78_78_78_\/_40\%\)\] {
+  background-color: #1d101066;
+}
+
+
+
+
+
+
+
+
+

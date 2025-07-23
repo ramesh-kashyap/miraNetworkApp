@@ -101,7 +101,7 @@ export default function home() {
           {/* <img src="/assets/athn/bell.svg" alt="Slide 1" style={{width: 20}}/> */}
             {/* <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span> */}
           </div>
-          <img src="/assets/img/tresure.png" alt="Slide 1" style={{width: 40}}/>
+          <img src="/assets/img/tresure.png" alt="Slide 1" style={{width: 40}} onClick={()=>navigate('/fatchtopuser')}/>
         </div>
       </div>
 {/* Swiper Slider with Transitions */}
@@ -160,9 +160,9 @@ export default function home() {
      
       <div className="w-full bg-apin border border-[#1efcb9]/20 rounded-xl p-4  flex justify-between items-center mb-6 shadow-sm">
         <div>
-          <p className="text-[#ffffff] text-sm font-semibold leading-snug">COMPLETE QUESTS<br />TO EARN MORE GEM</p>
+          <p className="text-[#ffffff] text-sm font-semibold leading-snug">COMPLETE QUESTS<br />Your Daily Attendance Reward</p>
         </div>
-        <button className="bg-gradient-to-r from-[#1efcb9] to-[#108b75] px-5 py-2 rounded-xl text-xs text-black flex items-center gap-2 shadow-md">
+        <button className="bg-gradient-to-r from-[#1efcb9] to-[#108b75] px-5 py-2 rounded-xl text-xs text-black flex items-center gap-2 shadow-md"  onClick={()=>navigate("/reward")}>
           Quest <FaArrowRight />
         </button>
       </div>
@@ -204,7 +204,7 @@ export default function home() {
       <p className="text-white text-xs mt-1">Node</p>
     </div>
     <div>
-      <img src="/assets/athn/6.png" alt="Boost" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/6.png" alt="Boost" className="w-10 h-10 mx-auto"  onClick={()=>navigate("/Premium")}/>
       <p className="text-white text-xs mt-1">Boost</p>
     </div>
     <div>
@@ -212,15 +212,15 @@ export default function home() {
       <p className="text-white text-xs mt-1">Leaderboard</p>
     </div>
     <div>
-      <img src="/assets/athn/7.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/7.png" alt="Leaderboard" className="w-10 h-10 mx-auto"  onClick={() => window.open('https://x.com/aironetwork77?s=21', '_blank')}/>
       <p className="text-white text-xs mt-1">Twitter</p>
     </div>
     <div>
-      <img src="/assets/athn/9.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/9.png" alt="Leaderboard" className="w-10 h-10 mx-auto"  onClick={() => window.open('https://youtube.com/@aironetworkairocoin?si=h5h1m9Rz8Qev03Yx', '_blank')}/>
       <p className="text-white text-xs mt-1">Youtube</p>
     </div>
     <div>
-      <img src="/assets/athn/10.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/10.png" alt="Leaderboard" className="w-10 h-10 mx-auto"  onClick={() => window.open('https://www.instagram.com/airo_network77?igsh=MXh4NmtuZm1lcXg1aw%3D%3D&utm_source=qr', '_blank')}/>
       <p className="text-white text-xs mt-1">Facebook</p>
     </div>
     <div>
@@ -236,7 +236,7 @@ export default function home() {
       <p className="text-white text-xs mt-1">Blog</p>
     </div>
     <div>
-      <img src="/assets/athn/19.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
+      <img src="/assets/athn/19.png" alt="Leaderboard" className="w-10 h-10 mx-auto" onClick={()=>navigate("/miningTeam")}/>
       <p className="text-white text-xs mt-1">Sponsor</p>
     </div>
     <div>
@@ -244,8 +244,8 @@ export default function home() {
       <p className="text-white text-xs mt-1">Faucet</p>
     </div>
     <div>
-      <img src="/assets/athn/8.png" alt="Leaderboard" className="w-10 h-10 mx-auto" />
-      <p className="text-white text-xs mt-1">Register</p>
+      <img src="/assets/athn/8.png" alt="Leaderboard" className="w-10 h-10 mx-auto"  onClick={() => window.open('https://t.me/aironetwork77', '_blank')}/>
+      <p className="text-white text-xs mt-1">Telegram</p>
     </div>
     <div>
       <img src="/assets/athn/premium.webp" alt="Leaderboard" className="w-10 h-10 mx-auto" onClick={()=>navigate("/Premium")}/>
@@ -253,9 +253,35 @@ export default function home() {
     </div>
     <div>
       <img src="/assets/athn/latry.png" alt="Leaderboard" className="w-10 h-10 mx-auto" onClick={()=>navigate("/lautery")}/>
-      <p className="text-white text-xs mt-1">Lautery</p>
+      <p className="text-white text-xs mt-1">Lottery</p>
+    </div>
+    <div>
+      <img src="/assets/athn/latry.png" alt="Leaderboard" className="w-10 h-10 mx-auto" onClick={()=>navigate("/lauterylist")}/>
+      <p className="text-white text-xs mt-1">Lottery History</p>
     </div>
   </div>
+      </div>
+      <div className="w-full bg-apin border border-[#1efcb9]/20 rounded-xl p-4 mb-4 shadow-sm mt-4">
+  <h3 className="text-xs text-white mb-2 font-medium tracking-wide">LIVE PROJECTS</h3>
+  <div className="grid grid-cols-4 gap-4 text-center">
+    <div>
+      <img src="/assets/athn/latry.png" alt="TAP" className="w-10 h-10 mx-auto" onClick={() => window.open('http://airogame.in/register?invitecode=-6600BARR66235', '_blank')}/>
+      <p className="text-white text-xs mt-1">GAME</p>
+    </div>
+    <div>
+      <img src="/assets/athn/latry.png" alt="Node" className="w-10 h-10 mx-auto" onClick={() => window.open('https://airocoin.co/register?ref=954920', '_blank')}/>
+      <p className="text-white text-xs mt-1">STAKE</p>
+    </div>    
+  </div>
+</div>
+
+      <div className="w-full bg-apin border border-[#1efcb9]/20 rounded-xl p-4  flex justify-between items-center shadow-sm">
+        <div>
+          <p className="text-[#ffffff] text-sm font-semibold leading-snug">PROJECTS<br />View for upcoming and live projects</p>
+        </div>
+        <button className="bg-gradient-to-r from-[#1efcb9] to-[#108b75] px-5 py-2 rounded-xl text-xs text-black flex items-center gap-2 shadow-md">
+          Check <FaArrowRight />
+        </button>
       </div>
       <Footer/>
     </div>
